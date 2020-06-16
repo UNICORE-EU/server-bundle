@@ -1,0 +1,35 @@
+#
+# Registry configuration files
+#
+
+startup.properties (used only on Unix):
+
+  This file is imported by the start/stop scripts. 
+  It contains basic settings such as Java command, 
+  lib, conf and log directories, location of PID file.
+
+uas.config
+
+  This is the main configuration file. It contains host/port
+  and security settings.
+
+logging.properties
+
+  Configures the logging subsystem (Log4j)
+
+simpleuudb (optional)
+
+  Map file for mapping distinguished names to role, xlogin and other 
+  attributes. May be used as alternative or in addition to UVOS or XUUDB.
+
+xacml2.config
+
+  Configures the XACML2.0 subsystem.
+
+xacml2Policies
+
+  Directory containing XACML2.0 access control policy files.
+
+wrapper.conf (used only on Windows)
+
+  Basic settings for starting UNICORE/X.

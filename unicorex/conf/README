@@ -1,0 +1,60 @@
+#
+# UNICORE/X configuration files
+#
+
+startup.properties (used only on Unix):
+
+  This file is imported by the start/stop scripts. 
+  It contains basic settings such as Java command, 
+  lib, conf and log directories, location of PID file.
+
+logging.properties
+
+  Configures the logging subsystem (Log4j)
+
+uas.config
+
+  This is the basic UNICORE/X configuration file.
+  Other config files are referenced from here.
+
+container.properties
+
+  This file contains service definitions and property 
+  settings. It also contains the settings for the 
+  persistence subsystem.
+
+xnjs.properties
+
+  This file contains the settings for connecting to the TSI.
+
+simpleidb
+
+  Contains application definitions, resource limits, execution 
+  environments, etc. Referenced from xnjs.properties
+
+simpleuudb (optional)
+
+  Map file for mapping distinguished names to role, xlogin and other 
+  attributes. May be used as alternative or in addition to UVOS or XUUDB.
+
+rest-users.txt (optional)
+
+  Usernames/passwords for authenticating users via the REST API.
+
+xacml2.config
+
+  Configures the XACML2.0 subsystem.
+
+xacml2Policies
+
+  Directory containing XACML2.0 access control policy files.
+
+vo.config (optional, used with UVOS)
+
+  Configuration for interfacing to the VO system.
+
+wrapper.conf (used only on Windows)
+
+  Basic settings for starting UNICORE/X on Windows.
+
+

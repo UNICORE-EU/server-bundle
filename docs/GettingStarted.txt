@@ -1,0 +1,141 @@
+Getting started with the UNICORE Server Bundle
+**********************************************
+
+WHERE TO GET MORE DOCUMENTATION
+*******************************
+
+Please check the other files in the docs/ directory of the distribution.
+The individual manuals for the components are all included.
+Also have a look at https://www.unicore.eu
+
+
+SERVER STARTUP
+**************
+
+There's a "start.sh" script that starts up the installed components.
+
+
+USAGE
+*****
+
+Clients are available from the UNICORE download page
+https://www.unicore.eu/downloads
+
+** Security: 
+
+The "demouser" account with password "test123" will give you access
+to the REST API (directly or via the UCC commandline client).
+
+
+If you want to use user certificates (not recommended), there is a
+"Demo User" certificate available for testing:
+
+keystore  : certs/demouser.p12 (password is 'the!user')
+public key: certs/demouser.pem
+Signing CA: certs/trusted/cacert.pem
+
+The client-side security setup depends on the type of client you
+are using. For detailed instructions, we refer you to the security
+guides available on the UNICORE web site https://www.unicore.eu/documentation
+and on the UNICORE Wiki https://sourceforge.net/p/unicore/wiki/
+
+** Client side registry settings:
+
+In the client, edit the registry settings 
+to include the UNICORE Registry:
+
+https://host:port/REGISTRY/rest/registries/default_registry
+
+or
+
+https://host:port/DEMO-SITE/rest/registries/default_registry
+   
+
+if you did not install the shared registry
+
+Here, "host" and "port" refer to the gateway hostname and port (8080 by
+default).
+
+
+** Applications:
+The "Date" application as well as the various Script applications should 
+work fine on every quickstart installation.
+Additional applications such as "POVRay" and "Blender" are in the IDB,
+but you might need to install it if you want to use them.
+
+
+ADMINISTRATION NOTES
+********************
+
+** Security notes (UNIX systems):
+
+It is NOT necessary (and NOT advisable) to run the servers with administrator
+privileges. An exception is the UNICORE TSI server, which must run as root,
+if you want to run UNICORE in a multiuser setting.
+
+When not using the UNICORE TSI server, all jobs are run under 
+the same user id (that started UNICORE/X. Access control is still in place,
+i.e. each user is only allowed to use her own target system service instance and access
+her own jobs.
+
+
+** Persistence:
+
+UNICORE/X and Workflow servers stores state persistently, by default
+using an embedded database. In case of problems it may be required to
+purge the directory used for storage (default: unicorex/data,
+registry/data, workflow/data) This is especially the case if you
+change fundamental server settings such as host names, ports,
+certificates, etc.
+
+** Using a Batch system:
+
+By default, the UNICORE/X server will run jobs locally. To use a batch system
+such as Slurm, or even to run jobs on a machine that is not
+the UNICORE/X server. you need to install and configure the UNICORE TSI.
+
+** Memory usage
+
+The servers keeps most of the data on disk (or in the configured
+database), but still load services into memory when they are used. You
+can configure the amount of memory allocated to UNICORE/X :
+Unix: edit the start script ".../conf/startup.properties"
+
+
+** Limiting memory usage
+
+You can set a limit on the number of service instances (e.g. jobs) per user.
+This allows you to make sure your server stays nicely up and running even if 
+flooded by jobs. Please see the UNICORE/X manual for details.
+
+** Logging:
+Logging levels, files, etc can be set in the
+"<component>/conf/logging.properties" files
+
+No restart of the component is needed, the changes will take effect
+after a few seconds.
+
+
+SOURCECODE
+**********
+
+The sourcecode for UNICORE is available via GitHub:
+https://github.com/UNICORE-EU
+
+REPORTING BUGS
+**************
+
+Please use the issue trackers at 
+
+https://sourceforge.net/p/unicore/issues
+
+and/or send email to the support list: unicore-support@lists.sf.net
+
+
+CONTACTS
+********
+Web site: https://www.unicore.eu
+Sourceforge project site: https://sourceforge.net/p/unicore
+Questions, suggestions, problems: unicore-support@lists.sf.net
+Developers chat: unicore-devel@lists.sf.net (subscription required)
+

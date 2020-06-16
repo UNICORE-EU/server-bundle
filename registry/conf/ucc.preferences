@@ -1,0 +1,47 @@
+#
+# preferences for UCC as admin tool (with the Registry server certificate)
+#
+
+#
+# security
+#
+
+credential.path=${registryKeystore}
+credential.password=${registryKeystorePassword}
+
+truststore.type=${registryTruststoreType}
+truststore.directoryLocations.1=${registryTruststore}
+truststore.keystorePath=${registryTruststore}
+truststore.keystorePassword=${registryTruststorePassword}
+
+
+# this is the local registry of the UNICORE/X server
+registry=https://${registryHost}:${registryPort}/services/Registry?res=default_registry
+
+# to connect to the shared registry instead, use the following setting
+#registry=https://${gwHost}:${gwPort}/${registryName}/services/Registry?res=default_registry
+
+# default directory for output files
+output=/tmp
+
+# file transfer preferences
+protocols=BFT RBYTEIO
+
+#
+# HTTP Proxy settings
+#
+#http.proxyHost=
+#http.proxyPort=
+#http.proxy.user=
+#http.proxy.password=
+#http.nonProxyHosts=<space separated list of hostnames>
+
+#
+# connection timeout in millis (default = 10000)
+#
+#http.connection.timeout=<timeout in millis>
+
+#
+# read timeout in millis (default = 10000)
+#
+#http.timeout=<timeout in millis>

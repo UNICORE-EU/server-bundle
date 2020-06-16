@@ -1,0 +1,135 @@
+SECURITY NOTES
+**************
+
+The Gateway, UNICORE/X, Registry, Workflow and XUUDB servers use X.509
+certificates and client-authenticated SSL for communication. The
+default certificates should not be used if your servers are accessible
+from the internet!
+
+This text describes *very briefly* how to exchange the server certificates for 
+"real" production certificates. For more in-depth information please
+consult https://www.unicore.eu/documentation
+
+Content:
+
+1. General notes
+2. Gateway
+3. UNICORE/X, Workflow
+4. Registry
+5. XUUDB
+
+
+For each component, we give an overview of the security settings for the
+component, list the relevant configuration files, and list the required
+certificates that the component needs to trust.
+
+Please note that this is *not* a general introduction to UNICORE security, 
+X509 public key infrastructure, etc.
+
+
+General notes
+*************
+
+The components can use pkcs12, jks and pem keystores. There are many tools 
+to create and edit keystores, for example:
+
+ - OpenSSL
+ - Portecle, a Java-based GUI application available from 
+   http://portecle.sourceforge.net
+ - The "keytool" command from the Java runtime environment
+
+All components usually have 
+ - a keystore containing one (or more) private keys and the corresponding
+ public key
+ - a truststore containing the trusted certificates, notably the certificate
+ of the certification authority that the component trusts
+
+Keystore and trustore can be a single file, but can also be separate.
+
+It is a good approach to use a common truststore and share it between
+the servers. The simplest truststore is a directory containing the trusted CA certs
+in pem format. Each server should have its own private key in a keystore file.
+
+
+Gateway
+*******
+
+Overview:
+
+The Gateway is a service that is contacted by both end users and servers 
+(i.e. potentially all servers in the federation except the XUUDB).
+
+Relevant configuration files:
+
+The keystore/truststore location and password is configured in 
+"gateway/conf/gateway.properties"
+
+Required Truststore content IF HTTP AUTHENTICATION IS REQUIRED
+
+ - CA certificates of *all* user certificates that are to be trusted
+ - CA certificates of *all* server certificates that are to be trusted
+
+Otherwise the truststore can be empty.
+
+UNICORE/X & Workflow
+********************
+
+Overview:
+
+The UNICORE/X and Workflow servers are usually *not* contacted directly by users,
+only by the Gateway.  However, validation of incoming messages
+(checking signatures and signed SAML assertions) require that
+UNICORE/X has the trusted CAs of all server certificates in its
+truststore.
+
+Relevant configuration files:
+
+The keystore/truststore is configured in 
+".../conf/container.properties"
+
+Required Truststore content:
+
+ - CA certificates of *all* server certificates that are to be trusted
+ - CA certificates of *all* user certificates that are to be trusted
+
+Trusted assertion issuers:
+ - the public keys of all trusted Unity servers
+
+Registry
+********
+
+All comments made for the UNICORE/X component apply to the registry as well.
+
+***
+*** In addition, please note the following: 
+***
+In a production environment, it MUST be controlled who is allowed to write to 
+the registry. This is achieved by enabling access control, and explicitely 
+adding the certificates / DNs of all valid servers with role="server" to 
+the XUUDB (or an other attribute source).
+If anybody is allowed to write, a malicious user could add a server entry and try
+to use any trust delegation assertions sent to this malicious server to
+compromise other users' data.
+
+XUUDB
+*****
+
+The XUUDB server is contacted by each UNICORE/X server, and by XUUDB
+administrators (who usually use the XUUDB certificate).
+
+An access control list (ACL) is used to control which DNs are allowed
+to edit the XUUDB.
+
+Relevant configuration files:
+
+The keystore/truststore is configured in 
+"xuudb/conf/xuudb_server.conf"
+
+The DNs that are allowed to edit the XUUDB are controlled in 
+"xuudb/conf/xuudb.acl"
+
+Required Truststore content:
+
+ - CA certificates of all UNICORE/X, Workflow etc servers accessing the XUUDB
+ - CA certificates of the XUUDB administrators
+

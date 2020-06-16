@@ -1,0 +1,4 @@
+system-info -l
+connect
+list-storages -l
+exec date

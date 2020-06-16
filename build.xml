@@ -1,0 +1,374 @@
+<?xml version="1.0"?>
+<project name="quickstart" default="full-build"
+   xmlns:mvn="antlib:org.apache.maven.resolver.ant">
+
+  <description>Build the UNICORE Server bundle</description>
+
+  <property name="dist-name" value="unicore-servers"/>
+  <property name="version" value="8.1.0"/>
+  <property name="patch" value=""/>
+
+  <!-- Component versions -->
+  <property name="xuudb-version" value="2.5.1"/>
+  <property name="gateway-version" value="1.6.2"/>
+  <property name="registry-version" value="8.0.3"/>
+  <property name="unicorex-version" value="8.0.3"/>
+  <property name="workflow-version" value="3.0.0"/>
+  <property name="ucc-version" value="2.0.1"/>
+
+  <!-- TSI retrieved via checkout -->
+  <property name="tsi-version" value="8.0.3"/>
+
+  <!-- Links to the html manuals  
+       These will be downloaded and put into the distribution as .html and .txt
+  -->
+  <property name="gateway-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/gateway-1.6.2/manual.html"/> 
+  <property name="unicorex-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/unicorex-8.0.0/unicorex-manual.html"/>
+  <property name="registry-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/registry-8.0.0/registry-manual.html"/>
+  <property name="xuudb-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/xuudb-2.5.0/manual.html"/>
+  <property name="tsi-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/tsi-8.0.0/tsi-manual.html"/>
+
+  <property name="workflow-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/workflow-7.7.0/workflow-manual.html"/>
+
+  <taskdef uri="antlib:org.apache.maven.resolver.ant" resource="org/apache/maven/resolver/ant/antlib.xml">
+    <classpath>
+      <fileset dir="tools" includes="maven-resolver-ant-tasks-*.jar"/>
+    </classpath>
+  </taskdef>
+
+
+  <target name="_check-maven-tools-present">
+    <available property="mvntools.exists" file="tools/maven-resolver-ant-tasks-1.2.1-uber.jar"/>
+  </target>
+
+  <target name="prepare"
+	  depends="_check-maven-tools-present" unless="mvntools.exists"
+          description="Downloads required tools if not present">
+    <echo>Downloading maven-resolver-ant-tasks library...</echo>
+    <exec executable="wget">
+      <arg value="--no-check-certificate"/>
+      <arg value="https://repo1.maven.org/maven2/org/apache/maven/resolver/maven-resolver-ant-tasks/1.2.1/maven-resolver-ant-tasks-1.2.1-uber.jar"/>
+      <arg value="-P"/>
+      <arg value="tools"/>
+      <arg value="-q"/>  
+    </exec>
+  </target>
+
+  <target name="update" 
+          description="Updates libraries, documentation and other files"
+          depends="update-libs,update-tsi,update-doc,fix-permissions,update-changelog"> 
+  </target>
+
+  <target name="update-libs" 
+          description="Gets the required jar files for all the components"
+          depends="update-unicorex,update-gateway,update-xuudb,update-workflow"/>
+ 
+  <target name="update-unicorex"
+          description="Updates the UNICORE/X and Registry libraries">
+    <echo>... UNICORE/X</echo>
+    <delete>
+      <fileset dir="unicorex/lib" includes="**/*"/>
+    </delete>
+
+    <mvn:remoterepo id="central" url="https://repo1.maven.org/maven2"/>
+    <mvn:remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/>
+
+    <mvn:resolve>
+      <dependencies>
+	<dependency groupId="de.fzj.unicore" artifactId="ucc-core" version="${ucc-version}" />
+	<dependency groupId="eu.unicore" artifactId="unicorex-distribution" version="${unicorex-version}" type="pom"/>
+      </dependencies>
+      <files dir="unicorex/lib" layout="{artifactId}-{version}.{extension}"/> 
+    </mvn:resolve>
+
+    <delete>
+      <fileset dir="unicorex/lib" includes="*.pom"/>
+      <fileset dir="unicorex/lib" includes="*.zip"/>
+    </delete>
+    
+    <mvn:resolve>
+      <dependencies>
+	<dependency groupId="eu.unicore" artifactId="registry" version="${registry-version}" type="pom"/>
+      </dependencies>
+      <files dir="registry/lib" layout="{artifactId}-{version}.{extension}"/> 
+    </mvn:resolve>
+
+    <delete>
+      <fileset dir="registry/lib" includes="*.pom"/>
+      <fileset dir="registry/lib" includes="*.zip"/>
+    </delete>
+
+  </target>
+
+  <target name="update-gateway"
+          description="Updates the Gateway libraries">
+    <echo>... Gateway version ${gateway-version}</echo>
+    <delete>
+      <fileset dir="gateway/lib" includes="**/*"/>
+    </delete>
+    <mvn:remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/>
+    <mvn:resolve>
+      <dependencies>
+	<dependency coords="eu.unicore:gateway:${gateway-version}"/>
+      </dependencies>
+      <files dir="gateway/lib" layout="{artifactId}-{version}.{extension}"/> 
+    </mvn:resolve>
+    <delete>
+      <fileset dir="gateway/lib" includes="*.pom"/>
+      <fileset dir="gateway/lib" includes="*.zip"/>
+    </delete>
+  </target>
+
+  <target name="update-xuudb"
+          description="Updates the XUUDB libraries">
+    <echo>... XUUDB version ${xuudb-version}</echo>
+    <delete>
+      <fileset dir="xuudb/lib" includes="**/*"/>
+    </delete>
+    <mvn:remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/>
+    <mvn:resolve>
+      <dependencies>
+	<dependency coords="de.fzj.unicore.xuudb:xuudb-common:${xuudb-version}"/>
+	<dependency coords="de.fzj.unicore.xuudb:xuudb-server:${xuudb-version}"/>
+	<dependency coords="de.fzj.unicore.xuudb:xuudb-admin-client:${xuudb-version}"/>
+      </dependencies>
+      <files dir="xuudb/lib" layout="{artifactId}-{version}.{extension}"/> 
+    </mvn:resolve>
+    <delete>
+      <fileset dir="xuudb/lib" includes="*.pom"/>
+      <fileset dir="xuudb/lib" includes="*.zip"/>
+    </delete>
+  </target>  
+
+  <target name="update-tsi" 
+          description="Checks out the TSI code from SVN">
+    <echo>... TSI</echo>
+    <delete includeemptydirs="true" quiet="true">
+     <fileset dir="tsi" includes="**/*"/>
+    </delete>
+    <echo>Checking out TSI version '${tsi-version}' from SVN...</echo>
+    <exec executable="svn">
+      <arg value="export"/>
+      <arg value="http://svn.code.sf.net/p/unicore/svn/tsi/tags/tsi-${tsi-version}"/>
+      <arg value="tsi"/>
+      <arg value="--force"/>
+      <arg value="--quiet"/>
+    </exec>
+    <exec executable="sed">
+      <arg value="-i"/>
+      <arg value="s/__VERSION__/${tsi-version}/"/>
+      <arg value="tsi/lib/TSI.py"/>
+    </exec>
+    <!-- use a special tsi.properties -->
+    <copy file="tools/tsi.properties"
+	  todir="tsi/build-tools/src/main/package/configTemplates/"/>
+  </target>
+
+  <target name="update-changelog">
+   <copy file="CHANGES.txt" todir="build"/>
+   <copy file="README.txt" todir="build"/>
+   <copy file="README-UPGRADE.txt" todir="build"/>
+  </target>
+
+
+  <target name="update-workflow" description="Updates the workflow libs">
+    <delete>
+      <fileset dir="workflow/lib" includes="*.jar"/>
+    </delete>
+    <echo>Updating component libraries</echo>
+    <echo>... Workflow engine bundle</echo>
+
+    <mvn:remoterepo id="central" url="https://repo1.maven.org/maven2"/>
+    <mvn:remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/>
+
+    <mvn:resolve>
+      <dependencies>
+        <dependency groupId="eu.unicore.workflow" artifactId="workflowservice" version="${workflow-version}"/>
+      </dependencies>
+      <files dir="workflow/lib" layout="{artifactId}-{version}.{extension}"/> 
+    </mvn:resolve>
+
+    <delete>
+      <fileset dir="workflow/lib" includes="*.pom"/>
+      <fileset dir="workflow/lib" includes="*.zip"/>
+    </delete>
+
+  </target>
+
+  <target name="update-doc" 
+          description="Checks out the latest documentation .html files and converts them to txt using 'w3m'"
+          depends="update-doc-unicorex,update-doc-registry,update-doc-xuudb,update-doc-gateway,update-doc-tsi"/>
+
+  <property name="txt-cols" value="104"/>
+
+  <target name="update-doc-unicorex">
+    <echo>Downloading UNICORE/X manual from '${unicorex-doc}' ...</echo>
+    <mkdir dir="docs/unicorex"/>
+    <get src="${unicorex-doc}"
+      dest="docs/unicorex/manual.html" />
+    <exec executable="w3m" output="docs/unicorex/manual.txt" failifexecutionfails="false">
+      <arg value="-dump"/>
+      <arg value="-cols"/>
+      <arg value="${txt-cols}"/>
+      <arg value="docs/unicorex/manual.html"/>
+    </exec>
+
+  </target>
+
+  <target name="update-doc-xuudb">
+    <echo>Downloading XUUDB manual from '${xuudb-doc}' ...</echo>
+    <mkdir dir="docs/xuudb"/>
+    <get src="${xuudb-doc}"
+      dest="docs/xuudb/manual.html" />
+    <exec executable="w3m" output="docs/xuudb/manual.txt" failifexecutionfails="false">
+      <arg value="-dump"/>
+      <arg value="-cols"/>
+      <arg value="${txt-cols}"/>
+      <arg value="docs/xuudb/manual.html"/>
+    </exec>
+  </target>
+
+  <target name="update-doc-gateway">
+    <echo>Downloading Gateway manual from '${gateway-doc}' ...</echo>
+    <mkdir dir="docs/gateway"/>
+    <get src="${gateway-doc}"
+      dest="docs/gateway/manual.html" />
+    <exec executable="w3m" output="docs/gateway/manual.txt" failifexecutionfails="false">
+      <arg value="-dump"/>
+      <arg value="-cols"/>
+      <arg value="${txt-cols}"/>
+      <arg value="docs/gateway/manual.html"/>
+    </exec>
+  </target>
+
+  <target name="update-doc-registry">
+    <echo>Downloading Registry manual from '${registry-doc}' ...</echo>
+    <mkdir dir="docs/registry"/>
+    <get src="${registry-doc}"
+      dest="docs/registry/manual.html" />
+    <exec executable="w3m" output="docs/registry/manual.txt">
+      <arg value="-dump"/>
+      <arg value="-cols"/>
+      <arg value="${txt-cols}"/>
+      <arg value="docs/registry/manual.html"/>
+    </exec>
+  </target>
+
+  <target name="update-doc-tsi">
+    <echo>Downloading TSI manual from '${tsi-doc}' ...</echo>
+    <mkdir dir="docs/tsi"/>
+    <get src="${tsi-doc}"
+      dest="docs/tsi/manual.html" />
+   <exec executable="w3m" output="docs/tsi/manual.txt">
+      <arg value="-dump"/>
+      <arg value="-cols"/>
+      <arg value="${txt-cols}"/>
+      <arg value="docs/tsi/manual.html"/>
+    </exec>
+  </target>
+
+  <target name="update-file-timestamps">
+    <exec executable="find">
+      <arg value="-exec"/>
+      <arg value="touch"/>
+      <arg value="{}"/>
+      <arg value=";"/>
+    </exec>
+  </target>
+
+  <target name="binary-dist" depends="update-file-timestamps">
+    <mkdir dir="build"/>
+    <echo>Building the ${dist-name} ${version}${patch} tar.gz bundle...</echo>
+    <tar destfile="build/${dist-name}-${version}${patch}.tgz" compression="gzip">
+      <!-- files needing the executable flag set -->
+      <tarfileset dir="." mode="755" prefix="${dist-name}-${version}${patch}">
+        <include name="**/*.sh"/>
+        <exclude name="update.sh"/>
+        <include name="unicorex/bin/ucc"/>
+        <include name="registry/bin/ucc"/>
+        <include name="tsi/bin/*"/>
+        <include name="**/*.py"/>
+        <exclude name="tools/**"/>
+        <exclude name="updatewrappers.py"/>
+        <exclude name="**/conf/**"/>
+      </tarfileset>
+      <!-- non-executable non-config files -->
+      <tarfileset dir="." prefix="${dist-name}-${version}${patch}">
+        <exclude name="**/*.sh"/>
+        <exclude name="**/*.bat"/><!-- no Windows files in the tgz ... -->
+        <exclude name="README.BUILDING"/>
+        <exclude name="**/*.py"/>
+        <exclude name="**/bin/*"/>
+        <exclude name="installer/**"/>
+        <exclude name="build/**"/>
+        <exclude name="servicewrapper/**"/>
+        <exclude name="tools/**"/>
+        <exclude name="sources/**"/>
+        <exclude name="build.xml"/>
+        <exclude name="**/conf/**"/>
+      </tarfileset>
+      <!-- config files -->
+      <tarfileset dir="." mode="600" prefix="${dist-name}-${version}${patch}">
+        <include name="**/conf/**"/>
+      </tarfileset>
+    </tar>
+  </target>
+
+
+  <target name="fix-permissions">
+  <echo>Setting restrictive default permissions on config files...</echo>
+  <chmod dir="." perm="600" 
+       includes="**/conf/**"/>
+  </target>
+
+
+  <target name="clean-jars">
+    <delete quiet="true" includeemptydirs="true">
+      <fileset dir="xuudb/lib" includes="**/*"/>
+      <fileset dir="gateway/lib" includes="**/*"/>
+      <fileset dir="unicorex/lib" includes="**/*"/>
+      <fileset dir="unicorex/lib" includes="**/*"/>
+      <fileset dir="registry/lib" includes="**/*"/>
+      <fileset dir="workflow/lib" includes="**/*"/>
+      <fileset dir="." includes="*~"/>
+    </delete>
+  </target>
+
+
+
+  <target name="clean" 
+          description="Cleans up"
+          depends="clean-jars">
+    <delete quiet="true" includeemptydirs="true">
+      <fileset dir="build" includes="**"/>
+      <fileset dir="docs/unicorex"/>
+      <fileset dir="docs/xuudb"/>
+      <fileset dir="docs/gateway"/>
+      <fileset dir="docs/registry"/>
+      <fileset dir="docs/tsi"/>
+      <fileset dir="tsi" includes="**"/>
+      <fileset dir="." includes="*/conf/wrapper.conf"/>
+      <fileset dir="tools" includes="installer-tools.jar"/>
+      <fileset dir="tools" includes="target/**"/>
+      <fileset dir="installer" includes="lib/standalone-compiler.jar"/>
+    </delete>
+  </target>
+
+  <target name="dist" depends="binary-dist"
+          description="Packages the tgz distributions."
+  />
+
+  <target name="dist-test"
+          description="Installs the bundle and runs some UCC-based tests">
+    <echo>Running tests on .tgz version ${version}${patch}</echo>
+    <exec executable="/bin/sh" dir="tools">
+      <arg value="-c"/>
+      <arg value="./test-bundle.sh ${version}${patch}"/>
+    </exec>
+  </target>
+
+  <target name="full-build" 
+          description="Full clean build of tgz installer" 
+          depends="clean,update,dist"/>
+
+</project>
