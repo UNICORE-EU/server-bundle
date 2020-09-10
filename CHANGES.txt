@@ -7,18 +7,26 @@ tracker at https://sourceforge.net/p/unicore/issues
 ***  see README-UPGRADE.txt for how to update from 7.x
 ***
 
-Core servers 8.1.0 (MMM DD, 2020)
+Core servers 8.0.4 (Sep 10, 2020)
 ---------------------------------
 
 General
 -------
  - add Workflow service to Core Server Bundle
+ - update Jetty to v9.4.31
+ - remove several unused jar files to reduce download size
+ - remove GUI installer
 
 Workflow
 ---------
  - simplified, all-in-one workflow server
  - JSON workflow description and enhanced REST API
  - only uses UNICORE/X REST APIs
+
+UNICORE/X
+---------
+ - fix: check if idb mainfile was modified (#261)
+
 
 Core servers 8.0.3 (Apr 30, 2020)
 ---------------------------------

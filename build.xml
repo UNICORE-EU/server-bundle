@@ -5,16 +5,15 @@
   <description>Build the UNICORE Server bundle</description>
 
   <property name="dist-name" value="unicore-servers"/>
-  <property name="version" value="8.1.0"/>
+  <property name="version" value="8.0.4"/>
   <property name="patch" value=""/>
 
   <!-- Component versions -->
-  <property name="xuudb-version" value="2.5.1"/>
-  <property name="gateway-version" value="1.6.2"/>
-  <property name="registry-version" value="8.0.3"/>
-  <property name="unicorex-version" value="8.0.3"/>
+  <property name="xuudb-version" value="2.5.2"/>
+  <property name="gateway-version" value="1.6.3"/>
+  <property name="registry-version" value="8.0.4"/>
+  <property name="unicorex-version" value="8.0.4"/>
   <property name="workflow-version" value="3.0.0"/>
-  <property name="ucc-version" value="2.0.1"/>
 
   <!-- TSI retrieved via checkout -->
   <property name="tsi-version" value="8.0.3"/>
@@ -27,8 +26,7 @@
   <property name="registry-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/registry-8.0.0/registry-manual.html"/>
   <property name="xuudb-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/xuudb-2.5.0/manual.html"/>
   <property name="tsi-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/tsi-8.0.0/tsi-manual.html"/>
-
-  <property name="workflow-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/workflow-7.7.0/workflow-manual.html"/>
+  <property name="workflow-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/workflow-8.0.0/workflow-manual.html"/>
 
   <taskdef uri="antlib:org.apache.maven.resolver.ant" resource="org/apache/maven/resolver/ant/antlib.xml">
     <classpath>
@@ -75,7 +73,6 @@
 
     <mvn:resolve>
       <dependencies>
-	<dependency groupId="de.fzj.unicore" artifactId="ucc-core" version="${ucc-version}" />
 	<dependency groupId="eu.unicore" artifactId="unicorex-distribution" version="${unicorex-version}" type="pom"/>
       </dependencies>
       <files dir="unicorex/lib" layout="{artifactId}-{version}.{extension}"/> 
@@ -141,18 +138,16 @@
   </target>  
 
   <target name="update-tsi" 
-          description="Checks out the TSI code from SVN">
+          description="Checks out the TSI code from GitHub">
     <echo>... TSI</echo>
-    <delete includeemptydirs="true" quiet="true">
-     <fileset dir="tsi" includes="**/*"/>
-    </delete>
-    <echo>Checking out TSI version '${tsi-version}' from SVN...</echo>
-    <exec executable="svn">
-      <arg value="export"/>
-      <arg value="http://svn.code.sf.net/p/unicore/svn/tsi/tags/tsi-${tsi-version}"/>
+    <delete includeemptydirs="true" dir="tsi"/>
+    <echo>Checking out TSI version '${tsi-version}' from GitHub ...</echo>
+    <exec executable="git">
+      <arg value="clone"/>
+      <!--arg value="-b"/>
+      <arg value="${tsi-version}"/ -->
+      <arg value="https://github.com/UNICORE-EU/tsi.git"/>
       <arg value="tsi"/>
-      <arg value="--force"/>
-      <arg value="--quiet"/>
     </exec>
     <exec executable="sed">
       <arg value="-i"/>
@@ -197,7 +192,7 @@
 
   <target name="update-doc" 
           description="Checks out the latest documentation .html files and converts them to txt using 'w3m'"
-          depends="update-doc-unicorex,update-doc-registry,update-doc-xuudb,update-doc-gateway,update-doc-tsi"/>
+          depends="update-doc-unicorex,update-doc-registry,update-doc-xuudb,update-doc-gateway,update-doc-tsi,update-doc-workflow"/>
 
   <property name="txt-cols" value="104"/>
 
@@ -267,6 +262,19 @@
     </exec>
   </target>
 
+    <target name="update-doc-workflow">
+    <echo>Downloading Workflow manual from '${workflow-doc}' ...</echo>
+    <mkdir dir="docs/workflow"/>
+    <get src="${workflow-doc}"
+      dest="docs/workflow/manual.html" />
+    <exec executable="w3m" output="docs/workflow/manual.txt">
+      <arg value="-dump"/>
+      <arg value="-cols"/>
+      <arg value="${txt-cols}"/>
+      <arg value="docs/workflow/manual.html"/>
+    </exec>
+  </target>
+
   <target name="update-file-timestamps">
     <exec executable="find">
       <arg value="-exec"/>
@@ -297,6 +305,7 @@
         <exclude name="**/*.sh"/>
         <exclude name="**/*.bat"/><!-- no Windows files in the tgz ... -->
         <exclude name="README.BUILDING"/>
+	<exclude name="README.md"/>
         <exclude name="**/*.py"/>
         <exclude name="**/bin/*"/>
         <exclude name="installer/**"/>
@@ -346,12 +355,14 @@
       <fileset dir="docs/gateway"/>
       <fileset dir="docs/registry"/>
       <fileset dir="docs/tsi"/>
+      <fileset dir="docs/workflow"/>
       <fileset dir="tsi" includes="**"/>
       <fileset dir="." includes="*/conf/wrapper.conf"/>
       <fileset dir="tools" includes="installer-tools.jar"/>
       <fileset dir="tools" includes="target/**"/>
-      <fileset dir="installer" includes="lib/standalone-compiler.jar"/>
     </delete>
+    <delete dir="tsi"/>
+
   </target>
 
   <target name="dist" depends="binary-dist"

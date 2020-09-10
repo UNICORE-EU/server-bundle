@@ -23,14 +23,14 @@ until [ "$started" != ""  ]; do
 done
 
 echo "Adding 'demo user' to XUUDB"
-bin/admin.sh adddn DEMO-SITE "CN=Demo User,O=UNICORE,C=EU" "${USER_NAME}" user
-bin/admin.sh adddn WORKFLOW "CN=Demo User,O=UNICORE,C=EU" "nobody" user
+bin/admin.sh adddn ${uxName} "CN=Demo User,O=UNICORE,C=EU" "${USER_NAME}" user
+bin/admin.sh adddn ${wfSitename} "CN=Demo User,O=UNICORE,C=EU" "nobody" user
 
 
 echo "Adding 'demo server' to XUUDB"
-bin/admin.sh adddn REGISTRY "CN=Demo UNICORE/X,O=UNICORE,C=EU" "nobody" server
+bin/admin.sh adddn ${registryName} "CN=Demo UNICORE/X,O=UNICORE,C=EU" "nobody" server
 echo "Adding 'demo workflow server' to XUUDB"
-bin/admin.sh adddn REGISTRY "CN=Demo Workflow,O=UNICORE,C=EU" "nobody" server
+bin/admin.sh adddn ${registryName} "CN=Demo Workflow,O=UNICORE,C=EU" "nobody" server
 
 cd ..
 
