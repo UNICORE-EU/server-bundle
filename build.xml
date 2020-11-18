@@ -54,7 +54,7 @@
 
   <target name="update" 
           description="Updates libraries, documentation and other files"
-          depends="update-libs,update-tsi,update-doc,fix-permissions,update-changelog"> 
+          depends="prepare,update-libs,update-tsi,update-doc,fix-permissions,update-changelog"> 
   </target>
 
   <target name="update-libs" 
