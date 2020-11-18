@@ -7,6 +7,18 @@ tracker at https://sourceforge.net/p/unicore/issues
 ***  see README-UPGRADE.txt for how to update from 7.x
 ***
 
+
+Core servers 8.0.5 (Nov 19, 2020)
+---------------------------------
+
+UNICORE/X
+---------
+ - fix: UFTP data staging / server-to-server transfer in
+   non-"local" mode did not work (#271)
+ - fix: server-to-server transfer status reporting
+ - fix: improve behaviour with TSI restarts on multiple TSI nodes
+
+
 Core servers 8.0.4 (Sep 10, 2020)
 ---------------------------------
 

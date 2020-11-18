@@ -5,15 +5,15 @@
   <description>Build the UNICORE Server bundle</description>
 
   <property name="dist-name" value="unicore-servers"/>
-  <property name="version" value="8.0.4"/>
+  <property name="version" value="8.0.5"/>
   <property name="patch" value=""/>
 
   <!-- Component versions -->
   <property name="xuudb-version" value="2.5.2"/>
   <property name="gateway-version" value="1.6.3"/>
   <property name="registry-version" value="8.0.4"/>
-  <property name="unicorex-version" value="8.0.4"/>
-  <property name="workflow-version" value="3.0.0"/>
+  <property name="unicorex-version" value="8.0.5"/>
+  <property name="workflow-version" value="3.0.1"/>
 
   <!-- TSI retrieved via checkout -->
   <property name="tsi-version" value="8.0.3"/>
@@ -64,10 +64,9 @@
   <target name="update-unicorex"
           description="Updates the UNICORE/X and Registry libraries">
     <echo>... UNICORE/X</echo>
-    <delete>
-      <fileset dir="unicorex/lib" includes="**/*"/>
-    </delete>
-
+    <mkdir dir="unicorex/lib"/>
+    <mkdir dir="registry/lib"/>
+ 
     <mvn:remoterepo id="central" url="https://repo1.maven.org/maven2"/>
     <mvn:remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/>
 
@@ -100,9 +99,7 @@
   <target name="update-gateway"
           description="Updates the Gateway libraries">
     <echo>... Gateway version ${gateway-version}</echo>
-    <delete>
-      <fileset dir="gateway/lib" includes="**/*"/>
-    </delete>
+    <mkdir dir="gateway/lib"/>
     <mvn:remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/>
     <mvn:resolve>
       <dependencies>
@@ -119,9 +116,7 @@
   <target name="update-xuudb"
           description="Updates the XUUDB libraries">
     <echo>... XUUDB version ${xuudb-version}</echo>
-    <delete>
-      <fileset dir="xuudb/lib" includes="**/*"/>
-    </delete>
+    <mkdir dir="xuudb/lib"/>
     <mvn:remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/>
     <mvn:resolve>
       <dependencies>
@@ -167,12 +162,7 @@
 
 
   <target name="update-workflow" description="Updates the workflow libs">
-    <delete>
-      <fileset dir="workflow/lib" includes="*.jar"/>
-    </delete>
-    <echo>Updating component libraries</echo>
-    <echo>... Workflow engine bundle</echo>
-
+    <mkdir dir="workflow/lib"/>
     <mvn:remoterepo id="central" url="https://repo1.maven.org/maven2"/>
     <mvn:remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/>
 
