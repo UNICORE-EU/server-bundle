@@ -14,6 +14,10 @@ UNICORE/X
  - fix: server-to-server transfer status reporting
  - fix: improve behaviour with TSI restarts on multiple TSI nodes
 
+Workflow
+--------
+ - new feature: wildcard support for workflow files
+ - fix: don't delete stage-ins
 
 Core servers 8.0.4 (Sep 10, 2020)
 ---------------------------------
