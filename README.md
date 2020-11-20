@@ -6,8 +6,7 @@ helpers comprising Gateway, Registry, UNICORE/X, Workflow, XUUDB, TSI.
 
 To build, you'll need Java and Ant.
 
-  $> ant prepare
-  $> ant update dist
+  $> ant clean update dist
 
 You can then run some basic tests whether the package works (requires UCC)
 

@@ -3,12 +3,8 @@ Changelog for the UNICORE core servers
 Issue numbers (e.g. '#148') refer to the issue
 tracker at https://sourceforge.net/p/unicore/issues
 
-***
-***  see README-UPGRADE.txt for how to update from 7.x
-***
 
-
-Core servers 8.0.5 (Nov 19, 2020)
+Core servers 8.0.5 (Nov 20, 2020)
 ---------------------------------
 
 UNICORE/X

@@ -11,18 +11,18 @@
   <!-- Component versions -->
   <property name="xuudb-version" value="2.5.2"/>
   <property name="gateway-version" value="1.6.3"/>
-  <property name="registry-version" value="8.0.4"/>
+  <property name="registry-version" value="8.0.5"/>
   <property name="unicorex-version" value="8.0.5"/>
   <property name="workflow-version" value="3.0.1"/>
 
   <!-- TSI retrieved via checkout -->
-  <property name="tsi-version" value="8.0.3"/>
+  <property name="tsi-version" value="8.0.4"/>
 
   <!-- Links to the html manuals  
        These will be downloaded and put into the distribution as .html and .txt
   -->
   <property name="gateway-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/gateway-1.6.2/manual.html"/> 
-  <property name="unicorex-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/unicorex-8.0.0/unicorex-manual.html"/>
+  <property name="unicorex-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/unicorex-8.0.4/unicorex-manual.html"/>
   <property name="registry-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/registry-8.0.0/registry-manual.html"/>
   <property name="xuudb-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/xuudb-2.5.0/manual.html"/>
   <property name="tsi-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/tsi-8.0.0/tsi-manual.html"/>
@@ -139,8 +139,8 @@
     <echo>Checking out TSI version '${tsi-version}' from GitHub ...</echo>
     <exec executable="git">
       <arg value="clone"/>
-      <!--arg value="-b"/>
-      <arg value="${tsi-version}"/ -->
+      <arg value="-b"/>
+      <arg value="${tsi-version}"/>
       <arg value="https://github.com/UNICORE-EU/tsi.git"/>
       <arg value="tsi"/>
     </exec>
