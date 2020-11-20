@@ -19,6 +19,12 @@ Workflow
  - new feature: wildcard support for workflow files
  - fix: don't delete stage-ins
 
+TSI
+---
+ - fix: typos in Makefile
+ - fix: python3 "FutureWarning: split() requires a non-empty pattern match"
+
+
 Core servers 8.0.4 (Sep 10, 2020)
 ---------------------------------
 

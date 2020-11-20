@@ -16,7 +16,7 @@
   <property name="workflow-version" value="3.0.1"/>
 
   <!-- TSI retrieved via checkout -->
-  <property name="tsi-version" value="8.0.4"/>
+  <property name="tsi-version" value="8.0.5"/>
 
   <!-- Links to the html manuals  
        These will be downloaded and put into the distribution as .html and .txt
