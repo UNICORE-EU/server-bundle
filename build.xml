@@ -153,6 +153,9 @@
     <!-- use a special tsi.properties -->
     <copy file="tools/tsi.properties"
 	  todir="tsi/build-tools/src/main/package/configTemplates/"/>
+    <delete includeemptydirs="true" dir="tsi/.git"/>
+    <delete includeemptydirs="true" dir="tsi/.github"/>
+    <delete includeemptydirs="true" dir="tsi/.gitignore"/>
   </target>
 
   <target name="update-changelog">
@@ -252,11 +255,11 @@
     </exec>
   </target>
 
-    <target name="update-doc-workflow">
+  <target name="update-doc-workflow">
     <echo>Downloading Workflow manual from '${workflow-doc}' ...</echo>
     <mkdir dir="docs/workflow"/>
     <get src="${workflow-doc}"
-      dest="docs/workflow/manual.html" />
+	 dest="docs/workflow/manual.html" />
     <exec executable="w3m" output="docs/workflow/manual.txt">
       <arg value="-dump"/>
       <arg value="-cols"/>
@@ -276,39 +279,11 @@
 
   <target name="binary-dist" depends="update-file-timestamps">
     <mkdir dir="build"/>
-    <echo>Building the ${dist-name} ${version}${patch} tar.gz bundle...</echo>
-    <tar destfile="build/${dist-name}-${version}${patch}.tgz" compression="gzip">
-      <!-- files needing the executable flag set -->
-      <tarfileset dir="." mode="755" prefix="${dist-name}-${version}${patch}">
-        <include name="**/*.sh"/>
-        <exclude name="update.sh"/>
-        <include name="tsi/bin/*"/>
-        <include name="**/*.py"/>
-        <exclude name="tools/**"/>
-        <exclude name="**/conf/**"/>
-      </tarfileset>
-      <!-- non-executable non-config files -->
-      <tarfileset dir="." prefix="${dist-name}-${version}${patch}">
-        <exclude name="**/*.sh"/>
-        <exclude name="**/*.bat"/><!-- no Windows files in the tgz ... -->
-        <exclude name="README.BUILDING"/>
-	<exclude name="README.md"/>
-        <exclude name="**/*.py"/>
-        <exclude name="**/bin/*"/>
-        <exclude name="installer/**"/>
-        <exclude name="build/**"/>
-        <exclude name="tools/**"/>
-        <exclude name="sources/**"/>
-        <exclude name="build.xml"/>
-        <exclude name="**/conf/**"/>
-      </tarfileset>
-      <!-- config files -->
-      <tarfileset dir="." mode="600" prefix="${dist-name}-${version}${patch}">
-        <include name="**/conf/**"/>
-      </tarfileset>
-    </tar>
+    <echo>Building ${dist-name} ${version}${patch}.tgz ...</echo>
+    <exec executable="./create-archive.sh">
+      <arg value="${dist-name}-${version}${patch}"/>
+    </exec>
   </target>
-
 
   <target name="fix-permissions">
   <echo>Setting restrictive default permissions on config files...</echo>

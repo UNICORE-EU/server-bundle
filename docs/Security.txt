@@ -44,11 +44,10 @@ All components usually have
  - a truststore containing the trusted certificates, notably the certificate
  of the certification authority that the component trusts
 
-Keystore and trustore can be a single file, but can also be separate.
-
 It is a good approach to use a common truststore and share it between
-the servers. The simplest truststore is a directory containing the trusted CA certs
-in pem format. Each server should have its own private key in a keystore file.
+the servers. The simplest truststore is a directory containing the
+trusted CA certs in pem format. Each server should have its own
+private key in a keystore file.
 
 
 Gateway
@@ -64,7 +63,8 @@ Relevant configuration files:
 The keystore/truststore location and password is configured in 
 "gateway/conf/gateway.properties"
 
-Required Truststore content IF HTTP AUTHENTICATION IS REQUIRED
+Required Truststore content ONLY IF SSL CLIENT AUTHENTICATION IS ENABLED
+(by default, this is NOT the case)
 
  - CA certificates of *all* user certificates that are to be trusted
  - CA certificates of *all* server certificates that are to be trusted
@@ -76,9 +76,10 @@ UNICORE/X & Workflow
 
 Overview:
 
-The UNICORE/X and Workflow servers are usually *not* contacted directly by users,
-only by the Gateway.  However, validation of incoming messages
-(checking signatures and signed SAML assertions) require that
+The UNICORE/X and Workflow servers are usually *not* contacted
+directly by users or other UNICORE/X servers, only via the Gateway.
+However, validation of incoming messages (checking signatures and
+signed SAML assertions) and making outgoing connections require that
 UNICORE/X has the trusted CAs of all server certificates in its
 truststore.
 
@@ -90,7 +91,6 @@ The keystore/truststore is configured in
 Required Truststore content:
 
  - CA certificates of *all* server certificates that are to be trusted
- - CA certificates of *all* user certificates that are to be trusted
 
 Trusted assertion issuers:
  - the public keys of all trusted Unity servers
@@ -98,18 +98,19 @@ Trusted assertion issuers:
 Registry
 ********
 
-All comments made for the UNICORE/X component apply to the registry as well.
+All comments made for the UNICORE/X component apply to the Registry as well.
 
 ***
 *** In addition, please note the following: 
 ***
-In a production environment, it MUST be controlled who is allowed to write to 
-the registry. This is achieved by enabling access control, and explicitely 
-adding the certificates / DNs of all valid servers with role="server" to 
-the XUUDB (or an other attribute source).
-If anybody is allowed to write, a malicious user could add a server entry and try
-to use any trust delegation assertions sent to this malicious server to
-compromise other users' data.
+In a production environment, it MUST be controlled who is allowed to
+write to the Registry. This is achieved by explicitely adding the
+certificates / DNs of all valid servers with role="server" to the
+XUUDB (or an other attribute source). Access control is enabled by
+default and MUST NOT be switched off. If anybody is allowed to write,
+a malicious user could add a server entry and try to use any trust
+delegation assertions sent to this malicious server to compromise
+other users' data.
 
 XUUDB
 *****

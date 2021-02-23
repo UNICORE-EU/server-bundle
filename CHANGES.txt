@@ -12,7 +12,7 @@ General
 -------
  - update to Jetty 9.4.35
  - update to Log4j2
-
+ 
 UNICORE/X
 ---------
  - new feature: more detailed elapsed time information in
