@@ -2,7 +2,7 @@
 # UNICORE/X configuration files
 #
 
-startup.properties (used only on Unix):
+startup.properties:
 
   This file is imported by the start/stop scripts. 
   It contains basic settings such as Java command, 
@@ -10,12 +10,12 @@ startup.properties (used only on Unix):
 
 logging.properties
 
-  Configures the logging subsystem (Log4j)
+  Configures the logging subsystem (Log4j/2)
 
 uas.config
 
   This is the basic UNICORE/X configuration file.
-  Other config files are referenced from here.
+  Other config files are included from here.
 
 container.properties
 
@@ -29,17 +29,18 @@ xnjs.properties
 
 simpleidb
 
-  Contains application definitions, resource limits, execution 
-  environments, etc. Referenced from xnjs.properties
+  Contains application definitions, queue/partition definitions,
+  resource limits, etc. Referenced from xnjs.properties
 
 simpleuudb (optional)
 
   Map file for mapping distinguished names to role, xlogin and other 
-  attributes. May be used as alternative or in addition to UVOS or XUUDB.
+  attributes. May be used as alternative or in addition to an XUUDB.
 
 rest-users.txt (optional)
 
-  Usernames/passwords for authenticating users via the REST API.
+  Usernames/passwords for authenticating users
+  (if enabled in uas.config)
 
 xacml2.config
 
@@ -48,13 +49,8 @@ xacml2.config
 xacml2Policies
 
   Directory containing XACML2.0 access control policy files.
+  Rarely modified.
 
-vo.config (optional, used with UVOS)
+vo.config (optional, for using attributes from Unity)
 
-  Configuration for interfacing to the VO system.
-
-wrapper.conf (used only on Windows)
-
-  Basic settings for starting UNICORE/X on Windows.
-
-
+  Configuration for interfacing to Unity as an attribute source

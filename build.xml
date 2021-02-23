@@ -5,28 +5,28 @@
   <description>Build the UNICORE Server bundle</description>
 
   <property name="dist-name" value="unicore-servers"/>
-  <property name="version" value="8.0.5"/>
+  <property name="version" value="8.1.0"/>
   <property name="patch" value=""/>
 
   <!-- Component versions -->
-  <property name="xuudb-version" value="2.5.2"/>
-  <property name="gateway-version" value="1.6.3"/>
-  <property name="registry-version" value="8.0.5"/>
-  <property name="unicorex-version" value="8.0.5"/>
-  <property name="workflow-version" value="3.0.1"/>
+  <property name="xuudb-version" value="2.6.0"/>
+  <property name="gateway-version" value="1.7.0"/>
+  <property name="registry-version" value="8.1.0"/>
+  <property name="unicorex-version" value="8.1.0"/>
+  <property name="workflow-version" value="3.1.0"/>
 
   <!-- TSI retrieved via checkout -->
-  <property name="tsi-version" value="8.0.5"/>
+  <property name="tsi-version" value="8.1.0"/>
 
   <!-- Links to the html manuals  
        These will be downloaded and put into the distribution as .html and .txt
   -->
-  <property name="gateway-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/gateway-1.6.2/manual.html"/> 
-  <property name="unicorex-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/unicorex-8.0.4/unicorex-manual.html"/>
-  <property name="registry-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/registry-8.0.0/registry-manual.html"/>
-  <property name="xuudb-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/xuudb-2.5.0/manual.html"/>
-  <property name="tsi-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/tsi-8.0.0/tsi-manual.html"/>
-  <property name="workflow-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/workflow-8.0.0/workflow-manual.html"/>
+  <property name="gateway-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/gateway-1.7.0/manual.html"/> 
+  <property name="unicorex-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/unicorex-8.1.0/unicorex-manual.html"/>
+  <property name="registry-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/registry-8.1.0/registry-manual.html"/>
+  <property name="xuudb-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/xuudb-2.6.0/manual.html"/>
+  <property name="tsi-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/tsi-8.1.0/tsi-manual.html"/>
+  <property name="workflow-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/workflow-8.1.0/workflow-manual.html"/>
 
   <taskdef uri="antlib:org.apache.maven.resolver.ant" resource="org/apache/maven/resolver/ant/antlib.xml">
     <classpath>
@@ -282,12 +282,9 @@
       <tarfileset dir="." mode="755" prefix="${dist-name}-${version}${patch}">
         <include name="**/*.sh"/>
         <exclude name="update.sh"/>
-        <include name="unicorex/bin/ucc"/>
-        <include name="registry/bin/ucc"/>
         <include name="tsi/bin/*"/>
         <include name="**/*.py"/>
         <exclude name="tools/**"/>
-        <exclude name="updatewrappers.py"/>
         <exclude name="**/conf/**"/>
       </tarfileset>
       <!-- non-executable non-config files -->
@@ -300,7 +297,6 @@
         <exclude name="**/bin/*"/>
         <exclude name="installer/**"/>
         <exclude name="build/**"/>
-        <exclude name="servicewrapper/**"/>
         <exclude name="tools/**"/>
         <exclude name="sources/**"/>
         <exclude name="build.xml"/>
@@ -347,7 +343,6 @@
       <fileset dir="docs/tsi"/>
       <fileset dir="docs/workflow"/>
       <fileset dir="tsi" includes="**"/>
-      <fileset dir="." includes="*/conf/wrapper.conf"/>
       <fileset dir="tools" includes="installer-tools.jar"/>
       <fileset dir="tools" includes="target/**"/>
     </delete>

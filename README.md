@@ -13,4 +13,5 @@ You can then run some basic tests whether the package works (requires UCC)
   $> ant dist-test
 
 
-This will unpack and configure the servers in /tmp/unicore-servers-<VERSION>, start them and run a few commands via UCC.
+This will unpack and configure the servers in /tmp/unicore-servers-<VERSION>,
+start them and run a few commands via UCC.

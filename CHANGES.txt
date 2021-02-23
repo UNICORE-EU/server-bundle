@@ -3,6 +3,41 @@ Changelog for the UNICORE core servers
 Issue numbers (e.g. '#148') refer to the issue
 tracker at https://sourceforge.net/p/unicore/issues
 
+See README-UPGRADE.txt for upgrade hints.
+
+Core servers 8.1.0 (Feb 24, 2021)
+---------------------------------
+
+General
+-------
+ - update to Jetty 9.4.35
+ - update to Log4j2
+
+UNICORE/X
+---------
+ - new feature: more detailed elapsed time information in
+   job's properties (#276)
+ - new feature: allow multiple uftpd backends similar to authserver (#266)
+ - add batch system job id (bssid) to job's properties
+ - new feature: user pre/post should fail on non-zero exit code (and
+   fail the job),  add flags "User(Pre|Post)commandIgnoreNonZeroExitCode"
+   for ignoring such failures (#274, suggested by Emma Vareilles, EPFL)
+ - fix: log (and error report) which job directory could not be created
+ - fix: use preferred TSI host (login node) consistently
+ - Jobs submitted via the REST API are parsed directly from the JSON (#265)
+ - JSDL support is now deprecated
+
+TSI
+---
+ - drop Python2 support
+
+Registry
+--------
+ - pre-configure X509 authentication for REST API
+ - simplified XACML2 policies in registry/conf/xacml2Policies/
+   and added permission for role 'server' to POST content via
+   the REST API
+
 
 Core servers 8.0.5 (Nov 20, 2020)
 ---------------------------------

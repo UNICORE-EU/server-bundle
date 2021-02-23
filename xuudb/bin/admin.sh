@@ -55,8 +55,7 @@ set_option "Dxuudb.client.conf" "=conf/xuudb_client.conf"
 #
 # log configuration
 #
-set_option "Djava.util.logging.config.file" "=conf/client_logging.properties"
-set_option "Dlog4j.configuration" "=conf/client_logging.properties"
+set_option "Dlog4j.configurationFile" "=conf/client_logging.properties"
 
 CLASSPATH=.$(find $LIB -name *.jar -exec printf ":{}" \;)
 export CLASSPATH

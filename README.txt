@@ -10,7 +10,7 @@ It includes the following UNICORE server components:
 - XUUDB
 
 UNICORE clients are available as a separate download on the
-UNICORE website, please visit http://www.unicore.eu/download/
+UNICORE website, please visit https://www.unicore.eu/download/
 
 This file gives some basic installation information.
 When upgrading an existing installation, make sure to read
@@ -28,7 +28,7 @@ PREREQUISITES
 
  - We recommend using OpenJDK or Oracle Java 8 or later
    IBM Java has been reported to work as well
- - Python 2.7 or 3.x for the TSI
+ - Python 3.x for the TSI
 
 SECURITY
 ********
@@ -115,7 +115,7 @@ in the documentation available in the docs/ directory
 
 Please refer to the documentation on the UNICORE website, at
 
-  http://www.unicore.eu/documentation
+  https://www.unicore.eu/documentation
 
 for more information and in-depth documentation.
 
@@ -125,14 +125,22 @@ REPORTING BUGS
 
 Please use the bug tracker of the UNICORE project at 
 
-https://sourceforge.net/p/unicore/bugs/
+https://sourceforge.net/p/unicore/issues/
 
 and/or send email to the support list: unicore-support@lists.sf.net
 
 
 CONTACTS
 ********
+
 Web site: https://www.unicore.eu
+
+Twitter: https://twitter.com/UNICORE_EU
+
 Sourceforge project site: https://sourceforge.net/projects/unicore
+
+GitHub: https://github.com/UNICORE-EU
+
 Questions, suggestions, problems: unicore-support@lists.sf.net
+
 Developers chat: unicore-devel@lists.sf.net (subscription required)

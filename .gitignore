@@ -3,3 +3,10 @@ build/
 tools/maven-resolver-ant*
 *.pyc
 *~
+tsi/
+docs/
+gateway/lib/
+registry/lib/
+unicorex/lib/
+workflow/lib/
+xuudb/lib/

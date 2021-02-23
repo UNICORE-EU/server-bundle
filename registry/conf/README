@@ -2,7 +2,7 @@
 # Registry configuration files
 #
 
-startup.properties (used only on Unix):
+startup.properties:
 
   This file is imported by the start/stop scripts. 
   It contains basic settings such as Java command, 
@@ -15,12 +15,12 @@ uas.config
 
 logging.properties
 
-  Configures the logging subsystem (Log4j)
+  Configures the logging subsystem (Log4/2j)
 
 simpleuudb (optional)
 
   Map file for mapping distinguished names to role, xlogin and other 
-  attributes. May be used as alternative or in addition to UVOS or XUUDB.
+  attributes. May be used as alternative or in addition to an XUUDB.
 
 xacml2.config
 
@@ -28,8 +28,4 @@ xacml2.config
 
 xacml2Policies
 
-  Directory containing XACML2.0 access control policy files.
-
-wrapper.conf (used only on Windows)
-
-  Basic settings for starting UNICORE/X.
+  Directory containing XACML2.0 access control policy files. Rarely changed.
