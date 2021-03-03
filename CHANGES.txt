@@ -5,7 +5,7 @@ tracker at https://sourceforge.net/p/unicore/issues
 
 See README-UPGRADE.txt for upgrade hints.
 
-Core servers 8.1.0 (Feb 24, 2021)
+Core servers 8.1.0-1 (Mar 3, 2021)
 ---------------------------------
 
 General
@@ -15,6 +15,8 @@ General
  
 UNICORE/X
 ---------
+ - new feature: storage property "mountPoint" now shows
+   the actual, fully resolved path 
  - new feature: more detailed elapsed time information in
    job's properties (#276)
  - new feature: allow multiple uftpd backends similar to authserver (#266)
@@ -26,6 +28,7 @@ UNICORE/X
  - fix: use preferred TSI host (login node) consistently
  - Jobs submitted via the REST API are parsed directly from the JSON (#265)
  - JSDL support is now deprecated
+ - fix: clean-up of BSS status handling
 
 TSI
 ---
