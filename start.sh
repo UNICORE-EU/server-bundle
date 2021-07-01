@@ -2,7 +2,7 @@
 
 echo "******************************"
 echo "*"
-echo "* UNICORE startup..."
+echo "* UNICORE startup"
 echo "*"
 echo "******************************"
 echo
@@ -26,7 +26,7 @@ if [ -e xuudb ]
 then if [ "${start_xuudb}" = "true" ] 
 then 
   cd xuudb
-  echo "Starting XUUDB..."
+  echo "Starting XUUDB ..."
   ./bin/start.sh
   cd ..
 fi
@@ -41,7 +41,7 @@ if [ -e gateway ]
 then if [ "${start_gateway}" = "true" ]
 then
   cd gateway
-  echo "Starting Gateway..."
+  echo "Starting Gateway ..."
   ./bin/start.sh
   cd ..
 fi
@@ -51,7 +51,7 @@ if [ -e registry ]
 then if [ "${start_registry}" = "true" ]
 then
   cd registry
-  echo "Starting shared registry UNICORE/X server..."
+  echo "Starting Registry ..."
   bin/start.sh 
   cd ..
 fi
@@ -61,7 +61,7 @@ if [ -e unicorex ]
 then if [ "${start_unicorex}" = "true" ]
 then
   cd unicorex
-  echo "Starting UNICORE/X server..."
+  echo "Starting UNICORE/X ..."
   bin/start.sh 
   cd ..
 fi
@@ -71,8 +71,11 @@ if [ -e workflow ]
 then if [ "${start_workflow}" = "true" ]
 then
   cd workflow
-  echo "Starting Workflow server..."
+  echo "Starting Workflow ..."
   bin/start.sh 
   cd ..
 fi
 fi
+
+echo "Done!"
+

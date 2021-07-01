@@ -5,6 +5,37 @@ tracker at https://sourceforge.net/p/unicore/issues
 
 See README-UPGRADE.txt for upgrade hints.
 
+Core servers 8.2.0 (MMM DD, 2021)
+---------------------------------
+
+General
+-------
+ - update to Jetty 9.4.41
+ - update to CXF 3.4.4
+ - update to HTTPClient 4.5.13
+ - new demo certificates with 2048 bit length
+   avoiding errors on certain OS (#243)
+
+UNICORE/X
+---------
+ - fix: empty "Resources" element in job description
+   triggers job failure
+ - fix: server calls made without credentials, leading to
+   entries disapperearing from the shared Registry
+ - clean up SAML PULL demo config
+ - new feature: allow HTTP basic auth (username/password)
+   to pull attributes from Unity
+ - improvement: better diagnostics if TSI nodes are failing
+
+Registry
+--------
+ - internal code clean-up
+
+TSI
+---
+ - log to syslog
+
+
 Core servers 8.1.0-1 (Mar 3, 2021)
 ---------------------------------
 

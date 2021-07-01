@@ -90,9 +90,6 @@ uxFiles = [
        "unicorex/conf/xacml2.config",
        "unicorex/conf/vo.config",
        "unicorex/conf/logging.properties",
-       "unicorex/conf/ucc.logging.properties",
-       "unicorex/conf/ucc.preferences",
-       "unicorex/bin/ucc",
 ]
 
 tsiFiles = [
@@ -104,9 +101,6 @@ regFiles = [
        "registry/conf/uas.config",
        "registry/conf/xacml2.config",
        "registry/conf/logging.properties",
-       "registry/conf/ucc.logging.properties",
-       "registry/conf/ucc.preferences",
-       "registry/bin/ucc",
 ]
 
 

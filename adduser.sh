@@ -22,15 +22,15 @@ until [ "$started" != ""  ]; do
   sleep 3
 done
 
-echo "Adding 'demo user' to XUUDB"
+echo "Adding 'CN=Demo User' to XUUDB"
 bin/admin.sh adddn ${uxName} "CN=Demo User,O=UNICORE,C=EU" "${USER_NAME}" user
 bin/admin.sh adddn ${wfSitename} "CN=Demo User,O=UNICORE,C=EU" "nobody" user
 
 
-echo "Adding 'demo server' to XUUDB"
-bin/admin.sh adddn ${registryName} "CN=Demo UNICORE/X,O=UNICORE,C=EU" "nobody" server
-echo "Adding 'demo workflow server' to XUUDB"
-bin/admin.sh adddn ${registryName} "CN=Demo Workflow,O=UNICORE,C=EU" "nobody" server
+echo "Adding CN=UNICOREX to XUUDB"
+bin/admin.sh adddn ${registryName} "CN=UNICOREX,O=UNICORE,C=EU" "nobody" server
+echo "Adding CN=Workflow to XUUDB"
+bin/admin.sh adddn ${registryName} "CN=Workflow,O=UNICORE,C=EU" "nobody" server
 
 cd ..
 

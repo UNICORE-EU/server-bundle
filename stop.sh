@@ -10,7 +10,7 @@ cd $INST
 
 if [ -e workflow ] 
 then
-  echo "Stopping Workflow server process "
+  echo "Stopping Workflow ... "
   cd workflow
   bin/stop.sh
   cd ..
@@ -18,7 +18,7 @@ fi
 
 if [ -e unicorex ] 
 then
-  echo "Stopping UNICORE/X execution server process "
+  echo "Stopping UNICORE/X ... "
   cd unicorex
   bin/stop.sh
   cd ..
@@ -26,7 +26,7 @@ fi
 
 if [ -e registry ] 
 then
-  echo "Stopping UNICORE/X registry server process "
+  echo "Stopping Registry ... "
   cd registry
   bin/stop.sh
   cd ..
@@ -34,7 +34,7 @@ fi
 
 if [ -e gateway ] 
 then
-  echo "Stopping Gateway process "
+  echo "Stopping Gateway ... "
   cd gateway
   bin/stop.sh
   cd ..
@@ -42,8 +42,10 @@ fi
 
 if [ -e xuudb ] 
 then
-  echo "Stopping XUUDB server process "
+  echo "Stopping XUUDB ... "
   cd xuudb
   bin/stop.sh
   cd ..
 fi
+
+echo "Done!"
