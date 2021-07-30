@@ -11,12 +11,12 @@
   <!-- Component versions -->
   <property name="xuudb-version" value="2.6.1"/>
   <property name="gateway-version" value="1.7.1"/>
-  <property name="registry-version" value="8.1.1"/>
-  <property name="unicorex-version" value="8.1.1"/>
-  <property name="workflow-version" value="3.1.0"/>
+  <property name="registry-version" value="8.2.0"/>
+  <property name="unicorex-version" value="8.2.0"/>
+  <property name="workflow-version" value="3.2.0"/>
 
   <!-- TSI retrieved via checkout -->
-  <property name="tsi-version" value="8.1.0"/>
+  <property name="tsi-version" value="8.2.0"/>
 
   <!-- Links to the html manuals  
        These will be downloaded and put into the distribution as .html and .txt
@@ -25,7 +25,7 @@
   <property name="unicorex-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/unicorex-8.1.0/unicorex-manual.html"/>
   <property name="registry-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/registry-8.1.0/registry-manual.html"/>
   <property name="xuudb-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/xuudb-2.6.0/manual.html"/>
-  <property name="tsi-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/tsi-8.1.0/tsi-manual.html"/>
+  <property name="tsi-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/tsi-8.2.0/tsi-manual.html"/>
   <property name="workflow-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/workflow-8.1.0/workflow-manual.html"/>
 
   <taskdef uri="antlib:org.apache.maven.resolver.ant" resource="org/apache/maven/resolver/ant/antlib.xml">
@@ -59,11 +59,11 @@
 
   <target name="update-libs" 
           description="Gets the required jar files for all the components"
-          depends="update-unicorex,update-gateway,update-xuudb,update-workflow"/>
+          depends="update-unicorex,update-registry,update-gateway,update-xuudb,update-workflow"/>
  
   <target name="update-unicorex"
-          description="Updates the UNICORE/X and Registry libraries">
-    <echo>... UNICORE/X</echo>
+          description="Updates the UNICORE/X libraries">
+    <echo>... UNICORE/X version ${unicorex-version}</echo>
     <mkdir dir="unicorex/lib"/>
     <mkdir dir="registry/lib"/>
 
@@ -79,7 +79,14 @@
       <fileset dir="unicorex/lib" includes="*.pom"/>
       <fileset dir="unicorex/lib" includes="*.zip"/>
     </delete>
-    
+
+  </target>
+
+  <target name="update-registry"
+          description="Updates the Registry libraries">
+    <mkdir dir="registry/lib"/>
+
+    <echo>... Registry version ${registry-version}</echo>
     <mvn:resolve>
       <remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/>
       <dependencies>
@@ -135,9 +142,8 @@
 
   <target name="update-tsi" 
           description="Checks out the TSI code from GitHub">
-    <echo>... TSI</echo>
     <delete includeemptydirs="true" dir="tsi"/>
-    <echo>Checking out TSI version '${tsi-version}' from GitHub ...</echo>
+    <echo>... TSI version '${tsi-version}' checkout from GitHub ...</echo>
     <exec executable="git">
       <arg value="clone"/>
       <arg value="-b"/>
@@ -166,12 +172,11 @@
 
 
   <target name="update-workflow" description="Updates the workflow libs">
+    <echo>... Workflow version ${workflow-version}</echo>
     <mkdir dir="workflow/lib"/>
-
     <mvn:resolve>
       <remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/>
       <dependencies>
-	<dependency groupId="eu.unicore" artifactId="xnjs" version="2.1.0-p3" type="jar"/>
         <dependency groupId="eu.unicore.workflow" artifactId="workflowservice" version="${workflow-version}"/>
       </dependencies>
       <files dir="workflow/lib" layout="{artifactId}-{version}.{extension}"/> 

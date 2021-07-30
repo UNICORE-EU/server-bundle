@@ -5,8 +5,8 @@ tracker at https://sourceforge.net/p/unicore/issues
 
 See README-UPGRADE.txt for upgrade hints.
 
-Core servers 8.2.0 (MMM DD, 2021)
----------------------------------
+Core servers 8.2.0 (Aug 2, 2021)
+--------------------------------
 
 General
 -------
@@ -34,6 +34,8 @@ Registry
 TSI
 ---
  - log to syslog
+ - fix: split DNs only on "," (and require DNs in RFC format)
+ - remove duplicate code in BecomeUser.py
 
 
 Core servers 8.1.0-1 (Mar 3, 2021)
