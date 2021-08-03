@@ -48,6 +48,8 @@ output=/tmp
 
 EOF
 
+cp ${base}/date1.json /tmp/
+
 cd ${base}/testsuite
 sh -c "ucc shell -v -c /tmp/ucc.test.config -f suite.test"
 
@@ -56,6 +58,7 @@ rm -f /tmp/ucc.test.config
 
 cd /tmp/unicore-servers-$1
 ./stop.sh
+./tsi_selected/bin/stop.sh
 
 sleep 5
 cd ..

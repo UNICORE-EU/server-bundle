@@ -1,0 +1,14 @@
+{
+
+"activities" : [
+ {
+   "id": "date1",
+   "type": "JOB",
+   "job": {
+     "ApplicationName": "Date",
+    },
+ },
+
+],
+
+}

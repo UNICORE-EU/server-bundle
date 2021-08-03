@@ -22,8 +22,8 @@
        These will be downloaded and put into the distribution as .html and .txt
   -->
   <property name="gateway-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/gateway-1.7.0/manual.html"/> 
-  <property name="unicorex-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/unicorex-8.1.0/unicorex-manual.html"/>
-  <property name="registry-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/registry-8.1.0/registry-manual.html"/>
+  <property name="unicorex-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/unicorex-8.2.0/unicorex-manual.html"/>
+  <property name="registry-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/registry-8.2.0/registry-manual.html"/>
   <property name="xuudb-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/xuudb-2.6.0/manual.html"/>
   <property name="tsi-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/tsi-8.2.0/tsi-manual.html"/>
   <property name="workflow-doc" value="https://unicore-dev.zam.kfa-juelich.de/documentation/workflow-8.1.0/workflow-manual.html"/>

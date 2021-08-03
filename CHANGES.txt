@@ -5,7 +5,7 @@ tracker at https://sourceforge.net/p/unicore/issues
 
 See README-UPGRADE.txt for upgrade hints.
 
-Core servers 8.2.0 (Aug 2, 2021)
+Core servers 8.2.0 (Aug 3, 2021)
 --------------------------------
 
 General
@@ -15,7 +15,8 @@ General
  - update to HTTPClient 4.5.13
  - new demo certificates with 2048 bit length
    avoiding errors on certain OS (#243)
-
+ - more modular XACML policy files
+ 
 UNICORE/X
 ---------
  - fix: empty "Resources" element in job description

@@ -2,3 +2,5 @@ system-info -l
 connect
 list-storages -l
 exec date
+workflow-submit --wait /tmp/date1.json
+
