@@ -64,10 +64,16 @@
 
 
   <Rule RuleId="Core:Permit:StandardServices_for_user" Effect="Permit">
-    <Description> Full access to the TSF and SMF services is granted for users with the "user" role. 
+    <Description> Full access to the REST core, TSF and SMF services is granted for users with the "user" role. 
     </Description>
     <Target>
       <Resources>
+        <Resource>
+          <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">core</AttributeValue>
+            <ResourceAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#anyURI" MustBePresent="true"/>
+          </ResourceMatch>
+        </Resource>
         <Resource>
           <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
             <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">TargetSystemFactoryService</AttributeValue>
