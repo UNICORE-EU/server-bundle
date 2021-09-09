@@ -6,11 +6,11 @@
 
   <property name="dist-name" value="unicore-servers"/>
   <property name="version" value="8.2.0"/>
-  <property name="patch" value=""/>
+  <property name="patch" value="-p1"/>
 
   <!-- Component versions -->
   <property name="xuudb-version" value="2.6.1"/>
-  <property name="gateway-version" value="1.7.1"/>
+  <property name="gateway-version" value="1.7.2"/>
   <property name="registry-version" value="8.2.0"/>
   <property name="unicorex-version" value="8.2.0"/>
   <property name="workflow-version" value="3.2.0"/>

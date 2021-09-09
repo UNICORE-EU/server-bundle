@@ -5,6 +5,15 @@ tracker at https://sourceforge.net/p/unicore/issues
 
 See README-UPGRADE.txt for upgrade hints.
 
+Core servers 8.2.0-p1 (Sep 9, 2021)
+-----------------------------------
+
+Gateway:
+--------
+- update xmlsec version to 2.2.2 to get rid of
+  warnings (https://issues.apache.org/jira/browse/SANTUARIO-564)
+
+
 Core servers 8.2.0 (Aug 3, 2021)
 --------------------------------
 
