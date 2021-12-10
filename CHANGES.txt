@@ -5,6 +5,59 @@ tracker at https://sourceforge.net/p/unicore/issues
 
 See README-UPGRADE.txt for upgrade hints.
 
+Core servers 8.3.0 (Dec DD, 2021)
+---------------------------------
+
+General
+-------
+ - update Unity demo CA cert
+
+NOTE:
+
+   this is the last release that supports Java 8
+   UNICORE 9.0 will require Java 11 as minimum
+
+Gateway
+-------
+ - fix: send decent error response to clients in case a site
+   is down or misconfigured (status 503 with the reason in the
+   response body)
+
+UNICORE/X
+---------
+ - improvement: better, more scalable usage of multiple
+   login nodes
+ - fix: optimized "ReadOnly" imports by symlinking did not work
+ - cleanup, remove some XML/SOAP code
+ - improvement: lists of things (jobs, etc) are now in the order
+   they were created (#289)
+ - fix: parsing user preference header (supplementary group IDs)
+   was buggy
+ - fix: REST interface to the Registry can be used
+
+TSI
+---
+ - new feature: new job type: 'allocate' which will
+   allocate resources without launching anything
+   Currently implemented only for Slurm via 'salloc'
+ - new feature: PAM support for optionally registering 
+   user tasks with a user session (#292)
+ - new feature: UFTP support (get/put of remote files
+   via builtin uftp client)
+ - fix: Slurm: rounding error for small runtimes leads
+   to "#SBATCH --time 0"
+ - fix: handle invalid messages from UNICORE/X gracefully
+ - new feature: add TSI API call to get the process listing
+   (via 'ps -e' by default)
+ - code cleanup
+
+Workflow
+--------
+ - fix: make workflow submission atomic, avoiding invalid
+   workflow instances (also fixes #288)
+ - improvement: workflows are now listed in the order
+   they were created (#289)
+
 Core servers 8.2.0-p1 (Sep 9, 2021)
 -----------------------------------
 
