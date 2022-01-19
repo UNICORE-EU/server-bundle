@@ -5,17 +5,19 @@ tracker at https://sourceforge.net/p/unicore/issues
 
 See README-UPGRADE.txt for upgrade hints.
 
-Core servers 8.3.0 (Dec DD, 2021)
+Core servers 8.3.0 (Dec 15, 2021)
 ---------------------------------
 
-General
--------
- - update Unity demo CA cert
-
-NOTE:
+JAVA VERSION NOTE:
 
    this is the last release that supports Java 8
    UNICORE 9.0 will require Java 11 as minimum
+
+General
+-------
+ - update Log4j to 2.16
+ - updates: Jetty 9.4.44, CXF 3.4.5
+ - package new Unity demo CA cert
 
 Gateway
 -------
@@ -25,15 +27,24 @@ Gateway
 
 UNICORE/X
 ---------
+ - new feature: new job type: 'allocate' which will
+   allocate resources without launching anything
  - improvement: better, more scalable usage of multiple
    login nodes
+ - improvement: refactoring of server-server file transfers.
+   REST API for transfers shows individual files and their
+   transfer status
+ - improvement: more informative error messages (#283)
  - fix: optimized "ReadOnly" imports by symlinking did not work
- - cleanup, remove some XML/SOAP code
  - improvement: lists of things (jobs, etc) are now in the order
    they were created (#289)
  - fix: parsing user preference header (supplementary group IDs)
    was buggy
- - fix: REST interface to the Registry can be used
+ - fix: post command from IDB application definition was not used
+ - fix: REST interface to the Registry will be used when using
+   the REST endpoint (".../rest/registries/default_registry")
+   as Registry URL
+ - cleanup, remove some XML/SOAP code
 
 TSI
 ---
