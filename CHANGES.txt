@@ -5,6 +5,23 @@ tracker at https://sourceforge.net/p/unicore/issues
 
 See README-UPGRADE.txt for upgrade hints.
 
+Core servers 9.0.0 (mm dd, 2022)
+---------------------------------
+
+JAVA VERSION NOTE:
+
+   This release requires Java 11 or later!
+
+General
+-------
+ - new feature: support PostgreSQL as persistence backend
+   (in addition to MySQL and H2)
+
+UNICORE/X
+---------
+ - remove SOAP/XML endpoints
+ - remove Hazelcast support
+
 Core servers 8.3.0 (Dec 15, 2021)
 ---------------------------------
 
