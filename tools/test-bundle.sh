@@ -24,6 +24,7 @@ sed -i s/workflow=false/workflow=true/ configure.properties
 sed -i s/uxEnableStorageFactory=false/uxEnableStorageFactory=true/ configure.properties
 ./configure.py $USER localhost
 ./install.py
+echo "tsi.switch_uid=0" >> ./tsi_selected/conf/tsi.properties 
 ./tsi_selected/bin/start.sh
 ./start.sh
 

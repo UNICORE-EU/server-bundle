@@ -22,6 +22,15 @@ UNICORE/X
  - remove SOAP/XML endpoints
  - remove Hazelcast support
 
+Core servers 8.3.0-p1 (Mar 24, 2022)
+------------------------------------
+
+UNICORE/X
+---------
+ - fix: race condition when using inline:/ imports could
+   lead to job failures (due to imported files not yet written)
+
+
 Core servers 8.3.0 (Dec 15, 2021)
 ---------------------------------
 
