@@ -29,6 +29,8 @@ UNICORE/X
 ---------
  - fix: race condition when using inline:/ imports could
    lead to job failures (due to imported files not yet written)
+ - fix: interactive jobs should cd to working dir before defining
+   environment (so $PWD points to the working dir...)
 
 
 Core servers 8.3.0 (Dec 15, 2021)
