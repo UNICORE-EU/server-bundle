@@ -4,19 +4,11 @@
 
 For a list of new features, fixes etc, see the CHANGES.txt file.
 
-To update from UNICORE 8.0.x, the main step is to update the jar
+To update from UNICORE 8.x, the main step is to update the jar
 files.
 
-We also highly recommend to update the logging configurations
-(logging.properties, startup.properties) to log4j/2 syntax.
-You can use the example files in the distribution as
-starting points.
-
-The new version of the TSI requires Python3. If updating TSI files,
-make sure to use Python3 to run.
-
 ***
-***  Detailed update procedure from 8.0.x
+***  Detailed update procedure from 8.x
 ***
 
 As a first step and precaution, you should make backups of your 
@@ -54,11 +46,22 @@ $> export NEW=/tmp/unicore-servers
    The Python files in lib/ might need to be updated. Make a diff to check for changes
    and apply them.
 
-   The new version REQUIRES PYTHON 3
+   The TSI REQUIRES PYTHON 3
+
+***
+***  Update notes from 8.0.x
+***
+
+Please update the logging configurations (logging.properties) to
+log4j/2 syntax.  You can use the example files in the distribution as
+starting points.
+
+Newer versions of the TSI require Python3. If updating TSI files,
+make sure to use Python3 to run.
 
 
 ***
-***  Update procedure from 7.x
+***  Update notes from 7.x
 ***
-This involves merging config files, and is described here:
+For 8.x, the config file syntax has changed. Please refer to
 https://sourceforge.net/projects/unicore/files/Servers/Core/8.0.3/README-UPGRADE.txt/view
