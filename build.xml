@@ -9,8 +9,8 @@
   <property name="patch" value=""/>
 
   <!-- Component versions -->
-  <property name="xuudb-version" value="2.6.2"/>
-  <property name="gateway-version" value="1.7.3"/>
+  <property name="xuudb-version" value="2.7.0"/>
+  <property name="gateway-version" value="1.8.0"/>
   <property name="registry-version" value="9.0.0"/>
   <property name="unicorex-version" value="9.0.0"/>
   <property name="workflow-version" value="3.4.0"/>
@@ -60,6 +60,13 @@
       <remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/>
       <dependencies>
 	<dependency groupId="eu.unicore" artifactId="unicorex-distribution" version="${unicorex-version}" type="pom"/>
+      </dependencies>
+      <files dir="unicorex/lib" layout="{artifactId}-{version}.{extension}"/> 
+    </mvn:resolve>
+    <mvn:resolve>
+      <remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/>
+      <dependencies>
+        <dependency groupId="eu.unicore.workflow" artifactId="workflowservice" version="${workflow-version}"/>
       </dependencies>
       <files dir="unicorex/lib" layout="{artifactId}-{version}.{extension}"/> 
     </mvn:resolve>

@@ -12,6 +12,13 @@ JAVA VERSION NOTE:
 
    This release requires Java 11 or later!
 
+H2 DATABASE NOTE (for UNICORE/X and Workflow)
+
+   This release includes the new H2 v2 engine, which is unfortunately
+   not directly backwards compatible to the one used in UNICORE
+   8.x. If you want to keep existing data during the update, you'll
+   need to convert the databases, or use the old H2 v1 version
+
 General
 -------
  - new feature: support PostgreSQL as persistence backend
@@ -19,8 +26,42 @@ General
 
 UNICORE/X
 ---------
+ - add "internal" workflow engine (#297) supporting workflows
+   only involving the UNICORE/X instance itself. (this can be
+   switched to a full-blown workflow service easily, see the docs)
+ - improve implementation of Range header when GET'ting file
+   content. It now allows getting the tail of a file, e.g.
+   "Range: bytes=-100" for the last 100 bytes
+ - new REST authentication option for directly using Keycloak
+   (or similar OAuth server), with simple mapping of user
+   profile data to UNICORE DN
+ - improve error reporting
+ - fix: potential race condition for "inline:" imports
+ - less chatty error logging when XUUDB is down
+ - fix: occasional "no write permission was aquired" errors
+ - nicer HTML version of GET properties
+ - remove data imported via "inline:" from stored jobs when it's no
+   longer needed
+ - remove support for XML-formatted IDB
  - remove SOAP/XML endpoints
  - remove Hazelcast support
+
+Registry
+--------
+ - remove SOAP/XML endpoints. When updating a shared registry,
+   make sure all the UNICORE/X servers are 9.x as well!
+   If you still have 8.x UNICORE servers that connect to
+   the registry, do NOT update the registry to 9.x!
+
+Workflow
+--------
+ - improved workflow JSON (keeping support for the 'old' one)
+ - fix indirection (reading for-each fileset from file at runtime)
+ - improve processing speed for (internal) tasks and loops
+
+Core servers 8.3.0-p2 (May 20, 2022)
+------------------------------------
+ Include latest Log4j 2.17.1
 
 Core servers 8.3.0-p1 (Mar 24, 2022)
 ------------------------------------
