@@ -7,6 +7,10 @@ For a list of new features, fixes etc, see the CHANGES.txt file.
 To update from UNICORE 8.x, the main step is to update the jar
 files.
 
+If you use the H2 database (i.e. data is stored in files in
+the "unicorex/data" directory), you'll need to update the DB contents.
+We provide a helper script for that, details are given below.
+
 ***
 ***  Detailed update procedure from 8.x
 ***
@@ -32,10 +36,17 @@ $> export NEW=/tmp/unicore-servers
    $> rm -rf LIB/*
    $> cp $NEW/<component>/lib/*.jar LIB/
 
- - compare and update:
-  -   logging.properties
-  -   conf/startup.properties
- 
+   FOR UNICORE/X, WORKFLOW and REGISTRY, as needed,
+   if you use the H2 database (filesystem storage)
+   
+ - update the H2 database contents (adapt component
+   paths accordingly):
+
+   $> $NEW/update-tools/update-data.sh unicorex/data
+   $> $NEW/update-tools/update-data.sh workflow/data
+   $> $NEW/update-tools/update-data.sh registry/data
+
+
  - start the server
 
  - check the logs for any ERROR or WARN messages and if necessary correct them
@@ -58,10 +69,3 @@ starting points.
 
 Newer versions of the TSI require Python3. If updating TSI files,
 make sure to use Python3 to run.
-
-
-***
-***  Update notes from 7.x
-***
-For 8.x, the config file syntax has changed. Please refer to
-https://sourceforge.net/projects/unicore/files/Servers/Core/8.0.3/README-UPGRADE.txt/view

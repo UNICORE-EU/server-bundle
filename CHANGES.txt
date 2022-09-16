@@ -8,33 +8,48 @@ See README-UPGRADE.txt for upgrade hints.
 Core servers 9.0.0 (mm dd, 2022)
 ---------------------------------
 
-JAVA VERSION NOTE:
+*** JAVA VERSION NOTE:
 
    This release requires Java 11 or later!
 
-H2 DATABASE NOTE (for UNICORE/X and Workflow)
+*** H2 DATABASE NOTE
 
    This release includes the new H2 v2 engine, which is unfortunately
    not directly backwards compatible to the one used in UNICORE
    8.x. If you want to keep existing data during the update, you'll
-   need to convert the databases, or use the old H2 v1 version
+   need to convert the databases.
+
+   We provide an update script for migrating your data.
+
+   SEE README-UPGRADE.txt for details.
 
 General
 -------
  - new feature: support PostgreSQL as persistence backend
    (in addition to MySQL and H2)
+ - update Jetty to 10.0.11
+ - update CXF to 3.5.3
+ - update CAnL to 2.8.2 incl BouncyCastle 1.71
+ - update Log4j to 2.18
 
 UNICORE/X
 ---------
  - add "internal" workflow engine (#297) supporting workflows
-   only involving the UNICORE/X instance itself. (this can be
-   switched to a full-blown workflow service easily, see the docs)
- - improve implementation of Range header when GET'ting file
-   content. It now allows getting the tail of a file, e.g.
-   "Range: bytes=-100" for the last 100 bytes
+   only using the UNICORE/X instance itself. (this can be switched
+   to a full multi-site workflow service, see the docs)
+ - new feature; allow to submit jobs into a BSS allocation previously
+   created with a job with type "allocate"
  - new REST authentication option for directly using Keycloak
    (or similar OAuth server), with simple mapping of user
    profile data to UNICORE DN
+ - Unity authentication now also works with standard SAML endpoint
+   The extra UNICORE-SAML endpoint is no longer required.
+ - Allow adding additional trusted JWT delegation issuers via local PEM files
+   (container.security.rest.jwt.trustedIssuerCert.1=<path to PEM file>)
+ - ".../rest/core" endpoint shows server credential expiry date
+ - improve implementation of Range header when GET'ting file
+   content. It now allows getting the tail of a file, e.g.
+   "Range: bytes=-100" for the last 100 bytes
  - improve error reporting
  - fix: potential race condition for "inline:" imports
  - less chatty error logging when XUUDB is down
@@ -46,18 +61,34 @@ UNICORE/X
  - remove SOAP/XML endpoints
  - remove Hazelcast support
 
+TSI
+---
+ - new feature: add TSI API call to get user information including
+   public keys from a configurable list of sources
+ - new feature: (optional) configurable range of local ports
+   for the TSI to use
+ - fix: logging to file was not working correctly
+ - simplified PAM.py module
+ - rename a few config properties to be more intuitive
+   (old property names are still accepted) 
+ - code cleanup
+
+
 Registry
 --------
  - remove SOAP/XML endpoints. When updating a shared registry,
-   make sure all the UNICORE/X servers are 9.x as well!
-   If you still have 8.x UNICORE servers that connect to
-   the registry, do NOT update the registry to 9.x!
+   make sure all the UNICORE/X servers are using the REST endpoint!
+   If you still have pre 8.3.0 UNICORE servers that connect to
+   the registry via the SOAP endpoint, do NOT update the registry to 9.x!
+   (or better, update those 8.x servers)
 
 Workflow
 --------
- - improved workflow JSON (keeping support for the 'old' one)
+ - improved workflow JSON syntax (keeping support for the old one)
  - fix indirection (reading for-each fileset from file at runtime)
  - improve processing speed for (internal) tasks and loops
+ - fix some issues with evaluating conditions
+ - ".../rest/workflows" endpoint shows server credential expiry date
 
 Core servers 8.3.0-p2 (May 20, 2022)
 ------------------------------------

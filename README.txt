@@ -26,7 +26,7 @@ your institution, your country and where UNICORE will be used.
 PREREQUISITES
 *************
 
- - We recommend using OpenJDK or Oracle Java 8 or later
+ - We recommend using OpenJDK or Oracle Java 11 or later
    IBM Java has been reported to work as well
  - Python 3.x for the TSI
 
@@ -48,13 +48,17 @@ INSTALLATION & CONFIGURATION
 ****************************
 
 We recommend a dedicated non-root user (e.g., "unicore") for running
-the server components. Please DO NOT run servers (except TSI) as root!
+the server components.
+
+Please DO NOT start the servers (except TSI) as root!
 
 The basic configuration and installation is as follows
 
 1) edit configure.properties
 2) ./configure.py [<unicore_user>] [<hostname>]
 3) run ./install.py to install UNICORE in the selected directory
+4) install the TSI on the login node(s) of the machine that
+   you want to access via UNICORE
 
 The configuration script 'configure.py' is used to configure the components.
 
@@ -113,9 +117,9 @@ GETTING STARTED
 Administration, customisation, usage etc, are covered in more detail
 in the documentation available in the docs/ directory
 
-Please refer to the documentation on the UNICORE website, at
+Please refer to the documentation at
 
-  https://www.unicore.eu/documentation
+  https://unicore-docs.readthedocs.io
 
 for more information and in-depth documentation.
 

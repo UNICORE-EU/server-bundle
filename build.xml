@@ -43,7 +43,7 @@
 
   <target name="update" 
           description="Updates libraries, documentation and other files"
-          depends="prepare,update-libs,update-tsi,fix-permissions,update-changelog">
+          depends="prepare,update-libs,update-tsi,fix-permissions,update-changelog,prepare-update-tools">
   </target>
 
   <target name="update-libs" 
@@ -60,13 +60,6 @@
       <remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/>
       <dependencies>
 	<dependency groupId="eu.unicore" artifactId="unicorex-distribution" version="${unicorex-version}" type="pom"/>
-      </dependencies>
-      <files dir="unicorex/lib" layout="{artifactId}-{version}.{extension}"/> 
-    </mvn:resolve>
-    <mvn:resolve>
-      <remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/>
-      <dependencies>
-        <dependency groupId="eu.unicore.workflow" artifactId="workflowservice" version="${workflow-version}"/>
       </dependencies>
       <files dir="unicorex/lib" layout="{artifactId}-{version}.{extension}"/> 
     </mvn:resolve>
@@ -209,6 +202,26 @@
   </target>
 
 
+  <target name="prepare-update-tools"
+          description="Prepare the update-tools">
+    <echo>... Update tools</echo>
+    <mvn:resolve>
+      <remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/>
+      <dependencies>
+	<dependency groupId="com.h2database" artifactId="h2" version="2.1.214"/>
+      </dependencies>
+      <files dir="update-tools" layout="{artifactId}-{version}.{extension}"/> 
+    </mvn:resolve>
+    <mvn:resolve>
+      <remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/>
+      <dependencies>
+	<dependency groupId="com.h2database" artifactId="h2" version="1.4.200"/>
+      </dependencies>
+      <files dir="update-tools" layout="{artifactId}-{version}.{extension}"/> 
+    </mvn:resolve>
+
+  </target>
+
   <target name="clean-jars">
     <delete quiet="true" includeemptydirs="true">
       <fileset dir="xuudb/lib" includes="**/*"/>
@@ -237,6 +250,7 @@
       <fileset dir="tsi" includes="**"/>
       <fileset dir="tools" includes="installer-tools.jar"/>
       <fileset dir="tools" includes="target/**"/>
+      <fileset dir="update-tools" includes="*.jar"/>
     </delete>
     <delete dir="tsi"/>
 
