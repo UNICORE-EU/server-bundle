@@ -82,7 +82,7 @@ gwFiles = [
 uxFiles = [
        "unicorex/conf/startup.properties",
        "unicorex/conf/container.properties",
-       "unicorex/conf/unicorex.config",
+       "unicorex/conf/main.config",
        "unicorex/conf/xnjs.properties",
        "unicorex/conf/idb.json",
        "unicorex/conf/simpleuudb",
@@ -95,13 +95,13 @@ tsiFiles = [
 
 regFiles = [
        "registry/conf/startup.properties",
-       "registry/conf/registry.config",
+       "registry/conf/main.config",
 ]
 
 
 wfFiles = [
        "workflow/conf/startup.properties",
-       "workflow/conf/container.properties",
+       "workflow/conf/main.config",
 ]
 
 xuudbFiles = [
