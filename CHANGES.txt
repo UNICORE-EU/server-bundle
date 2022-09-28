@@ -31,6 +31,10 @@ General
  - update CXF to 3.5.3
  - update CAnL to 2.8.2 incl BouncyCastle 1.71
  - update Log4j to 2.18
+ - remove SOAP/XML endpoints in UNICORE/X and Registry
+ - clean-up XACML policy files
+ - clean-up server start scripts and config files, making
+   them easier to navigate
 
 UNICORE/X
 ---------
@@ -57,9 +61,14 @@ UNICORE/X
  - nicer HTML version of GET properties
  - remove data imported via "inline:" from stored jobs when it's no
    longer needed
+ - allow to configure SERVERNAME in startup.properties (defaults
+   to previous value "UNICOREX")
+ - main config file renamed to "unicorex.config", falls back to old
+   "uas.config" if not found
  - remove support for XML-formatted IDB
  - remove SOAP/XML endpoints
  - remove Hazelcast support
+ - remove unused mailto data staging
 
 TSI
 ---
@@ -72,7 +81,6 @@ TSI
  - rename a few config properties to be more intuitive
    (old property names are still accepted) 
  - code cleanup
-
 
 Registry
 --------
@@ -89,6 +97,11 @@ Workflow
  - improve processing speed for (internal) tasks and loops
  - fix some issues with evaluating conditions
  - ".../rest/workflows" endpoint shows server credential expiry date
+
+XUUDB
+-----
+ - fix: server should stop after DB error during startup
+
 
 Core servers 8.3.0-p2 (May 20, 2022)
 ------------------------------------

@@ -16,7 +16,7 @@
   <property name="workflow-version" value="3.4.0"/>
 
   <!-- TSI retrieved via checkout -->
-  <property name="tsi-version" value="8.3.0"/>
+  <property name="tsi-version" value="9.0.0"/>
 
   <taskdef uri="antlib:org.apache.maven.resolver.ant" resource="org/apache/maven/resolver/ant/antlib.xml">
     <classpath>
@@ -54,7 +54,6 @@
           description="Updates the UNICORE/X libraries">
     <echo>... UNICORE/X version ${unicorex-version}</echo>
     <mkdir dir="unicorex/lib"/>
-    <mkdir dir="registry/lib"/>
 
     <mvn:resolve>
       <remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/>
@@ -206,14 +205,14 @@
           description="Prepare the update-tools">
     <echo>... Update tools</echo>
     <mvn:resolve>
-      <remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/>
+      <!--remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/-->
       <dependencies>
 	<dependency groupId="com.h2database" artifactId="h2" version="2.1.214"/>
       </dependencies>
       <files dir="update-tools" layout="{artifactId}-{version}.{extension}"/> 
     </mvn:resolve>
     <mvn:resolve>
-      <remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/>
+      <!--remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/-->
       <dependencies>
 	<dependency groupId="com.h2database" artifactId="h2" version="1.4.200"/>
       </dependencies>
@@ -263,7 +262,7 @@
   <target name="dist-test"
           description="Installs the bundle and runs some UCC-based tests">
     <echo>Running tests on .tgz version ${version}${patch}</echo>
-    <exec executable="/bin/sh" dir="tools">
+    <exec executable="/bin/bash" dir="tools">
       <arg value="-c"/>
       <arg value="./test-bundle.sh ${version}${patch}"/>
     </exec>

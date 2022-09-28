@@ -1,12 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 
 #
 # Startup script for UNICORE/X
 #
 
-
 #
-# Installation Directory
+# Installation directory
 #
 dir=`dirname $0`
 if [ "$dir" != "." ]
@@ -32,7 +31,7 @@ cd $INST
 . conf/startup.properties
 
 #
-# check whether the server might be already running
+# Check whether the server might be already running
 #
 if [ -e $PID ] 
  then 
@@ -45,7 +44,7 @@ if [ -e $PID ]
 fi
 
 #
-# setup classpath
+# Setup classpath
 #
 CP=.$(find "${LIB}" -name "*.jar" -exec printf ":{}" \;)
 
@@ -56,12 +55,19 @@ then
   exit 1
 fi
 
-
-PARAM=$*
-if [ "$PARAM" = "" ]
+if [ "$MAIN_CONFIG" = "" ]
 then
-  PARAM=${CONF}/uas.config
+    MAIN_CONFIG=${CONF}/main.config
+    if [ ! -e ${MAIN_CONFIG} ]; then
+	MAIN_CONFIG=${CONF}/uas.config
+    fi
 fi
+if [ ! -e ${MAIN_CONFIG} ]; then
+    echo "ERROR: main config file $MAIN_CONFIG not found."
+    exit 1
+fi
+
+SERVERNAME=${SERVERNAME:-"UNICOREX"}
 
 #
 # go
@@ -69,6 +75,6 @@ fi
 
 CLASSPATH=$CP; export CLASSPATH
 
-nohup $JAVA ${MEM} ${OPTS} ${DEFS} de.fzj.unicore.uas.UAS ${PARAM} UNICOREX > ${STARTLOG} 2>&1  & echo $! > ${PID}
+nohup $JAVA ${MEM} ${OPTS} ${DEFS} de.fzj.unicore.uas.UAS ${MAIN_CONFIG} ${SERVERNAME} > ${STARTLOG} 2>&1  & echo $! > ${PID}
 
-echo "UNICORE/X starting"
+echo "${SERVERNAME} starting"

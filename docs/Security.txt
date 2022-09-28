@@ -7,8 +7,7 @@ default certificates should not be used if your servers are accessible
 from the internet!
 
 This text describes *very briefly* how to exchange the server certificates for 
-"real" production certificates. For more in-depth information please
-consult https://www.unicore.eu/documentation
+"real" production certificates.
 
 Content:
 
@@ -45,7 +44,7 @@ All components usually have
  of the certification authority that the component trusts
 
 It is a good approach to use a common truststore and share it between
-the servers. The simplest truststore is a directory containing the
+the servers. The most convenient truststore is a directory containing the
 trusted CA certs in pem format. Each server should have its own
 private key in a keystore file.
 
@@ -58,6 +57,9 @@ Overview:
 The Gateway is a service that is contacted by both end users and servers 
 (i.e. potentially all servers in the federation except the XUUDB).
 
+The Gateway also acts as client towards UNICORE/X, Registry and Workflow
+servers.
+
 Relevant configuration files:
 
 The keystore/truststore location and password is configured in 
@@ -69,7 +71,9 @@ Required Truststore content ONLY IF SSL CLIENT AUTHENTICATION IS ENABLED
  - CA certificates of *all* user certificates that are to be trusted
  - CA certificates of *all* server certificates that are to be trusted
 
-Otherwise the truststore can be empty.
+Otherwise the truststore must contain the CA certificates of all servers
+(UNICORE/X, Registry, Workflow, ...) that are accessed via the Gateway
+(listed in gateway/conf/connections.properties)
 
 UNICORE/X & Workflow
 ********************
@@ -78,10 +82,9 @@ Overview:
 
 The UNICORE/X and Workflow servers are usually *not* contacted
 directly by users or other UNICORE/X servers, only via the Gateway.
-However, validation of incoming messages (checking signatures and
-signed SAML assertions) and making outgoing connections require that
-UNICORE/X has the trusted CAs of all server certificates in its
-truststore.
+However, making outgoing connections (data staging, Unity
+authentication etc) require that UNICORE/X has the trusted CAs of all
+relevant server certificates in its truststore.
 
 Relevant configuration files:
 
@@ -93,6 +96,7 @@ Required Truststore content:
  - CA certificates of *all* server certificates that are to be trusted
 
 Trusted assertion issuers:
+   (if validation is enabled, see manual)
  - the public keys of all trusted Unity servers
 
 Registry
@@ -109,7 +113,7 @@ certificates / DNs of all valid servers with role="server" to the
 XUUDB (or an other attribute source). Access control is enabled by
 default and MUST NOT be switched off. If anybody is allowed to write,
 a malicious user could add a server entry and try to use any trust
-delegation assertions sent to this malicious server to compromise
+delegation sent to this malicious server to compromise
 other users' data.
 
 XUUDB

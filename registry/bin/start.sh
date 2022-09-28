@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #
-# Startup script for UNICORE/X
+# Startup script for Registry
 #
 
 #
@@ -26,12 +26,12 @@ INST=${INST:-.}
 cd $INST
 
 #
-# read configuration
+# Read basic settings
 #
 . conf/startup.properties
 
 #
-# check whether the server might be already running
+# Check whether the server might be already running
 #
 if [ -e $PID ] 
  then 
@@ -55,10 +55,16 @@ then
   exit 1
 fi
 
-PARAM=$*
-if [ "$PARAM" = "" ]
+if [ "$MAIN_CONFIG" = "" ]
 then
-  PARAM=conf/uas.config
+    MAIN_CONFIG=conf/main.config
+    if [ ! -e ${MAIN_CONFIG} ]; then
+	MAIN_CONFIG=${CONF}/uas.config
+    fi
+fi
+if [ ! -e ${MAIN_CONFIG} ]; then
+    echo "ERROR: main config file $MAIN_CONFIG not found."
+    exit 1
 fi
 
 #
@@ -67,9 +73,6 @@ fi
 
 CLASSPATH=$CP; export CLASSPATH
 
-nohup ${JAVA} ${MEM} ${OPTS} ${DEFS} de.fzj.unicore.wsrflite.USEContainer ${PARAM} REGISTRY > ${STARTLOG} 2>&1  & echo $! > ${PID}
+nohup ${JAVA} ${MEM} ${OPTS} ${DEFS} eu.unicore.services.USEContainer ${MAIN_CONFIG} ${SERVERNAME} > ${STARTLOG} 2>&1  & echo $! > ${PID}
 
-echo "Registry UNICORE/X server starting"
-
-
-
+echo "${SERVERNAME} starting"

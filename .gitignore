@@ -1,6 +1,7 @@
 target/
 build/
 tools/maven-resolver-ant*
+update-tools/*.jar
 *.pyc
 *~
 tsi/

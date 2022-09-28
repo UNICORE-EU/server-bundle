@@ -46,8 +46,8 @@
 
 	{
 	    "Name"       : "Python script",
-	    "Version"    : "2.7.15",
-	    "Executable" : "/usr/bin/python",
+	    "Version"    : "3.6.9",
+	    "Executable" : "/usr/bin/python3",
 	    "Arguments"  : [
                 "-d$DEBUG?",
 		"-vVERBOSE?",

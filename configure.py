@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 #
 # UNICORE server configuration script
@@ -77,19 +77,16 @@ gwFiles = [
        "gateway/conf/startup.properties",
        "gateway/conf/connections.properties",
        "gateway/conf/gateway.properties",
-       "gateway/conf/logging.properties",
 ]
 
 uxFiles = [
        "unicorex/conf/startup.properties",
        "unicorex/conf/container.properties",
-       "unicorex/conf/uas.config",
+       "unicorex/conf/unicorex.config",
        "unicorex/conf/xnjs.properties",
        "unicorex/conf/idb.json",
        "unicorex/conf/simpleuudb",
-       "unicorex/conf/xacml2.config",
        "unicorex/conf/vo.config",
-       "unicorex/conf/logging.properties",
 ]
 
 tsiFiles = [
@@ -98,9 +95,7 @@ tsiFiles = [
 
 regFiles = [
        "registry/conf/startup.properties",
-       "registry/conf/uas.config",
-       "registry/conf/xacml2.config",
-       "registry/conf/logging.properties",
+       "registry/conf/registry.config",
 ]
 
 
@@ -114,8 +109,6 @@ xuudbFiles = [
        "xuudb/conf/xuudb_server.conf",
        "xuudb/conf/xuudb.acl",
        "xuudb/conf/xuudb_client.conf",
-       "xuudb/conf/logging.properties",
-       "xuudb/conf/client_logging.properties",
        "xuudb/conf/startup.properties",       
        "./adduser.sh",
 ]

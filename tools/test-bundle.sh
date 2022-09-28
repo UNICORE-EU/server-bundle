@@ -44,7 +44,7 @@ password=test123
 truststore.type=directory
 truststore.directoryLocations.1=${uc_home}/certs/trusted/*.pem
 client.serverHostnameChecking=NONE
-registry=https://localhost:8080/REGISTRY/services/Registry?res=default_registry
+registry=https://localhost:8080/REGISTRY/rest/registries/default_registry
 output=/tmp
 
 EOF
@@ -52,7 +52,7 @@ EOF
 cp ${base}/date1.json /tmp/
 
 cd ${base}/testsuite
-sh -c "ucc shell -v -c /tmp/ucc.test.config -f suite.test"
+bash -c "ucc shell -v -c /tmp/ucc.test.config -f suite.test"
 
 # clean up again
 rm -f /tmp/ucc.test.config

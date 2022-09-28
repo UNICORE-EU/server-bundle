@@ -36,7 +36,7 @@ $> export NEW=/tmp/unicore-servers
    $> rm -rf LIB/*
    $> cp $NEW/<component>/lib/*.jar LIB/
 
-   FOR UNICORE/X, WORKFLOW and REGISTRY, as needed,
+   FOR UNICORE/X, WORKFLOW, REGISTRY and XUUDB, as needed,
    if you use the H2 database (filesystem storage)
    
  - update the H2 database contents (adapt component
@@ -45,7 +45,14 @@ $> export NEW=/tmp/unicore-servers
    $> $NEW/update-tools/update-data.sh unicorex/data
    $> $NEW/update-tools/update-data.sh workflow/data
    $> $NEW/update-tools/update-data.sh registry/data
+   $> $NEW/update-tools/update-data.sh xuudb/data
 
+ - update the XACML policy files for UNICORE/X, Registry
+   and Workflow, as needed:
+
+   $> cp $NEW/unicorex/conf/xacml2Policies/*.xml unicorex/conf/xacml2Policies/
+   $> cp $NEW/registry/conf/xacml2Policies/*.xml registry/conf/xacml2Policies/
+   $> cp $NEW/workflow/conf/xacml2Policies/*.xml workflow/conf/xacml2Policies/
 
  - start the server
 

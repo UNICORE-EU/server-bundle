@@ -5,8 +5,8 @@ WHERE TO GET MORE DOCUMENTATION
 *******************************
 
 Please check the other files in the docs/ directory of the distribution.
-The individual manuals for the components are all included.
-Also have a look at https://www.unicore.eu
+
+Also have a look at https://unicore-docs.readthedocs.io
 
 
 SERVER STARTUP
@@ -57,20 +57,13 @@ Here, "host" and "port" refer to the gateway hostname and port (8080 by
 default).
 
 
-** Applications:
-The "Date" application as well as the various Script applications should 
-work fine on every quickstart installation.
-Additional applications such as "POVRay" and "Blender" are in the IDB,
-but you might need to install it if you want to use them.
-
-
 ADMINISTRATION NOTES
 ********************
 
 ** Security notes (UNIX systems):
 
 It is NOT necessary (and NOT advisable) to run the servers with administrator
-privileges. An exception is the UNICORE TSI server, which must run as root,
+privileges. An exception is the UNICORE TSI server, which must be started as root,
 if you want to run UNICORE in a multiuser setting.
 
 When not using the UNICORE TSI server, all jobs are run under 

@@ -1,9 +1,12 @@
 #!/bin/sh
+
 #
-# starts the Workflow server
+# Startup script for Workflow server
 #
 
-
+#
+# Installation directory
+#
 dir=`dirname $0`
 if [ "$dir" != "." ]
 then
@@ -12,32 +15,20 @@ else
   pwd | grep -e 'bin$' > /dev/null
   if [ $? = 0 ]
   then
-    # we are in the bin directory
     INST=".."
   else
-    # we are NOT in the bin directory
     INST=`dirname $dir`
   fi
 fi
 
 INST=${INST:-.}
 
-#
-# Alternatively specify the installation dir here
-#
-#INST=
-
 cd $INST
 
 #
-# Read basic setup
+# Read basic settings
 #
 . conf/startup.properties
-
-#
-# Location of jar files
-#
-LIB=lib
 
 #
 # check whether the server might be already running
@@ -53,13 +44,30 @@ if [ -e $PID ]
 fi
 
 #
-# put all jars in lib/ on the classpath
+# setup classpath
 #
-JARS=${LIB}/*.jar
-CP=
-for JAR in $JARS ; do 
-    CP=$CP:$JAR
-done
+CP=.$(find "${LIB}" -name "*.jar" -exec printf ":{}" \;)
+
+echo $CP | grep jar > /dev/null
+if [ $? != 0 ]
+then
+  echo "ERROR: empty classpath, please check that the LIB variable is properly defined."
+  exit 1
+fi
+
+SERVERNAME=${SERVERNAME:-"WORKFLOW"}
+
+if [ "$MAIN_CONFIG" = "" ]
+then
+    MAIN_CONFIG=${CONF}/main.config
+    if [ ! -e ${MAIN_CONFIG} ]; then
+	MAIN_CONFIG=${CONF}/container.properties
+    fi
+fi
+if [ ! -e ${MAIN_CONFIG} ]; then
+    echo "ERROR: main config file $MAIN_CONFIG not found."
+    exit 1
+fi
 
 #
 # go
@@ -67,8 +75,6 @@ done
 
 CLASSPATH=$CP; export CLASSPATH
 
-nohup $JAVA ${MEM} ${OPTS} ${DEFS} de.fzj.unicore.uas.UAS ${PARAM} WORKFLOW > $STARTLOG 2>&1  & echo $! > $PID
+nohup $JAVA ${MEM} ${OPTS} ${DEFS} de.fzj.unicore.uas.UAS ${MAIN_CONFIG} ${SERVERNAME} > $STARTLOG 2>&1  & echo $! > $PID
 
-echo "Workflow engine starting."
-
-
+echo "$SERVERNAME starting."
