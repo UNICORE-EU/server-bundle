@@ -5,7 +5,7 @@ tracker at https://sourceforge.net/p/unicore/issues
 
 See README-UPGRADE.txt for upgrade hints.
 
-Core servers 9.0.0 (mm dd, 2022)
+Core servers 9.0.0 (Sep 29, 2022)
 ---------------------------------
 
 *** JAVA VERSION NOTE:

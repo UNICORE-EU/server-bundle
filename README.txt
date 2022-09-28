@@ -9,18 +9,20 @@ It includes the following UNICORE server components:
 - Workflow
 - XUUDB
 
-UNICORE clients are available as a separate download on the
-UNICORE website, please visit https://www.unicore.eu/download/
+UNICORE clients are available separately, for
+example the UNICORE Commandline Client (UCC) can
+be downloaded from SourceForge:
+https://sourceforge.net/projects/unicore/files/Clients/Commandline%20Client
 
 This file gives some basic installation information.
 When upgrading an existing installation, make sure to read
 the information in the README-UPGRADE.txt file.
 
 PLEASE NOTE: We are always interested in feedback, 
-i.e. where and in which context UNICORE is used. 
-We would appreciate if you could send a short email 
-to unicore-feedback@unicore.eu stating the name of 
-your institution, your country and where UNICORE will be used. 
+i.e. where and in which context UNICORE is used, and if
+there is something you would need or like to see in
+future releases. Feel free to contact us via one
+of the channels below.
 
 
 PREREQUISITES
@@ -129,9 +131,10 @@ REPORTING BUGS
 
 Please use the bug tracker of the UNICORE project at 
 
-https://sourceforge.net/p/unicore/issues/
+https://sourceforge.net/p/unicore/issues
 
-and/or send email to the support list: unicore-support@lists.sf.net
+and/or contact us via one of the channels below.
+
 
 
 CONTACTS
