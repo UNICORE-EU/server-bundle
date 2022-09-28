@@ -33,8 +33,8 @@ General
  - update Log4j to 2.18
  - remove SOAP/XML endpoints in UNICORE/X and Registry
  - clean-up XACML policy files
- - clean-up server start scripts and config files, making
-   them easier to navigate
+ - clean-up and harmonize server start scripts and config files,
+   making them (hopefully) easier to navigate
 
 UNICORE/X
 ---------
@@ -63,7 +63,7 @@ UNICORE/X
    longer needed
  - allow to configure SERVERNAME in startup.properties (defaults
    to previous value "UNICOREX")
- - main config file renamed to "unicorex.config", falls back to old
+ - main config file renamed to "main.config", falls back to old name
    "uas.config" if not found
  - remove support for XML-formatted IDB
  - remove SOAP/XML endpoints
@@ -89,6 +89,10 @@ Registry
    If you still have pre 8.3.0 UNICORE servers that connect to
    the registry via the SOAP endpoint, do NOT update the registry to 9.x!
    (or better, update those 8.x servers)
+ - allow to configure SERVERNAME in startup.properties (defaults
+   to previous value "REGISTRY")
+ - main config file renamed to "main.config", falls back to old name
+   "uas.config" if not found
 
 Workflow
 --------
@@ -97,6 +101,10 @@ Workflow
  - improve processing speed for (internal) tasks and loops
  - fix some issues with evaluating conditions
  - ".../rest/workflows" endpoint shows server credential expiry date
+ - allow to configure SERVERNAME in startup.properties (defaults
+   to previous value "WORKFLOW")
+ - main config file renamed to "main.config", falls back to old name
+   "container.properties" if not found
 
 XUUDB
 -----
