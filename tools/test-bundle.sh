@@ -19,6 +19,7 @@ cd unicore-servers-$1
 uc_home=$(pwd)
 
 # configure it
+sed -i s/xuudb=false/xuudb=true/ configure.properties
 sed -i s/registry=false/registry=true/ configure.properties
 sed -i s/workflow=false/workflow=true/ configure.properties
 sed -i s/uxEnableStorageFactory=false/uxEnableStorageFactory=true/ configure.properties

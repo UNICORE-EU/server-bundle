@@ -1,5 +1,5 @@
 ***
-***  README for upgrades to this server version
+***  HOW TO UPDATE to this server version
 ***
 
 For a list of new features, fixes etc, see the CHANGES.txt file.
@@ -54,7 +54,7 @@ $> export NEW=/tmp/unicore-servers
    $> cp $NEW/registry/conf/xacml2Policies/*.xml registry/conf/xacml2Policies/
    $> cp $NEW/workflow/conf/xacml2Policies/*.xml workflow/conf/xacml2Policies/
 
- - start the server
+ - start the server(s)
 
  - check the logs for any ERROR or WARN messages and if necessary correct them
 
@@ -66,13 +66,19 @@ $> export NEW=/tmp/unicore-servers
 
    The TSI REQUIRES PYTHON 3
 
+
+
+
 ***
 ***  Update notes from 8.0.x
 ***
 
-Please update the logging configurations (logging.properties) to
-log4j/2 syntax.  You can use the example files in the distribution as
-starting points.
+1) If you still run 8.0.x, note that the logging configuration format
+and setup in the startup.properties have changed. Please update the
+logging configurations (logging.properties) to log4j/2 syntax.
+You can use the example files in the distribution as
+starting points. Check the startup.properties file(s) and compare
+them to the new versions!
 
-Newer versions of the TSI require Python3. If updating TSI files,
+2) Newer versions of the TSI require Python3. If updating TSI files,
 make sure to use Python3 to run.

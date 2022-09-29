@@ -33,7 +33,6 @@ def substituteVars(input, parameters):
         if(val=="currentdir"):
             val=installdir
         result=result.replace(key,val)
-        result=result.replace("${FILE_SEPARATOR}", "/")
     return result
 
 #

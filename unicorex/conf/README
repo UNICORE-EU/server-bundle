@@ -4,7 +4,7 @@
 
 startup.properties:
 
-  This file is imported by the start/stop scripts. 
+  This file is imported by the start/stop/status scripts. 
   It contains basic settings such as Java command, 
   lib, conf and log directories, location of PID file.
 
@@ -12,16 +12,16 @@ logging.properties
 
   Configures the logging subsystem (Log4j/2)
 
-uas.config
+main.config
 
-  This is the basic UNICORE/X configuration file.
+  This is the main UNICORE/X configuration file.
   Other config files are included from here.
 
 container.properties
 
-  This file contains service definitions and property 
-  settings. It also contains the settings for the 
-  persistence subsystem.
+  This file contains host/port definitions and SSL
+  credential / truststore settings. It also contains
+  the settings for the persistence subsystem.
 
 xnjs.properties
 
@@ -31,6 +31,11 @@ simpleidb
 
   Contains application definitions, queue/partition definitions,
   resource limits, etc. Referenced from xnjs.properties
+
+workflow.properties
+
+  This file contains some settings for the internal workflow processing
+  feature.
 
 simpleuudb (optional)
 
@@ -51,6 +56,7 @@ xacml2Policies
   Directory containing XACML2.0 access control policy files.
   Rarely modified.
 
-vo.config (optional, for using attributes from Unity)
+saml.config (optional)
 
-  Configuration for interfacing to Unity as an attribute source
+  Configuration for interfacing to Unity (or other SAML server)
+  as an attribute source

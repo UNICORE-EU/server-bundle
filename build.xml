@@ -155,7 +155,7 @@
   <target name="update-changelog">
    <copy file="CHANGES.txt" todir="build"/>
    <copy file="README.txt" todir="build"/>
-   <copy file="README-UPGRADE.txt" todir="build"/>
+   <copy file="README-UPDATE.txt" todir="build"/>
   </target>
 
 

@@ -13,10 +13,7 @@ import os
 import sys
 import socket
 import shutil
-try:
-    import ConfigParser
-except ImportError as e:
-    import configparser as ConfigParser
+import configparser
 
 #
 # substitute variable values
@@ -31,7 +28,6 @@ def substituteVars(input, parameters):
         if(val=="currentdir"):
             val=installdir
         result=result.replace(key,val)
-        result=result.replace("${FILE_SEPARATOR}", "/")
         result=result.replace("${USER_NAME}", xlogin)
     return result
 
@@ -54,7 +50,7 @@ except:
     xlogin = os.getenv("USER")
 
 # read configuration file
-config = ConfigParser.ConfigParser()
+config = configparser.ConfigParser()
 config.optionxform=str
 config.read(['configure.properties'])
 
@@ -86,7 +82,7 @@ uxFiles = [
        "unicorex/conf/xnjs.properties",
        "unicorex/conf/idb.json",
        "unicorex/conf/simpleuudb",
-       "unicorex/conf/vo.config",
+       "unicorex/conf/saml.config",
 ]
 
 tsiFiles = [

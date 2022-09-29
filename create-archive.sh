@@ -15,9 +15,8 @@ NAME=$1
 NAME=${NAME:-unicore-servers}
 echo "Building build/${NAME}.tgz ..."
 tar --transform="s|^|$NAME/|" -czf build/${NAME}.tgz \
-    CHANGES.txt LICENSE README.txt README-UPGRADE.txt \
+    CHANGES.txt LICENSE README.txt README-UPDATE.txt INSTALL.md \
     adduser.sh configure.properties \
     *.py start.sh stop.sh \
     certs/ docs/ gateway/ registry/ tsi/ unicorex/ workflow/ xuudb/ \
     update-tools/
-

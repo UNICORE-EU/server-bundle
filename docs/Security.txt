@@ -65,15 +65,15 @@ Relevant configuration files:
 The keystore/truststore location and password is configured in 
 "gateway/conf/gateway.properties"
 
-Required Truststore content ONLY IF SSL CLIENT AUTHENTICATION IS ENABLED
-(by default, this is NOT the case)
-
- - CA certificates of *all* user certificates that are to be trusted
- - CA certificates of *all* server certificates that are to be trusted
-
-Otherwise the truststore must contain the CA certificates of all servers
+The truststore must contain the CA certificates of *all servers*
 (UNICORE/X, Registry, Workflow, ...) that are accessed via the Gateway
-(listed in gateway/conf/connections.properties)
+(listed in gateway/conf/connections.properties).
+
+
+IF SSL CLIENT AUTHENTICATION IS ENABLED (by default, this is NOT the case)
+the truststore must contain also CA certificates of *all* user and server
+certificates that are allowed to connect to the gateway.
+
 
 UNICORE/X & Workflow
 ********************
@@ -89,14 +89,14 @@ relevant server certificates in its truststore.
 Relevant configuration files:
 
 The keystore/truststore is configured in 
-".../conf/container.properties"
+"../conf/container.properties" (or "main.config")
 
 Required Truststore content:
 
  - CA certificates of *all* server certificates that are to be trusted
 
 Trusted assertion issuers:
-   (if validation is enabled, see manual)
+ (only if validation is enabled, see manual)
  - the public keys of all trusted Unity servers
 
 Registry
@@ -110,11 +110,11 @@ All comments made for the UNICORE/X component apply to the Registry as well.
 In a production environment, it MUST be controlled who is allowed to
 write to the Registry. This is achieved by explicitely adding the
 certificates / DNs of all valid servers with role="server" to the
-XUUDB (or an other attribute source). Access control is enabled by
-default and MUST NOT be switched off. If anybody is allowed to write,
-a malicious user could add a server entry and try to use any trust
-delegation sent to this malicious server to compromise
-other users' data.
+XUUDB (or other attribute source used by the Registry).
+Access control is enabled by default and MUST NOT be switched off.
+If anybody is allowed to write, a malicious user could add a server
+entry and try to use any trust delegation sent to this malicious
+server to compromise user data.
 
 XUUDB
 *****
