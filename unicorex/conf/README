@@ -14,49 +14,59 @@ logging.properties
 
 main.config
 
-  This is the main UNICORE/X configuration file.
+  This is the main UNICORE/X configuration file. It contains
+  critical settings for user authentication and authorisation.
   Other config files are included from here.
+  (referenced from startup.properties)
 
 container.properties
 
-  This file contains host/port definitions and SSL
-  credential / truststore settings. It also contains
-  the settings for the persistence subsystem.
+  This file contains host/port definitions and SSL credential and
+  truststore settings. It also contains the settings for the
+  persistence subsystem.
+  (referenced from main.config)
 
-xnjs.properties
+tsi.config
 
-  This file contains the settings for connecting to the TSI.
+  This file contains the settings related to the execution
+  backend, such as TSI host/port, job directory locaation, etc.
+  (referenced from main.config)
 
-simpleidb
+idb.json
 
   Contains application definitions, queue/partition definitions,
-  resource limits, etc. Referenced from xnjs.properties
+  resource limits, etc.
+  (referenced from tsi.config)
 
 workflow.properties
 
-  This file contains some settings for the internal workflow processing
-  feature.
+  This file contains some settings for the internal
+  workflow processing feature
+  (referenced from main.config)
 
 simpleuudb (optional)
 
   Map file for mapping distinguished names to role, xlogin and other 
   attributes. May be used as alternative or in addition to an XUUDB.
+  (referenced from main.config)
 
 rest-users.txt (optional)
 
   Usernames/passwords for authenticating users
-  (if enabled in uas.config)
-
-xacml2.config
-
-  Configures the XACML2.0 subsystem.
-
-xacml2Policies
-
-  Directory containing XACML2.0 access control policy files.
-  Rarely modified.
+  (referenced from main.config)
 
 saml.config (optional)
 
   Configuration for interfacing to Unity (or other SAML server)
   as an attribute source
+  (referenced from main.config)
+
+xacml2.config
+
+  Configures the XACML2.0 subsystem.
+  (referenced from main.config)
+
+xacml2Policies
+
+  Directory containing XACML2.0 access control policy files.
+  Rarely modified. (referenced from xacml2.config)

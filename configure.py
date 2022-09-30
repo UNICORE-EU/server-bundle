@@ -79,7 +79,7 @@ uxFiles = [
        "unicorex/conf/startup.properties",
        "unicorex/conf/container.properties",
        "unicorex/conf/main.config",
-       "unicorex/conf/xnjs.properties",
+       "unicorex/conf/tsi.config",
        "unicorex/conf/idb.json",
        "unicorex/conf/simpleuudb",
        "unicorex/conf/saml.config",

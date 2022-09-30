@@ -35,6 +35,8 @@ General
  - clean-up XACML policy files
  - clean-up and harmonize server start scripts and config files,
    making them (hopefully) easier to navigate
+ - simplified configuration for using Unity (or other SAML service)
+   as an attribute source
 
 UNICORE/X
 ---------
