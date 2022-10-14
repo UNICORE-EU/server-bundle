@@ -36,6 +36,12 @@ until [ "$STARTED" != "" ] ; do
     sleep 2
 done
 
+./gateway/bin/status.sh
+./registry/bin/status.sh
+./xuudb/bin/status.sh
+./unicorex/bin/status.sh
+./workflow/bin/status.sh
+
 
 cat > /tmp/ucc.test.config <<EOF
 # ucc testing preferences

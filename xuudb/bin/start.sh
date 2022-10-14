@@ -65,10 +65,12 @@ fi
 
 CLASSPATH="$CP"; export CLASSPATH
 
+SERVERNAME=${SERVERNAME:-"UNICOREX"}
+
 #
 # go
 #
-nohup $JAVA ${MEM} ${OPTS} ${DEFS} de.fzj.unicore.xuudb.server.XUUDBServer ${PARAM} XUUDB > $STARTLOG 2>&1  & echo $! > $PID
+nohup $JAVA ${MEM} ${OPTS} ${DEFS} de.fzj.unicore.xuudb.server.XUUDBServer ${PARAM} ${SERVERNAME} > $STARTLOG 2>&1  & echo $! > $PID
 
 echo "XUUDB server starting."
 
