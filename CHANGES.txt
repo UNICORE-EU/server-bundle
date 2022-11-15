@@ -5,16 +5,13 @@ tracker at https://sourceforge.net/p/unicore/issues
 
 See README-UPDATE.txt for upgrade hints.
 
-Core servers 9.0.0 (Sep 30, 2022)
----------------------------------
-
 *** JAVA VERSION NOTE:
 
    This release requires Java 11 or later!
 
 *** H2 DATABASE NOTE
 
-   This release includes the new H2 v2 engine, which is unfortunately
+   UNICORE 9.x includes the new H2 v2 engine, which is unfortunately
    not directly backwards compatible to the one used in UNICORE
    8.x. If you want to keep existing data during the update, you'll
    need to convert the databases.
@@ -22,6 +19,30 @@ Core servers 9.0.0 (Sep 30, 2022)
    We provide an update script for migrating your data.
 
    SEE README-UPGRADE.txt for details.
+
+Core servers 9.0.1 (Nov 8, 2022)
+--------------------------------
+
+UNICORE/X
+---------
+ -fix: listed order of jobs, storages, etc was not ordered by
+  creation time (newest one should be first, oldest last)
+ -fix: wrong TSI hostname led to a misleading error message
+ -fix: TSI scripts for login node execution did not include
+  user precommand and application prologue from IDB
+
+TSI
+---
+ -fix: error handling UNKNOWN job state
+ -fix: update list of possible Slurm job states
+
+Workflow
+--------
+ -fix: listed order of workflows was not ordered by creation time
+  (newest one should be first, oldest last)
+
+Core servers 9.0.0 (Sep 30, 2022)
+---------------------------------
 
 General
 -------

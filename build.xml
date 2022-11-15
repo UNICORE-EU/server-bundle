@@ -11,12 +11,10 @@
   <!-- Component versions -->
   <property name="xuudb-version" value="2.7.0"/>
   <property name="gateway-version" value="1.8.0"/>
-  <property name="registry-version" value="9.0.0"/>
-  <property name="unicorex-version" value="9.0.0"/>
-  <property name="workflow-version" value="3.4.0"/>
-
-  <!-- TSI retrieved via checkout -->
-  <property name="tsi-version" value="9.0.0"/>
+  <property name="registry-version" value="9.0.1"/>
+  <property name="unicorex-version" value="9.0.1"/>
+  <property name="workflow-version" value="3.4.1"/>
+  <property name="tsi-version" value="9.0.1"/>
 
   <taskdef uri="antlib:org.apache.maven.resolver.ant" resource="org/apache/maven/resolver/ant/antlib.xml">
     <classpath>
