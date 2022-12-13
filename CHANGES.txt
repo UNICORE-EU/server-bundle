@@ -20,6 +20,35 @@ See README-UPDATE.txt for upgrade hints.
 
    SEE README-UPGRADE.txt for details.
 
+Core servers 9.1.0 (Dec 13, 2022)
+---------------------------------
+
+General
+-------
+ - new feature: port forwarding through the UNICORE HTTP stack.
+   A client can now open a tunnel to a service running on the TSI
+   node (or a host accessible from a TSI node).
+   This requires at least version 9.1.0 or later of Gateway, UNICORE/X
+   and TSI. Client support is in UCC 9.1.0 and PyUNICORE 0.12.0.
+ - dependencies updated to httpclient5
+
+Gateway:
+--------
+ - new feature: port forwarding
+
+UNICORE/X:
+----------
+ - new feature: port forwarding
+ - fix: job was launched despite '"haveClientStageIn": true'
+   in the job
+ - fix: Registry entry cleanup did not work in some cases
+
+TSI:
+----
+ - new feature: port forwarding
+ - fix: when SETPRIV was not set, systemd was still starting the TSI
+   as "unicore" instead of "root"
+
 Core servers 9.0.1 (Nov 8, 2022)
 --------------------------------
 
