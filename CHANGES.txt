@@ -20,6 +20,24 @@ See README-UPDATE.txt for upgrade hints.
 
    SEE README-UPGRADE.txt for details.
 
+Core servers 9.1.1 (Dec 19, 2022)
+---------------------------------
+
+UNICORE/X
+---------
+ - fix: better abort of jobs running on login node (TSI >= 9.1.1)
+   Will now kill all processes in the same session as the initial
+   UNICORE script. Also,  make abort command configurable via
+   the 'CLASSICTSI.KILL property')
+
+TSI
+---
+ - launch async scripts in their own session (to enable better
+   cleanup/abort)
+ - fix: handling of deprecated config variables ('tsi.njs_machine'
+   and 'tsi.njs_port') was buggy
+
+
 Core servers 9.1.0 (Dec 13, 2022)
 ---------------------------------
 
@@ -39,6 +57,8 @@ Gateway:
 UNICORE/X:
 ----------
  - new feature: port forwarding
+ - fix: take "Login node" parameter in job into account also
+   for pre/post processing
  - fix: job was launched despite '"haveClientStageIn": true'
    in the job
  - fix: Registry entry cleanup did not work in some cases
