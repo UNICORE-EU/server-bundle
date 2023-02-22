@@ -5,16 +5,16 @@
   <description>Build the UNICORE Server bundle</description>
 
   <property name="dist-name" value="unicore-servers"/>
-  <property name="version" value="9.1.1"/>
+  <property name="version" value="9.1.2"/>
   <property name="patch" value=""/>
 
   <!-- Component versions -->
   <property name="xuudb-version" value="2.8.0"/>
   <property name="gateway-version" value="1.9.0"/>
-  <property name="registry-version" value="9.1.1"/>
-  <property name="unicorex-version" value="9.1.1"/>
-  <property name="workflow-version" value="3.5.1"/>
-  <property name="tsi-version" value="9.1.1"/>
+  <property name="registry-version" value="9.1.2"/>
+  <property name="unicorex-version" value="9.1.2"/>
+  <property name="workflow-version" value="3.5.2"/>
+  <property name="tsi-version" value="9.1.2"/>
 
   <taskdef uri="antlib:org.apache.maven.resolver.ant" resource="org/apache/maven/resolver/ant/antlib.xml">
     <classpath>
@@ -52,6 +52,7 @@
           description="Updates the UNICORE/X libraries">
     <echo>... UNICORE/X version ${unicorex-version}</echo>
     <mkdir dir="unicorex/lib"/>
+    <mkdir dir="unicorex/logs"/>
 
     <mvn:resolve>
       <remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/>
@@ -71,6 +72,7 @@
   <target name="update-registry"
           description="Updates the Registry libraries">
     <mkdir dir="registry/lib"/>
+    <mkdir dir="registry/logs"/>
 
     <echo>... Registry version ${registry-version}</echo>
     <mvn:resolve>
@@ -92,6 +94,8 @@
           description="Updates the Gateway libraries">
     <echo>... Gateway version ${gateway-version}</echo>
     <mkdir dir="gateway/lib"/>
+    <mkdir dir="gateway/logs"/>
+
     <mvn:resolve>
       <remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/>
       <dependencies>
@@ -109,6 +113,7 @@
           description="Updates the XUUDB libraries">
     <echo>... XUUDB version ${xuudb-version}</echo>
     <mkdir dir="xuudb/lib"/>
+    <mkdir dir="xuudb/logs"/>
 
     <mvn:resolve>
       <remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/> 
@@ -158,6 +163,8 @@
   <target name="update-workflow" description="Updates the workflow libs">
     <echo>... Workflow version ${workflow-version}</echo>
     <mkdir dir="workflow/lib"/>
+    <mkdir dir="workflow/logs"/>
+
     <mvn:resolve>
       <remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/>
       <dependencies>
@@ -182,7 +189,7 @@
     </exec>
   </target>
 
-  <target name="binary-dist" depends="update-file-timestamps">
+  <target name="dist" depends="update-file-timestamps">
     <mkdir dir="build"/>
     <echo>Building ${dist-name} ${version}${patch}.tgz ...</echo>
     <exec executable="./create-archive.sh">
@@ -250,10 +257,6 @@
     <delete dir="tsi"/>
 
   </target>
-
-  <target name="dist" depends="binary-dist"
-          description="Packages the tgz distributions."
-  />
 
   <target name="dist-test"
           description="Installs the bundle and runs some UCC-based tests">

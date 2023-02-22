@@ -20,6 +20,32 @@ See README-UPDATE.txt for upgrade hints.
 
    SEE README-UPGRADE.txt for details.
 
+
+Core servers 9.1.2 (Feb 23, 2023)
+---------------------------------
+
+General
+-------
+ - fix: Using MySQL could lead to a memory leak (UNICORE/X, Registry, Workflow)
+   due to open statements not being closed
+
+UNICORE/X
+----------
+ - improvement: expanded notification possibilitites to be able to also send
+   notifications on low-level batch system status changes
+
+TSI
+---
+ - fix: RPM package file permissions
+   (thanks to Daniel Fernandez)
+ - new feature: add support for Slurm "--comment" option
+   (thanks to Daniel Fernandez)
+ - improvement: configure setpriv via SETPRIV_OPTIONS variable
+   in startup.properties (thanks to Daniel Fernandez)
+ - improvement: also pass original BSS status to UNICORE/X
+   (e.g. "CONFIGURING" on Slurm)
+
+
 Core servers 9.1.1 (Dec 19, 2022)
 ---------------------------------
 
