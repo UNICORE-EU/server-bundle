@@ -20,6 +20,23 @@ See README-UPDATE.txt for upgrade hints.
 
    SEE README-UPGRADE.txt for details.
 
+Core servers 9.2.0 (Mar 15, 2023)
+---------------------------------
+
+UNICORE/X
+----------
+ - new feature: storages can send/receive files to/from non-UNICORE
+   https servers
+ - new feature: /rest/core/token endpoint for creating an authetication
+   token with configurable lifetime. Token can be limited to the issuing server,
+   and can be made renewable, so a new token can be created using an existing one
+ - fix: jobs were kept in internal processing after user abort
+
+TSI
+---
+ - fix: TSI would not start if batch system is not available. Now the TSI just logs
+   an error, but starts anyway
+ - fix: in some cases, errors from commands (e.g. squeue) were ignored
 
 Core servers 9.1.2 (Feb 23, 2023)
 ---------------------------------
@@ -33,6 +50,8 @@ UNICORE/X
 ----------
  - improvement: expanded notification possibilitites to be able to also send
    notifications on low-level batch system status changes
+ - fix: also send notifications when the job fails due to an error, such
+   as a failed submit to the BSS
 
 TSI
 ---
