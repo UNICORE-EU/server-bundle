@@ -23,6 +23,11 @@ See README-UPDATE.txt for upgrade hints.
 Core servers 9.2.0 (Mar 15, 2023)
 ---------------------------------
 
+GATEWAY
+-------
+ - fix: forwarding requests with "Content-type: ... ; charset=..."
+   leads to 503 error
+
 UNICORE/X
 ----------
  - new feature: storages can send/receive files to/from non-UNICORE
