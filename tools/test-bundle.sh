@@ -45,7 +45,7 @@ done
 
 cat > /tmp/ucc.test.config <<EOF
 # ucc testing preferences
-authenticationMethod=USERNAME
+authentication-method=USERNAME
 username=demouser
 password=test123
 truststore.type=directory

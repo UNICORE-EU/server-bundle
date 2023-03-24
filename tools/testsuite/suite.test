@@ -2,4 +2,7 @@ system-info -l
 connect
 list-storages -l
 exec date
+run ../date1.u
+list-jobs -l
 workflow-submit --wait /tmp/date1.json
+
