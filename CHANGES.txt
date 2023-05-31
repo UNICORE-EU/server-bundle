@@ -20,13 +20,26 @@ See README-UPDATE.txt for upgrade hints.
 
    SEE README-UPGRADE.txt for details.
 
+Core servers 9.2.2 (May 31, 2023)
+---------------------------------
+
+General
+-------
+ - update several third party dependencies
+
+UNICORE/X
+---------
+ - new feature: add plain "Token" credential type for
+   authenticating file staging from plain http(s) servers
+ - improvement: dynamically update the gateway public key
+
 Core servers 9.2.1 (Mar 24, 2023)
 ---------------------------------
 
 UNICORE/X
 ---------
- -fix: improved performance for most REST API calls
-  (by avoiding some unnecessary database requests)
+ - fix: improved performance for most REST API calls
+   (by avoiding some unnecessary database requests)
 
 Core servers 9.2.0 (Mar 15, 2023)
 ---------------------------------
