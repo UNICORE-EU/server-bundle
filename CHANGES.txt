@@ -20,6 +20,19 @@ See README-UPDATE.txt for upgrade hints.
 
    SEE README-UPGRADE.txt for details.
 
+Core servers 9.2.2-p1 (July 3, 2023)
+-----------------------------------
+
+Gateway
+-------
+ - fix: (harmless) NPE when accessing the main GW HTML
+   page
+
+UNICORE/X
+---------
+ - fix: improve round-robin selection of TSI nodes
+
+
 Core servers 9.2.2 (May 31, 2023)
 ---------------------------------
 
@@ -32,6 +45,7 @@ UNICORE/X
  - new feature: add plain "Token" credential type for
    authenticating file staging from plain http(s) servers
  - improvement: dynamically update the gateway public key
+ - fix: improve round-robin selection of TSI nodes
 
 Core servers 9.2.1 (Mar 24, 2023)
 ---------------------------------

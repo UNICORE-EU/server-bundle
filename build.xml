@@ -10,7 +10,7 @@
 
   <!-- Component versions -->
   <property name="xuudb-version" value="2.8.2"/>
-  <property name="gateway-version" value="1.9.2"/>
+  <property name="gateway-version" value="1.9.3"/>
   <property name="registry-version" value="9.2.2"/>
   <property name="unicorex-version" value="9.2.2"/>
   <property name="workflow-version" value="3.5.4"/>
@@ -61,10 +61,13 @@
       </dependencies>
       <files dir="unicorex/lib" layout="{artifactId}-{version}.{extension}"/> 
     </mvn:resolve>
+    <copy file="/home/schuller/.m2/repository/eu/unicore/xnjs/2.5.4-p1/xnjs-2.5.4-p1.jar"
+	  todir="unicorex/lib"/>
 
     <delete>
       <fileset dir="unicorex/lib" includes="*.pom"/>
       <fileset dir="unicorex/lib" includes="*.zip"/>
+      <fileset dir="unicorex/lib" includes="xnjs-2.5.4.jar"/>
     </delete>
 
   </target>
