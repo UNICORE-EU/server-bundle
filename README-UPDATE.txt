@@ -4,15 +4,14 @@
 
 For a list of new features, fixes etc, see the CHANGES.txt file.
 
-To update from UNICORE 8.x, the main step is to update the jar
-files.
+To update, the main step is to update the jar files.
 
 If you use the H2 database (i.e. data is stored in files in
 the "unicorex/data" directory), you'll need to update the DB contents.
 We provide a helper script for that, details are given below.
 
 ***
-***  Detailed update procedure from 8.x
+***  Detailed update procedure from version 9.x
 ***
 
 As a first step and precaution, you should make backups of your 

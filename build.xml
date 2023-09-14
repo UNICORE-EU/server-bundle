@@ -5,16 +5,16 @@
   <description>Build the UNICORE Server bundle</description>
 
   <property name="dist-name" value="unicore-servers"/>
-  <property name="version" value="9.2.2"/>
+  <property name="version" value="9.3.0"/>
   <property name="patch" value=""/>
 
   <!-- Component versions -->
-  <property name="xuudb-version" value="2.8.2"/>
-  <property name="gateway-version" value="1.9.3"/>
-  <property name="registry-version" value="9.2.2"/>
-  <property name="unicorex-version" value="9.2.2"/>
-  <property name="workflow-version" value="3.5.4"/>
-  <property name="tsi-version" value="9.2.0"/>
+  <property name="xuudb-version" value="2.8.3"/>
+  <property name="gateway-version" value="1.9.4"/>
+  <property name="registry-version" value="9.3.0"/>
+  <property name="unicorex-version" value="9.3.0"/>
+  <property name="workflow-version" value="3.5.5"/>
+  <property name="tsi-version" value="9.3.0"/>
 
   <taskdef uri="antlib:org.apache.maven.resolver.ant" resource="org/apache/maven/resolver/ant/antlib.xml">
     <classpath>
@@ -61,13 +61,10 @@
       </dependencies>
       <files dir="unicorex/lib" layout="{artifactId}-{version}.{extension}"/> 
     </mvn:resolve>
-    <copy file="/home/schuller/.m2/repository/eu/unicore/xnjs/2.5.4-p1/xnjs-2.5.4-p1.jar"
-	  todir="unicorex/lib"/>
 
     <delete>
       <fileset dir="unicorex/lib" includes="*.pom"/>
       <fileset dir="unicorex/lib" includes="*.zip"/>
-      <fileset dir="unicorex/lib" includes="xnjs-2.5.4.jar"/>
     </delete>
 
   </target>
@@ -157,7 +154,7 @@
   </target>
 
   <target name="update-changelog">
-   <copy file="CHANGES.txt" todir="build"/>
+   <copy file="CHANGES.md" todir="build"/>
    <copy file="README.txt" todir="build"/>
    <copy file="README-UPDATE.txt" todir="build"/>
   </target>
@@ -211,16 +208,14 @@
           description="Prepare the update-tools">
     <echo>... Update tools</echo>
     <mvn:resolve>
-      <!--remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/-->
       <dependencies>
-	<dependency groupId="com.h2database" artifactId="h2" version="2.1.214"/>
+	<dependency groupId="com.h2database" artifactId="h2" version="2.2.220"/>
       </dependencies>
       <files dir="update-tools" layout="{artifactId}-{version}.{extension}"/> 
     </mvn:resolve>
     <mvn:resolve>
-      <!--remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/-->
       <dependencies>
-	<dependency groupId="com.h2database" artifactId="h2" version="1.4.200"/>
+	<dependency groupId="com.h2database" artifactId="h2" version="2.1.214"/>
       </dependencies>
       <files dir="update-tools" layout="{artifactId}-{version}.{extension}"/> 
     </mvn:resolve>

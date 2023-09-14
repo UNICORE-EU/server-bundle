@@ -42,6 +42,7 @@ done
 ./unicorex/bin/status.sh
 ./workflow/bin/status.sh
 
+sleep 5
 
 cat > /tmp/ucc.test.config <<EOF
 # ucc testing preferences

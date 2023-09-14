@@ -3,6 +3,7 @@ build/
 tools/maven-resolver-ant*
 update-tools/*.jar
 *.pyc
+.project
 *~
 tsi/
 docs/
