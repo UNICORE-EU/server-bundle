@@ -10,10 +10,10 @@ See README-UPDATE.txt for upgrade notes.
 
 ** H2 DATABASE NOTE **
 
-   This release includes the new H2 v2.2.220 engine, which is unfortunately
-   not directly backwards compatible to the one used in UNICORE
-   9.2. If you use H2 and want to keep existing data during the update,
-   you'll need to convert the databases.
+   The 9.3.x releases includes the new H2 v2.2.220 engine, which is
+   unfortunately not directly backwards compatible to the one used in
+   UNICORE9.2. If you use H2 and want to keep existing data during the
+   update, you'll need to convert the databases.
 
    We provide an update script for migrating your data.
 
@@ -21,6 +21,18 @@ See README-UPDATE.txt for upgrade notes.
 
    For production deployments we strongly suggest to use 
    MySQL/MariaDB or PostgreSQL
+
+Core servers 9.3.1 (Nov 13, 2023)
+---------------------------------
+ * Registry
+   - fix: caching issue
+
+ * UNICORE/X
+   - fix: create required sub-directory for inline, https, ftp
+     stage-ins
+   - fix: correctly invalidate TSI connections in case of file
+     write errors
+   - fix: use latest version of JSON.org library
 
 Core servers 9.3.0 (Sept 14, 2023)
 ----------------------------------
