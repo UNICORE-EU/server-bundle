@@ -10,10 +10,10 @@ See README-UPDATE.txt for upgrade notes.
 
 ** H2 DATABASE NOTE **
 
-   This release includes the new H2 v2.2.220 engine, which is unfortunately
-   not directly backwards compatible to the one used in UNICORE
-   9.2. If you use H2 and want to keep existing data during the update,
-   you'll need to convert the databases.
+   The 9.3.x and later releases include the new H2 v2.2.220 engine,
+   which is unfortunately not directly backwards compatible to the one
+   used in UNICORE 9.2.x. If you use H2 and want to keep existing
+   data during the update, you'll need to convert the databases.
 
    We provide an update script for migrating your data.
 
@@ -33,13 +33,23 @@ Core servers 10.0.0 (MMM DD, 202x)
      parameter 'filter=all' to include them in the list.
    - simple support for extracting basic attributes (Unix ID and role)
      supplied by authentication from IAM servers such as Unity or Keycloak
-   - fix: stage-in from inline, https, etc did not create the required
-     sub directories
    - remove jclouds module
 
  * XUUDB
    - basic REST interface for querying the XUUDB
      will be completed and the SOAP/WS interface will be deprecated
+
+
+Core servers 9.3.1 (Nov 13, 2023)
+---------------------------------
+ * Registry
+   - fix: caching issue
+
+ * UNICORE/X
+   - fix: create required sub-directory for inline, https, ftp stage-ins
+   - fix: correctly invalidate TSI connections in case of file write errors
+   - fix: use latest version of JSON.org library
+
 
 Core servers 9.3.0 (Sept 14, 2023)
 ----------------------------------
