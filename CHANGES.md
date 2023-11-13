@@ -22,18 +22,37 @@ See README-UPDATE.txt for upgrade notes.
    For production deployments we strongly suggest to use 
    MySQL/MariaDB or PostgreSQL
 
+Core servers 10.0.0 (MMM DD, 202x)
+----------------------------------
+
+ + General
+   - major updates of third party dependencies: Jetty 11, CXF 4
+
+ * UNICORE/X
+   - listing storages will not list job directories. Add new query
+     parameter 'filter=all' to include them in the list.
+   - simple support for extracting basic attributes (Unix ID and role)
+     supplied by authentication from IAM servers such as Unity or Keycloak
+   - fix: stage-in from inline, https, etc did not create the required
+     sub directories
+   - remove jclouds module
+
+ * XUUDB
+   - basic REST interface for querying the XUUDB
+     will be completed and the SOAP/WS interface will be deprecated
+
 Core servers 9.3.0 (Sept 14, 2023)
 ----------------------------------
 **H2 DATABASE NOTE** if you use H2, you'll have to migrate your databases,
 see README-UPGRADE.txt for details.
 
  * General
-	- new feature: all Java servers support runtime update of the 
-   	  main server credential
+   - new feature: all Java servers support runtime update of the
+     main server credential
 
  * Gateway
-	- new feature: support Let's Encrypt by allowing to serve
-   	  files from a specified directory via plain HTTP
+   - new feature: support Let's Encrypt by allowing to serve
+     files from a specified directory via plain HTTP
  * UNICORE/X
    - new feature: if no Partitions are defined in the IDB, add a "catch-all" 
      definition that allows users to specify any partition, with no 
