@@ -122,6 +122,27 @@ if(config.get("parameters","registry")=="true"):
 if(config.get("parameters","workflow")=="true"):
     files = files + wfFiles
 
+
+if config.get("parameters","installcerts")=="SELFSIGNED":
+    os.makedirs("newcerts/trusted", exist_ok=True)
+    os.makedirs("newcerts/unity", exist_ok=True)
+    keyfile = "newcerts/server-key.pem"
+    filename = "newcerts/server-credential.pem"
+    subject = "/C=EU/O=UNICORE/CN=UNICORE"
+    print("Creating self-signed certificate %s ... \n" % filename)
+    cmd = f"""openssl req -x509 -newkey rsa:4096 \
+    -sha256 -nodes -days 3650 \
+    -keyout {keyfile} \
+    -out {filename} \
+    -subj {subject}
+    """
+    exitcode = os.system(cmd)
+    if exitcode!=0:
+        sys.exit(exitcode)
+    # setup server credential properties to use the self-signed cert
+    for p in ["gwKeystore", "uxKeystore", "xuudbKeystore", "registryKeystore", "wfKeystore"]:
+        config.set("parameters", p, "${INSTALL_PATH}/certs/server-credential.pem")
+
 #
 # loop over list of config files and do the substitution
 #
@@ -173,21 +194,5 @@ if(readParam(config,"gwAddWFEntry")=="true"):
 if config.get("parameters","installcerts")=="DEMO" and config.get("parameters","xuudb")=="true":
     with open("FIRST_START", 'w') as f:
         f.write( "file will be removed upon first startup")
-
-if config.get("parameters","installcerts")=="SELFSIGNED":
-    os.makedirs("newcerts/trusted", exist_ok=True)
-    keyfile = "newcerts/server-key.pem"
-    filename = "newcerts/server-credential.pem"
-    subject = "/C=EU/O=UNICORE/CN=UNICORE"
-    print("Creating self-signed certificate %s ... " % filename)
-    cmd = f"""openssl req -x509 -newkey rsa:4096 \
-    -sha256 -nodes -days 3650 \
-    -keyout {keyfile}   \
-    -out {filename}     \
-    -subj {subject}
-    """
-    exitcode = os.system(cmd)
-    if exitcode!=0:
-        sys.exit(exitcode)
 
 print("Done configuring!")

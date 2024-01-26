@@ -91,36 +91,24 @@ if(config.get("parameters","INSTALL_PATH")=="currentdir"):
 else:
     installdir=config.get("parameters","INSTALL_PATH")
 
-if not copyfiles:
-    print("Nothing more to do.")
-    exit()
-
 print("Installing files to directory %s" %(installdir))
-
 
 ignoreFiles=('*_origi*', 'wrapper.conf*')
 
-# components to copy (tsi is handled specially!)
-components=["gateway", "unicorex", "registry", "xuudb", "workflow"]
-
-for component in components:
-    if(config.get("parameters",component)=="true"):
-        copytree(component,installdir+"/"+component,ignore=ignore_patterns(ignoreFiles))
-
 if(copyfiles):
+    # components to copy (tsi is handled separately)
+    components = ["gateway", "unicorex", "registry", "xuudb", "workflow"]
+    for component in components:
+        if(config.get("parameters",component)=="true"):
+            copytree(component,installdir+"/"+component,ignore=ignore_patterns(ignoreFiles))
     # documentation
     copytree("docs",installdir+"/docs",ignore=ignore_patterns(ignoreFiles))
     # copy files in root directory
     files = ["start.sh", "stop.sh"]
     # demo certificates
     if config.get("parameters","installcerts")=="DEMO":
-        # copy certs directory
-        copytree("democerts", installdir+"/certs", ignore=ignore_patterns(ignoreFiles))
         if config.get("parameters","xuudb")=="true":
             files = files + ["adduser.sh", "FIRST_START"]
-    elif config.get("parameters","installcerts")=="SELFSIGNED":
-        # copy certs directory
-        copytree("newcerts", installdir+"/certs", ignore=ignore_patterns(ignoreFiles))
     try:
         for f in files:
             filename=installdir+"/"+f
@@ -128,5 +116,11 @@ if(copyfiles):
     except:
         print("Error copying %s to %s: %s" % (pwd+"/"+f, filename. exc_info()[0]))
 
+# if necessary, copy certificates to "certs" dir
+if config.get("parameters","installcerts")=="DEMO":
+    copytree("democerts", installdir+"/certs", ignore=ignore_patterns(ignoreFiles))
+elif config.get("parameters","installcerts")=="SELFSIGNED":
+    # copy certs directory
+    copytree("newcerts", installdir+"/certs", ignore=ignore_patterns(ignoreFiles))
 
 print("Installation finished.")

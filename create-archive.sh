@@ -18,5 +18,5 @@ tar --transform="s|^|$NAME/|" -czf build/${NAME}.tgz \
     CHANGES.md LICENSE README.txt README-UPDATE.txt INSTALL.md \
     adduser.sh configure.properties \
     *.py start.sh stop.sh \
-    certs/ docs/ gateway/ registry/ tsi/ unicorex/ workflow/ xuudb/ \
+    democerts/ docs/ gateway/ registry/ tsi/ unicorex/ workflow/ xuudb/ \
     update-tools/
