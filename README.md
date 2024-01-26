@@ -6,8 +6,10 @@ comprising Gateway, Registry, UNICORE/X, Workflow, XUUDB, TSI.
 
 ## Download
 
-You can download binaries from SourceForge
-https://sourceforge.net/projects/unicore/files/Servers/Core/
+You can download binaries from
+ - [GitHub](https://github.com/UNICORE-EU/server-bundle/releases)
+ - [SourceForge](https://sourceforge.net/projects/unicore/files/Servers/Core/)
+
 
 ## Building
 
