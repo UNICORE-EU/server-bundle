@@ -22,13 +22,19 @@ See README-UPDATE.txt for upgrade notes.
    For production deployments we strongly suggest to use 
    MySQL/MariaDB or PostgreSQL
 
-Core servers 10.0.0 (MMM DD, 202x)
+Core servers 10.0.0 (Feb DD, 2024)
 ----------------------------------
 
  + General
    - major updates of third party dependencies: Jetty 11, CXF 4
+   - new feature: shorter format for unique IDs for jobs, etc
+   - clean-up property names for better readability 
+     (existing config still works with a warning)
+   - demo server credentials are now in PEM format
 
  * UNICORE/X
+   - new feature: allow to stage-in git repositories
+   - new feature: job IDs and other unique IDs with new, shorter format
    - listing storages will not list job directories. Add new query
      parameter 'filter=all' to include them in the list.
    - simple support for extracting basic attributes (Unix ID and role)
@@ -37,7 +43,6 @@ Core servers 10.0.0 (MMM DD, 202x)
 
  * XUUDB
    - basic REST interface for querying the XUUDB
-     will be completed and the SOAP/WS interface will be deprecated
 
 
 Core servers 9.3.1 (Nov 13, 2023)

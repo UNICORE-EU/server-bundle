@@ -11,14 +11,10 @@
 #     3) execute ./install.py
 #
 
-from shutil import copy2,copy,copytree,copystat
-from sys import exc_info,exit
-import fnmatch
-import os
-try:
-    import ConfigParser
-except ImportError as e:
-    import configparser as ConfigParser
+import configparser, fnmatch, os
+
+from shutil import copy, copytree
+from sys import exit
 
 installdir=os.getcwd()
 
@@ -75,7 +71,7 @@ def tsi_install():
 #
 # read configuration file
 #
-config = ConfigParser.ConfigParser()
+config = configparser.ConfigParser()
 #make the parser case-sensitive
 config.optionxform=str
 config.read(['configure.properties'])
@@ -117,11 +113,14 @@ if(copyfiles):
     # copy files in root directory
     files = ["start.sh", "stop.sh"]
     # demo certificates
-    if config.get("parameters","installdemocerts")=="true":
+    if config.get("parameters","installcerts")=="DEMO":
         # copy certs directory
-        copytree("certs",installdir+"/certs",ignore=ignore_patterns(ignoreFiles))
+        copytree("democerts", installdir+"/certs", ignore=ignore_patterns(ignoreFiles))
         if config.get("parameters","xuudb")=="true":
             files = files + ["adduser.sh", "FIRST_START"]
+    elif config.get("parameters","installcerts")=="SELFSIGNED":
+        # copy certs directory
+        copytree("newcerts", installdir+"/certs", ignore=ignore_patterns(ignoreFiles))
     try:
         for f in files:
             filename=installdir+"/"+f
@@ -131,6 +130,3 @@ if(copyfiles):
 
 
 print("Installation finished.")
-
-
-

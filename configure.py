@@ -9,11 +9,8 @@
 # usage: configure.py [userlogin [hostname]]
 #
 
-import os
-import sys
-import socket
-import shutil
-import configparser
+import configparser, os, shutil, sys
+
 
 #
 # substitute variable values
@@ -113,18 +110,17 @@ xuudbFiles = [
 files = ["start.sh", "stop.sh"]
 
 if(config.get("parameters","gateway")=="true"):
-   files = files + gwFiles
+    files = files + gwFiles
 if(config.get("parameters","unicorex")=="true"):
-   files = files + uxFiles
+    files = files + uxFiles
 if(config.get("parameters","tsi")=="true"):
-   files = files + tsiFiles
+    files = files + tsiFiles
 if(config.get("parameters","xuudb")=="true"):
-   files = files + xuudbFiles
+    files = files + xuudbFiles
 if(config.get("parameters","registry")=="true"):
-   files = files + regFiles
+    files = files + regFiles
 if(config.get("parameters","workflow")=="true"):
-   files = files + wfFiles
-
+    files = files + wfFiles
 
 #
 # loop over list of config files and do the substitution
@@ -142,49 +138,56 @@ for f in files:
             print("    making backup %s" % filename+"_origin")
             shutil.copy(filename,filename+"_origin")	
 
-        file = open(filename+"_origin")
-        lines=file.readlines()
-        file.close()
-    
-        file = open(filename, 'w')
-
-        for line in lines:
-            line=substituteVars(line,parameters)
-            # do it again to allow values containing variables
-            line=substituteVars(line,parameters)
-            file.write(line)
-        file.close()
+        with open(filename+"_origin") as fl:
+            lines = fl.readlines()
+        
+        with open(filename, 'w') as fl:
+            for line in lines:
+                line=substituteVars(line,parameters)
+                # do it again to allow values containing variables
+                line=substituteVars(line,parameters)
+                fl.write(line)
 
     except:
-        print("Error processing %s: %s" % (filename,sys.exc_info()[0]))
+        print("Error processing %s: %s" % (filename, sys.exc_info()[0]))
 
 
 # for the registry, add a line to the gateway connections file
 if(readParam(config,"gwAddRegistryEntry")=="true"):
-   file = open("gateway/conf/connections.properties", 'a')
-   regHost=config.get("parameters","registryHost")
-   if(regHost=="hostname"):
-       regHost=hostname
-   regLine=config.get("parameters","registryName")+" = https://" + regHost + ":" + config.get("parameters","registryPort")
-   file.write( "\n"+regLine+"\n")
-   file.close()
+    with open("gateway/conf/connections.properties", 'a') as f:
+        regHost=config.get("parameters","registryHost")
+        if(regHost=="hostname"):
+            regHost=hostname
+        regLine=config.get("parameters","registryName")+" = https://" + regHost + ":" + config.get("parameters","registryPort")
+        f.write( "\n"+regLine+"\n")
 
 if(readParam(config,"gwAddWFEntry")=="true"):
-   file = open("gateway/conf/connections.properties", 'a')
-   wfHost=config.get("parameters","wfHost")
-   if(wfHost=="hostname"):
-       wfHost=hostname
-   wfLine=config.get("parameters","wfSitename")+" = https://" + wfHost + ":" + config.get("parameters","wfPort")
-   file.write( "\n"+wfLine+"\n")
-   file.close()
-
+    with open("gateway/conf/connections.properties", 'a') as f:
+        wfHost=config.get("parameters","wfHost")
+        if(wfHost=="hostname"):
+            wfHost=hostname
+        wfLine=config.get("parameters","wfSitename")+" = https://" + wfHost + ":" + config.get("parameters","wfPort")
+        f.write( "\n"+wfLine+"\n")
 
 # for the xuudb, add trigger file to add the demo user cert on first start
-if(config.get("parameters","installdemocerts")=="true" and config.get("parameters","xuudb")=="true"):
-   file = open("FIRST_START", 'w')
-   file.write( "file will be removed upon first startup")
-   file.close()
+if config.get("parameters","installcerts")=="DEMO" and config.get("parameters","xuudb")=="true":
+    with open("FIRST_START", 'w') as f:
+        f.write( "file will be removed upon first startup")
 
+if config.get("parameters","installcerts")=="SELFSIGNED":
+    os.makedirs("newcerts/trusted", exist_ok=True)
+    keyfile = "newcerts/server-key.pem"
+    filename = "newcerts/server-credential.pem"
+    subject = "/C=EU/O=UNICORE/CN=UNICORE"
+    print("Creating self-signed certificate %s ... " % filename)
+    cmd = f"""openssl req -x509 -newkey rsa:4096 \
+    -sha256 -nodes -days 3650 \
+    -keyout {keyfile}   \
+    -out {filename}     \
+    -subj {subject}
+    """
+    exitcode = os.system(cmd)
+    if exitcode!=0:
+        sys.exit(exitcode)
 
 print("Done configuring!")
-

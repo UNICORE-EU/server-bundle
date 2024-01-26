@@ -21,8 +21,8 @@ SEE the 'INSTALL.md' file for installation instructions.
 
 
 UNICORE clients are available separately, for example the UNICORE
-Commandline Client (UCC), which can be downloaded from SourceForge:
-https://sourceforge.net/projects/unicore/files/Clients/Commandline%20Client
+Commandline Client (UCC), which can be downloaded from:
+https://github.com/UNICORE-EU/commandline-client/releases
 
 PLEASE NOTE: We are always interested in feedback, i.e. where and in
 which context UNICORE is used, and if there is something you would
@@ -41,8 +41,8 @@ CONTACT US
 
 Web site:    https://www.unicore.eu
 Twitter:     https://twitter.com/UNICORE_EU
-Sourceforge: https://sourceforge.net/projects/unicore
 GitHub:      https://github.com/UNICORE-EU
+Sourceforge: https://sourceforge.net/projects/unicore
 
 Questions, suggestions, problems: unicore-support@lists.sf.net
 

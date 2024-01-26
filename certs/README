@@ -7,10 +7,8 @@ UNICORE, the server bundle comes with a full set of demo certificates.
 
 This directory contains 
 
- - the Demo CA certificate trusted/cacert.pem
- - keystores in pkcs12 format for all Java servers
- - keystore in pem format for the optional uftpd server
- - a "demo user" keystore (password "the!user") in pkcs12 format
+ - the Demo CA certificate: trusted/cacert.pem
+ - credentials in unencrypted PEM format for all Java servers
+ - credential in pem format for the optional uftpd server
 
 PLEASE DO NOT use these certs for a public server!
-
