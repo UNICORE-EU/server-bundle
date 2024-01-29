@@ -260,7 +260,7 @@
   <target name="dist-test"
           description="Installs the bundle and runs some UCC-based tests">
     <echo>Running tests on .tgz version ${version}${patch}</echo>
-    <exec executable="/bin/bash" dir="tools">
+    <exec executable="/bin/bash" dir="tools" failonerror="true">
       <arg value="-c"/>
       <arg value="./test-bundle.sh ${version}${patch}"/>
     </exec>

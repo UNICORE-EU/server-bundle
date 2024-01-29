@@ -124,12 +124,12 @@ if(config.get("parameters","workflow")=="true"):
 
 
 if config.get("parameters","installcerts")=="SELFSIGNED":
-    os.makedirs("newcerts/trusted", exist_ok=True)
-    os.makedirs("newcerts/unity", exist_ok=True)
-    keyfile = "newcerts/server-key.pem"
     filename = "newcerts/server-credential.pem"
     subject = "/C=EU/O=UNICORE/CN=UNICORE"
     print("Creating self-signed certificate %s ... \n" % filename)
+    os.makedirs("newcerts/trusted", exist_ok=True)
+    os.makedirs("newcerts/unity", exist_ok=True)
+    keyfile = "newcerts/server-key.pem"
     cmd = f"""openssl req -x509 -newkey rsa:4096 \
     -sha256 -nodes -days 3650 \
     -keyout {keyfile} \

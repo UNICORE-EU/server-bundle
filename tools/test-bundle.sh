@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #
 # minimal tests to run on the 
@@ -9,14 +9,25 @@
 # requires UCC present on the system
 #
 
-# install the bundle
+cleanup() {
+    trap - ERR
+    echo "Exiting (line: $1)"
+    cd $INST
+    ./stop.sh
+    ./tsi_selected/bin/stop.sh
+    #rm -rf $INST
+}
+
 base=$(pwd)
+export INST=/tmp/unicore-servers-$1
+rm -rf $INST
+
+# install the bundle
 cd /tmp
-
 tar xzf ${base}/../build/unicore-servers-$1.tgz
-cd unicore-servers-$1
+cd $INST
 
-uc_home=$(pwd)
+echo "Configuring servers ..."
 
 # configure it
 sed -i s/xuudb=false/xuudb=true/ configure.properties
@@ -29,20 +40,34 @@ echo "tsi.switch_uid=0" >> ./tsi_selected/conf/tsi.properties
 ./tsi_selected/bin/start.sh
 ./start.sh
 
-export STARTLOG=/tmp/unicore-servers-$1/unicorex/logs/startup.log
+echo "Waiting for server startup ..."
+
+export STARTLOG=$INST/unicorex/logs/startup.log
 STARTED=""
 until [ "$STARTED" != "" ] ; do
     STARTED=$(grep -l "Server started" $STARTLOG)
     sleep 2
 done
 
-./gateway/bin/status.sh
-./registry/bin/status.sh
-./xuudb/bin/status.sh
-./unicorex/bin/status.sh
-./workflow/bin/status.sh
+# from here on, run cleanup() on errors and exit
+set -e
+trap 'cleanup $LINENO' ERR
 
-sleep 5
+echo "Checking server status ..."
+for c in "gateway" "registry" "unicorex" "xuudb" "workflow"
+do
+    ${c}/bin/status.sh
+done
+
+echo "Checking longs for warnings/errors ..."
+# check logs for warnings or errors
+for c in "gateway" "registry" "unicorex" "xuudb" "workflow"
+do
+    echo -n "... $c"
+    cat ./${c}/logs/*.log | { grep -E "ERROR|WARN" || echo " OK" ;}
+done
+
+echo "Generating UCC test config ..."
 
 cat > /tmp/ucc.test.config <<EOF
 # ucc testing preferences
@@ -50,14 +75,15 @@ authentication-method=USERNAME
 username=demouser
 password=test123
 truststore.type=directory
-truststore.directoryLocations.1=${uc_home}/certs/trusted/*.pem
+truststore.directoryLocations.1=${INST}/certs/trusted/*.pem
 client.serverHostnameChecking=NONE
 registry=https://localhost:8080/REGISTRY/rest/registries/default_registry
 output=/tmp
-
 EOF
 
 cp ${base}/date1.json /tmp/
+
+echo "Launching test suite ..."
 
 cd ${base}/testsuite
 bash -c "ucc shell -v -c /tmp/ucc.test.config -f suite.test"
@@ -65,11 +91,6 @@ bash -c "ucc shell -v -c /tmp/ucc.test.config -f suite.test"
 # clean up again
 rm -f /tmp/ucc.test.config
 
-cd /tmp/unicore-servers-$1
-./stop.sh
-./tsi_selected/bin/stop.sh
+cleanup
 
-sleep 5
 cd ..
-#rm -rf unicore-servers-$1
-

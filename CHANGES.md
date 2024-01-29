@@ -10,7 +10,7 @@ See README-UPDATE.txt for upgrade notes.
 
 ** H2 DATABASE NOTE **
 
-   The 9.3.x and later releases include the new H2 v2.2.220 engine,
+   The 9.3.x and later releases include a new H2 v2.2.220 engine,
    which is unfortunately not directly backwards compatible to the one
    used in UNICORE 9.2.x. If you use H2 and want to keep existing
    data during the update, you'll need to convert the databases.
@@ -31,6 +31,8 @@ Core servers 10.0.0 (Feb DD, 2024)
    - clean-up property names for better readability 
      (existing config still works with a warning)
    - demo server credentials are now in PEM format
+   - config/install scripts can create and install a self-signed 
+     certificate for the server components
 
  * UNICORE/X
    - new feature: allow to stage-in git repositories
