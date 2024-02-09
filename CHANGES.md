@@ -29,10 +29,12 @@ Core servers 10.0.0 (Feb DD, 2024)
    - major updates of third party dependencies: Jetty 11, CXF 4
    - new feature: shorter format for unique IDs for jobs, etc
    - clean-up property names for better readability 
-     (existing config still works with a warning)
+     (existing config still works with a WARN in the logs)
    - demo server credentials are now in PEM format
    - config/install scripts can create and install a self-signed 
      certificate for the server components
+   - start.sh scripts will not run when 'root' (bad practice)
+   - configure.py script will not run when 'root' (bad practice)
 
  * UNICORE/X
    - new feature: allow to stage-in git repositories
@@ -42,6 +44,10 @@ Core servers 10.0.0 (Feb DD, 2024)
    - simple support for extracting basic attributes (Unix ID and role)
      supplied by authentication from IAM servers such as Unity or Keycloak
    - remove jclouds module
+   - updated example IDB
+
+ * TSI
+   - new API call for querying the list of partitions
 
  * XUUDB
    - basic REST interface for querying the XUUDB

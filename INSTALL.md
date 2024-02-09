@@ -37,11 +37,20 @@ SECURITY NOTES
 The servers (except TSI where this is optional) use X.509 certificates
 and client-authenticated SSL for communication.
 
-The demo certificates should not be used if your servers are
+The installation package comes with the option of using "demo" certificates,
+or creating a new self-signed certificte.
+
+The "demo" certificates must NOT be used if your servers are
 accessible from the internet!  Please refer to the documentation in
 the "docs/Security.txt" file and to the online UNICORE documentation
 for more information on the UNICORE server security setup.
 
+The second optionm self-signed certificates, are secure but may be inconvenient
+for integrating your UNICORE installation with other applications.
+
+For a secure production deployment, we recommend getting SSL server certificates
+for your machines (as you would for a web server), and use those for the UNICORE
+servers.
 
 INSTALLATION & CONFIGURATION
 ----------------------------

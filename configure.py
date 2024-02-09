@@ -45,6 +45,11 @@ try:
     xlogin = sys.argv[1]
 except:
     xlogin = os.getenv("USER")
+    
+if xlogin=="root":
+    print("*** Please do not run the configure.py script as 'root'!")
+    print("    It is a bad security practice, and it may lead to runtime errors.")
+    sys.exit(1)
 
 # read configuration file
 config = configparser.ConfigParser()

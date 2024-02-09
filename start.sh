@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 echo "******************************"
 echo "*"
@@ -16,9 +16,6 @@ start_unicorex="${unicorex}"
 start_registry="${registry}"
 start_workflow="${workflow}"
 
-#
-# cd to base directory
-#
 INST=`dirname $0`
 cd $INST
 
@@ -32,7 +29,7 @@ then
 fi
 fi
 
-#this should run only once (dealt with in the adduser.sh script)
+# this should run only once (dealt with in the adduser.sh script)
 if [ -e adduser.sh ]; then 
   ./adduser.sh 
 fi

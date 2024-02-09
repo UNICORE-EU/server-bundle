@@ -4,6 +4,13 @@
 # Startup script for the XUUDB server
 #
 
+if [ "$EUID" -eq 0 ]
+then
+    echo "**** Please do NOT run UNICORE XUUDB as 'root'!"
+    echo "     It's a bad security practice."
+    exit 1
+fi
+
 #
 # Installation Directory
 #
@@ -70,7 +77,7 @@ SERVERNAME=${SERVERNAME:-"XUUDB"}
 #
 # go
 #
-nohup $JAVA ${MEM} ${OPTS} ${DEFS} de.fzj.unicore.xuudb.server.XUUDBServer ${PARAM} ${SERVERNAME} > $STARTLOG 2>&1  & echo $! > $PID
+nohup $JAVA ${MEM} ${OPTS} ${DEFS} eu.unicore.xuudb.server.XUUDBServer ${PARAM} ${SERVERNAME} > $STARTLOG 2>&1  & echo $! > $PID
 
 echo "XUUDB server starting."
 

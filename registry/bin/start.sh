@@ -1,8 +1,15 @@
-#!/bin/sh
+#!/bin/bash
 
 #
 # Startup script for Registry
 #
+
+if [ "$EUID" -eq 0 ]
+then
+    echo "**** Please do NOT run UNICORE Registry as 'root'!"
+    echo "     It's a bad security practice."
+    exit 1
+fi
 
 #
 # Installation Directory

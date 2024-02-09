@@ -2,9 +2,6 @@
 
 echo "Stopping servers..."
 
-#
-# cd to base directory
-#
 INST=`dirname $0`
 cd $INST
 

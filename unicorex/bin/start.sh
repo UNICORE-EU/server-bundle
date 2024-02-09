@@ -4,6 +4,13 @@
 # Startup script for UNICORE/X
 #
 
+if [ "$EUID" -eq 0 ]
+then
+    echo "**** Please do NOT run UNICORE/X as 'root'!"
+    echo "     It's a bad security practice."
+    exit 1
+fi
+
 #
 # Installation directory
 #

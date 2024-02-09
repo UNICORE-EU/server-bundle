@@ -11,7 +11,6 @@ This includes the following UNICORE server components:
 - XUUDB
 
 Java 11 or later is required. We recommend using OpenJDK.
-IBM Java has been reported to work as well.
 
 Python 3.x is required for the TSI and for using the installation
 helper scripts.

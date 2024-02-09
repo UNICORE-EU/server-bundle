@@ -1,68 +1,108 @@
 {
-
-    "Partitions": {
-	
-	"batch" : {
-	    "Description" : "Default queue",
-            "OperatingSystem" : "LINUX",
-	    "OperatingSystemVersion": "4.4",
-	    "CPUArchitecture" : "x86_64",    
-            "Resources" : {
-		"Runtime"     : "${uxTimeMin}-${uxTimeMax}:${uxTimeDefault}",
-		"Nodes"       : "${uxNodesMin}-${uxNodesMax}:${uxNodesDefault}",
-		"CPUsPerNode" : "${uxCPUsPerNodeMin}-${uxCPUsPerNodeMax}:${uxCPUsPerNodeDefault}",
-		"TotalCPUs"   : "${uxTotalCPUsMin}-${uxTotalCPUsMax}:${uxTotalCPUsDefault}",
-		"Memory"      : "${uxMemoryPerNodeMin}-${uxMemoryPerNodeMax}",
-          }
-	}
+  "Partitions": {
+    "batch": {
+      "Description": "Default queue",
+      "OperatingSystem": "LINUX",
+      "CPUArchitecture": "x86_64",
+      "Resources": {
+        "Runtime": "${uxTimeMin}-${uxTimeMax}:${uxTimeDefault}",
+        "Nodes": "${uxNodesMin}-${uxNodesMax}:${uxNodesDefault}",
+        "CPUsPerNode": "${uxCPUsPerNodeMin}-${uxCPUsPerNodeMax}",
+        "TotalCPUs": "${uxTotalCPUsMin}-${uxTotalCPUsMax}",
+        "Memory": "${uxMemoryPerNodeMin}-${uxMemoryPerNodeMax}"
+      }
+    }
+  },
+  "Applications": [
+    {
+      "Name": "Date",
+      "Version": "1.0",
+      "Executable": "date"
     },
-
-    "Applications" : [
-	{
-	    "Name"       : "Date",
-	    "Version"    : "1.0",
-	    "Executable" : "date",
-	},
-
-	{
-	    "Name"       : "Bash shell",
-	    "Version"    : "4.4",
-	    "Executable" : "/bin/bash",
-	    "Arguments"  : [
-                "-d$DEBUG?",
-		"-vVERBOSE?",
-		"$OPTIONS?",
-		"$SOURCE?",
-		"$ARGUMENTS",
-	    ],
-	    "Parameters": {
-		"SOURCE": { "Type": "filename"},
-		"ARGUMENTS": {"Type": "string"},
-		"DEBUG": {"Type": "boolean"},
-		"VERBOSE": {"Type": "boolean"},
-		"OPTIONS": {"Type": "string"},
-	    },
-	},
-
-	{
-	    "Name"       : "Python script",
-	    "Version"    : "3.6.9",
-	    "Executable" : "/usr/bin/python3",
-	    "Arguments"  : [
-                "-d$DEBUG?",
-		"-vVERBOSE?",
-		"$OPTIONS?",
-		"$SOURCE?",
-		"$ARGUMENTS",
-	    ],
-	    "Parameters": {
-		"SOURCE": { "Type": "filename"},
-		"ARGUMENTS": {"Type": "string"},
-		"DEBUG": {"Type": "boolean"},
-		"VERBOSE": {"Type": "boolean"},
-		"OPTIONS": {"Type": "string"},
-	    },
-	},
-
-    ],
+    {
+      "Name": "Bash shell",
+      "Version": "5.1",
+      "Executable": "/bin/bash",
+      "Arguments": [
+        "-d$DEBUG?",
+        "-vVERBOSE?",
+        "$OPTIONS?",
+        "$SOURCE?",
+        "$ARGUMENTS"
+      ],
+      "Parameters": {
+        "SOURCE": {
+          "Type": "filename"
+        },
+        "ARGUMENTS": {
+          "Type": "string"
+        },
+        "DEBUG": {
+          "Type": "boolean"
+        },
+        "VERBOSE": {
+          "Type": "boolean"
+        },
+        "OPTIONS": {
+          "Type": "string"
+        }
+      }
+    },
+    {
+      "Name": "Python script",
+      "Version": "3",
+      "Executable": "/usr/bin/python3",
+      "Arguments": [
+        "-d$DEBUG?",
+        "-vVERBOSE?",
+        "$OPTIONS?",
+        "$SOURCE?",
+        "$ARGUMENTS"
+      ],
+      "Parameters": {
+        "SOURCE": {
+          "Type": "filename"
+        },
+        "ARGUMENTS": {
+          "Type": "string"
+        },
+        "DEBUG": {
+          "Type": "boolean"
+        },
+        "VERBOSE": {
+          "Type": "boolean"
+        },
+        "OPTIONS": {
+          "Type": "string"
+        }
+      }
+    },
+    {
+      "Name": "CONTAINER",
+      "Version": "1.0",
+      "Description": "Runs a Docker image via Apptainer",
+      "PreCommand": "apptainer pull _image.sif docker://$IMAGE_URL",
+      "Executable": "export RUN_OPTS=${RUN_OPTS:-\"--contain --ipc --bind $PWD --pwd $PWD\"}; apptainer exec",
+      "Arguments": [
+        "$RUN_OPTS",
+        "$OPTIONS",
+        "_image.sif",
+        "$COMMAND"
+      ],
+      "Parameters": {
+        "IMAGE_URL": {
+          "Type": "string",
+          "Description": "The Docker image URL"
+        },
+        "OPTIONS": {
+          "Type": "string",
+          "Description": "Options to the 'apptainer exec' command"
+        },
+        "COMMAND": {
+          "Type": "string",
+          "Description": "The command to execute in the container"
+        }
+      }
+    }
+  ]
 }

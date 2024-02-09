@@ -59,8 +59,7 @@ do
     ${c}/bin/status.sh
 done
 
-echo "Checking longs for warnings/errors ..."
-# check logs for warnings or errors
+echo "Checking logs for warnings/errors ..."
 for c in "gateway" "registry" "unicorex" "xuudb" "workflow"
 do
     echo -n "... $c"

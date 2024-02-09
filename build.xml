@@ -14,7 +14,7 @@
   <property name="registry-version" value="10.0.0"/>
   <property name="unicorex-version" value="10.0.0"/>
   <property name="workflow-version" value="3.6.0"/>
-  <property name="tsi-version" value="9.3.0"/>
+  <property name="tsi-version" value="10.0.0"/>
 
   <taskdef uri="antlib:org.apache.maven.resolver.ant" resource="org/apache/maven/resolver/ant/antlib.xml">
     <classpath>

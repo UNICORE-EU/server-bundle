@@ -7,7 +7,8 @@ For a list of new features, fixes etc, see the CHANGES.txt file.
 To update, the main step is to update the jar files.
 
 If you use the H2 database (i.e. data is stored in files in
-the "unicorex/data" directory), you'll need to update the DB contents.
+the "unicorex/data" directory) in version 2.1.x, you'll need to
+update the DB contents.
 We provide a helper script for that, details are given below.
 
 ***
@@ -38,7 +39,7 @@ $> export NEW=/tmp/unicore-servers
    FOR UNICORE/X, WORKFLOW, REGISTRY and XUUDB, as needed,
    if you use the H2 database (filesystem storage)
    
- - update the H2 database contents (adapt component
+ - if needed, update the H2 database contents (adapt component
    paths accordingly):
 
    $> $NEW/update-tools/update-data.sh unicorex/data
@@ -64,20 +65,3 @@ $> export NEW=/tmp/unicore-servers
    and apply them.
 
    The TSI REQUIRES PYTHON 3
-
-
-
-
-***
-***  Update notes from 8.0.x
-***
-
-1) If you still run 8.0.x, note that the logging configuration format
-and setup in the startup.properties have changed. Please update the
-logging configurations (logging.properties) to log4j/2 syntax.
-You can use the example files in the distribution as
-starting points. Check the startup.properties file(s) and compare
-them to the new versions!
-
-2) Newer versions of the TSI require Python3. If updating TSI files,
-make sure to use Python3 to run.

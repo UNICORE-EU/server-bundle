@@ -4,7 +4,15 @@
 # Startup script for the UNICORE Gateway
 #
 
-#Installation Directory
+if [ "$EUID" -eq 0 ]
+then
+    echo "**** Please do NOT run UNICORE Gateway as 'root'!"
+    echo "     It's a bad security practice."
+    exit 1
+fi
+
+#
+# Installation Directory
 #
 dir=`dirname $0`
 if [ "$dir" != "." ]
