@@ -22,7 +22,13 @@ See README-UPDATE.txt for upgrade notes.
    For production deployments we strongly suggest to use 
    MySQL/MariaDB or PostgreSQL
 
-Core servers 10.0.0 (Feb DD, 2024)
+Core servers 10.0.0 patch1 (Mar 7, 2024)
+----------------------------------------
+ 
+  - fix: loading persisted data from U9 did not work
+  - fix: typo in update-tools/update-data.sh
+ 
+Core servers 10.0.0 (Feb 21, 2024)
 ----------------------------------
 
  + General
@@ -35,19 +41,29 @@ Core servers 10.0.0 (Feb DD, 2024)
      certificate for the server components
    - start.sh scripts will not run when 'root' (bad practice)
    - configure.py script will not run when 'root' (bad practice)
+   - include latest postgres DB driver 42.7.2, fixing a CVE denoted 
+     as 'critical'
 
  * UNICORE/X
    - new feature: allow to stage-in git repositories
    - new feature: job IDs and other unique IDs with new, shorter format
    - listing storages will not list job directories. Add new query
      parameter 'filter=all' to include them in the list.
-   - simple support for extracting basic attributes (Unix ID and role)
-     supplied by authentication from IAM servers such as Unity or Keycloak
+   - new feature: simple support for extracting basic attributes 
+     (Unix ID and role) supplied by authentication from IAM servers such
+     as Unity or Keycloak
+   - updated data-triggered processing: new actions (notification and
+     batched job); write log/error files; simple management via the storage
+     endpoint; improved runtime behaviour
+   - new feature: wildcard "*" queue definition in IDB for accepting any
+     queue name without explicit setup in IDB
+   - fix: REST API resolution issue when triggering metadata extraction
+     on storage base directory
    - remove jclouds module
    - updated example IDB
 
  * TSI
-   - new API call for querying the list of partitions
+   - new feature: API call for querying the list of partitions
 
  * XUUDB
    - basic REST interface for querying the XUUDB

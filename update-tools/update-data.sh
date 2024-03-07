@@ -5,8 +5,8 @@
 
 tool=`dirname $0`
 
-export LIB_V1=$tool/h2-1.*.jar
-export LIB_V2=$tool/h2-2.*.jar
+export LIB_V1=$tool/h2-2.1.*.jar
+export LIB_V2=$tool/h2-2.2.*.jar
 
 export dir=${1:-.}
 if [[ $dir != /* ]] ; then
