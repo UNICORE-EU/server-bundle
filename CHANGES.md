@@ -22,6 +22,13 @@ See README-UPDATE.txt for upgrade notes.
    For production deployments we strongly suggest to use 
    MySQL/MariaDB or PostgreSQL
 
+
+Core servers 10.0.0 patch2 (Mar 15, 2024)
+-----------------------------------------
+
+  - fix: SAML authenticator temporarily inactive after checking 
+    invalid token, leading to "403" authentication errors
+
 Core servers 10.0.0 patch1 (Mar 7, 2024)
 ----------------------------------------
  
