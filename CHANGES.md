@@ -10,10 +10,8 @@ See README-UPDATE.txt for upgrade notes.
 
 ** H2 DATABASE NOTE **
 
-   The 9.3.x and later releases include a new H2 v2.2.220 engine,
-   which is unfortunately not directly backwards compatible to the one
-   used in UNICORE 9.2.x. If you use H2 and want to keep existing
-   data during the update, you'll need to convert the databases.
+   If you are upgrading from an older release which still uses the H2 
+   database v2.2.x, you might want to convert the databases.
 
    We provide an update script for migrating your data.
 
@@ -22,6 +20,29 @@ See README-UPDATE.txt for upgrade notes.
    For production deployments we strongly suggest to use 
    MySQL/MariaDB or PostgreSQL
 
+Core servers 10.1.0 (Aug 07, 2024)
+----------------------------------
+
+* General 
+  - fix: MySQL DB complains about "key too long" when using
+    default UTF-8 encoding
+  - many third party library updates
+
+* Gateway
+  - new feature: table on the Gateway HTML page can now be sorted
+    by clicking on the column headers
+
+* UNICORE/X
+  - new feature: OAuth and SAML authenticators can be configured
+    to more flexibly assign user identity and basic attributes via
+    MVEL expressions
+  - new feature: file attribute source supports file in JSON format
+    in addition to the XML format
+  - new feature: TSI hosts (login nodes) can be "categorized", if necessary,
+    and selected by category in jobs
+  - improvement: job working directory creation is now done later, to avoid
+    blocking the job submission process if TSI is slow to react
+  - improvement: more succinct error reporting in job log and server log
 
 Core servers 10.0.0 patch2 (Mar 15, 2024)
 -----------------------------------------
@@ -38,7 +59,7 @@ Core servers 10.0.0 patch1 (Mar 7, 2024)
 Core servers 10.0.0 (Feb 21, 2024)
 ----------------------------------
 
- + General
+ * General
    - major updates of third party dependencies: Jetty 11, CXF 4
    - new feature: shorter format for unique IDs for jobs, etc
    - clean-up property names for better readability 

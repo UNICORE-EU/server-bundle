@@ -5,16 +5,16 @@
   <description>Build the UNICORE Server bundle</description>
 
   <property name="dist-name" value="unicore-servers"/>
-  <property name="version" value="10.0.0"/>
+  <property name="version" value="10.1.0"/>
   <property name="patch" value=""/>
 
   <!-- Component versions -->
-  <property name="xuudb-version" value="2.9.0"/>
-  <property name="gateway-version" value="2.0.0"/>
-  <property name="registry-version" value="10.0.0"/>
-  <property name="unicorex-version" value="10.0.0"/>
-  <property name="workflow-version" value="3.6.0"/>
-  <property name="tsi-version" value="10.0.0"/>
+  <property name="xuudb-version" value="2.10.3"/>
+  <property name="gateway-version" value="2.1.2"/>
+  <property name="registry-version" value="2.7.0"/>
+  <property name="unicorex-version" value="2.7.0"/>
+  <property name="workflow-version" value="3.7.0"/>
+  <property name="tsi-version" value="10.1.0"/>
 
   <taskdef uri="antlib:org.apache.maven.resolver.ant" resource="org/apache/maven/resolver/ant/antlib.xml">
     <classpath>
@@ -55,7 +55,6 @@
     <mkdir dir="unicorex/logs"/>
 
     <mvn:resolve>
-      <remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/>
       <dependencies>
 	<dependency groupId="eu.unicore" artifactId="unicorex-distribution" version="${unicorex-version}" type="pom"/>
 	<dependency groupId="eu.unicore.workflow" artifactId="workflowservice" version="${workflow-version}" type="jar"/>
@@ -77,9 +76,8 @@
 
     <echo>... Registry version ${registry-version}</echo>
     <mvn:resolve>
-      <remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/>
       <dependencies>
-	<dependency groupId="eu.unicore" artifactId="registry" version="${registry-version}" type="pom"/>
+	<dependency groupId="eu.unicore" artifactId="registry-distribution" version="${registry-version}" type="pom"/>
       </dependencies>
       <files dir="registry/lib" layout="{artifactId}-{version}.{extension}"/> 
     </mvn:resolve>
@@ -98,7 +96,6 @@
     <mkdir dir="gateway/logs"/>
 
     <mvn:resolve>
-      <remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/>
       <dependencies>
 	<dependency coords="eu.unicore:gateway:${gateway-version}"/>
       </dependencies>
@@ -117,7 +114,6 @@
     <mkdir dir="xuudb/logs"/>
 
     <mvn:resolve>
-      <remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/> 
       <dependencies>
 	<dependency groupId="eu.unicore.xuudb" artifactId="xuudb-all" version="${xuudb-version}" type="pom"/>
       </dependencies>
@@ -210,7 +206,7 @@
     <echo>... Update tools</echo>
     <mvn:resolve>
       <dependencies>
-	<dependency groupId="com.h2database" artifactId="h2" version="2.2.220"/>
+	<dependency groupId="com.h2database" artifactId="h2" version="2.3.230"/>
       </dependencies>
       <files dir="update-tools" layout="{artifactId}-{version}.{extension}"/> 
     </mvn:resolve>
