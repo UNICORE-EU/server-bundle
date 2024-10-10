@@ -11,7 +11,7 @@ See README-UPDATE.txt for upgrade notes.
 ** H2 DATABASE NOTE **
 
    If you are upgrading from an older release which still uses the H2 
-   database v2.2.x, you might want to convert the databases.
+   database v2.1.x, you might want to convert the databases.
 
    We provide an update script for migrating your data.
 
@@ -19,6 +19,16 @@ See README-UPDATE.txt for upgrade notes.
 
    For production deployments we strongly suggest to use 
    MySQL/MariaDB or PostgreSQL
+
+Core servers 10.1.1 (Oct 10, 2024)
+----------------------------------
+* General
+ - third-party library updates
+
+* UNICORE/X
+ - fix: fail to start if OAuth authenticator is misconfigured
+ - fix: using a external file with authentication attribute assignment was not working
+ - new feature: job details endpoint accepts 'fields' query parameter
 
 Core servers 10.1.0 (Aug 07, 2024)
 ----------------------------------

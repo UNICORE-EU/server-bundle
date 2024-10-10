@@ -5,15 +5,15 @@
   <description>Build the UNICORE Server bundle</description>
 
   <property name="dist-name" value="unicore-servers"/>
-  <property name="version" value="10.1.0"/>
+  <property name="version" value="10.1.1"/>
   <property name="patch" value=""/>
 
   <!-- Component versions -->
-  <property name="xuudb-version" value="2.10.3"/>
-  <property name="gateway-version" value="2.1.2"/>
-  <property name="registry-version" value="2.7.0"/>
-  <property name="unicorex-version" value="2.7.0"/>
-  <property name="workflow-version" value="3.7.0"/>
+  <property name="xuudb-version" value="2.10.4"/>
+  <property name="gateway-version" value="2.1.3"/>
+  <property name="registry-version" value="2.7.1"/>
+  <property name="unicorex-version" value="2.7.1"/>
+  <property name="workflow-version" value="3.7.1"/>
   <property name="tsi-version" value="10.1.0"/>
 
   <taskdef uri="antlib:org.apache.maven.resolver.ant" resource="org/apache/maven/resolver/ant/antlib.xml">
@@ -58,6 +58,7 @@
       <dependencies>
 	<dependency groupId="eu.unicore" artifactId="unicorex-distribution" version="${unicorex-version}" type="pom"/>
 	<dependency groupId="eu.unicore.workflow" artifactId="workflowservice" version="${workflow-version}" type="jar"/>
+	<dependency groupId="eu.unicore.services" artifactId="use-rest" version="5.1.1-p1" type="jar"/>
       </dependencies>
       <files dir="unicorex/lib" layout="{artifactId}-{version}.{extension}"/> 
     </mvn:resolve>
@@ -78,6 +79,7 @@
     <mvn:resolve>
       <dependencies>
 	<dependency groupId="eu.unicore" artifactId="registry-distribution" version="${registry-version}" type="pom"/>
+	<dependency groupId="eu.unicore.services" artifactId="use-rest" version="5.1.1-p1" type="jar"/>
       </dependencies>
       <files dir="registry/lib" layout="{artifactId}-{version}.{extension}"/> 
     </mvn:resolve>
@@ -166,6 +168,7 @@
       <remoterepo id="unicore-public" url="https://unicore-dev.zam.kfa-juelich.de/maven"/>
       <dependencies>
         <dependency groupId="eu.unicore.workflow" artifactId="workflowservice" version="${workflow-version}"/>
+	<dependency groupId="eu.unicore.services" artifactId="use-rest" version="5.1.1-p1" type="jar"/>
       </dependencies>
       <files dir="workflow/lib" layout="{artifactId}-{version}.{extension}"/> 
     </mvn:resolve>

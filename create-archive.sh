@@ -22,7 +22,6 @@ done
 let unique_jars=total_jars-linked_jars
 let size=size/1048576
 echo "totals jars: ${total_jars}, unique: ${unique_jars}, links: ${linked_jars}, space reduction: ${size} MB"
-
 # create tgz archive
 NAME=$1
 NAME=${NAME:-unicore-servers}

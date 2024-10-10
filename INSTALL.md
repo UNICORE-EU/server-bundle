@@ -132,9 +132,9 @@ for more information and in-depth documentation.
 REPORTING BUGS
 --------------
 
-Please use the bug tracker of the UNICORE project at 
+Please use the bug tracker at 
 
-https://sourceforge.net/p/unicore/issues
+https://twitter.com/UNICORE_EU/server-bundle/issues
 
 and/or contact us via one of the channels below.
 
@@ -145,12 +145,8 @@ CONTACTS
 
 Web site: https://www.unicore.eu
 
-Twitter: https://twitter.com/UNICORE_EU
-
-Sourceforge project site: https://sourceforge.net/projects/unicore
-
 GitHub: https://github.com/UNICORE-EU
 
-Questions, suggestions, problems: unicore-support@lists.sf.net
+Twitter: https://twitter.com/UNICORE_EU
 
-Developers chat: unicore-devel@lists.sf.net (subscription required)
+Questions, suggestions, problems: unicore-support@lists.sf.net
