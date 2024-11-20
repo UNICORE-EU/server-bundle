@@ -20,6 +20,18 @@ See README-UPDATE.txt for upgrade notes.
    For production deployments we strongly suggest to use 
    MySQL/MariaDB or PostgreSQL
 
+
+Core servers 10.1.2 (Nov 20, 2024)
+----------------------------------
+* General
+ - third-party library updates
+
+* UNICORE/X
+ - fix: send out state change notifications only after the changes
+   have been persisted to the database, to avoid potential race conditions
+ - improvement: better error messages on job desription parse errors
+ - improvement: reduce size of failed jobs in the DB
+
 Core servers 10.1.1 (Oct 10, 2024)
 ----------------------------------
 * General

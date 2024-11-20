@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# temporary workaround to get the bc version consistent
-rm -f registry/lib/bc*-1.75.jar
-cp unicorex/lib/bc*-1.78.1.jar registry/lib
-
 echo -n "De-duplicating jar files: "
 # replace duplicates by hard links
 let total_jars=0
