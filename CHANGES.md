@@ -20,6 +20,32 @@ See README-UPDATE.txt for upgrade notes.
    For production deployments we strongly suggest to use 
    MySQL/MariaDB or PostgreSQL
 
+Core servers 10.1.3 (Mar 14, 2025)
+----------------------------------
+
+* General
+  - third-party library updates
+
+* Gateway
+  - improved site status checking
+
+* UNICORE/X
+  - improve multi-node TSI error handling
+  - client API fixes
+  - default to JSON format for the user DB file
+  - rename default user DB file to user-mapfile.json
+  - rename username/password authentication file to user-authfile.txt
+
+* TSI
+  - fix syntax warnings with Python 3.12
+  - fix potential error when using ssl with system truststore
+
+* Registry
+  - rename default user DB file to user-mapfile.json
+
+* Workflow
+  - rename default user DB file to user-mapfile.json
+
 
 Core servers 10.1.2 (Nov 20, 2024)
 ----------------------------------

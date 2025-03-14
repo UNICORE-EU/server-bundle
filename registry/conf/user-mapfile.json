@@ -1,0 +1,18 @@
+{
+   "CN=Demo User, O=UNICORE, C=EU": {
+     "role": [
+       "user"
+     ],
+     "xlogin": [
+       "${USER_NAME}"
+     ],
+     "group": []
+   },
+
+   "CN=Demo UNICORE/X,O=UNICORE,C=EU": {
+     "role": "server",
+     "xlogin": "nobody",
+     "group": []
+   },
+   
+}

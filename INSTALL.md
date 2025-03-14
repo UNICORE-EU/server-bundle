@@ -134,7 +134,7 @@ REPORTING BUGS
 
 Please use the bug tracker at 
 
-https://twitter.com/UNICORE_EU/server-bundle/issues
+https://github.com/UNICORE-EU/server-bundle/issues
 
 and/or contact us via one of the channels below.
 

@@ -83,7 +83,7 @@ uxFiles = [
        "unicorex/conf/main.config",
        "unicorex/conf/tsi.config",
        "unicorex/conf/idb.json",
-       "unicorex/conf/simpleuudb",
+       "unicorex/conf/user-mapfile.json",
        "unicorex/conf/saml.config",
 ]
 

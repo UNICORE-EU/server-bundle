@@ -14,7 +14,6 @@
 import configparser, fnmatch, os
 
 from shutil import copy, copytree
-from sys import exit
 
 installdir=os.getcwd()
 
