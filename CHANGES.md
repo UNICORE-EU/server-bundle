@@ -20,7 +20,7 @@ See README-UPDATE.txt for upgrade notes.
    For production deployments we strongly suggest to use 
    MySQL/MariaDB or PostgreSQL
 
-Core servers 10.1.3 (Mar 14, 2025)
+Core servers 10.1.3 (Mar 18, 2025)
 ----------------------------------
 
 * General

@@ -62,8 +62,9 @@ else:
     installdir=config.get("parameters","INSTALL_PATH")
 
 
-
-print("Configuring the installation for user %s in directory %s, on machine %s" %(xlogin,installdir,hostname))
+print("*")
+print("* Configuring the installation for user %s in directory %s" %(xlogin,installdir))
+print("*")
 
 # current directory
 basedir=os.getcwd()
@@ -192,7 +193,7 @@ if(readParam(config,"gwAddWFEntry")=="true"):
         wfHost=config.get("parameters","wfHost")
         if(wfHost=="hostname"):
             wfHost=hostname
-        wfLine=config.get("parameters","wfSitename")+" = https://" + wfHost + ":" + config.get("parameters","wfPort")
+        wfLine=config.get("parameters","wfName")+" = https://" + wfHost + ":" + config.get("parameters","wfPort")
         f.write( "\n"+wfLine+"\n")
 
 # for the xuudb, add trigger file to add the demo user cert on first start
@@ -201,3 +202,14 @@ if config.get("parameters","installcerts")=="DEMO" and config.get("parameters","
         f.write( "file will be removed upon first startup")
 
 print("Done configuring!")
+
+
+print("Configured endpoints: ")
+
+if config.get("parameters","unicorex")=="true":
+    uxEndpoint = readParam(config, "uxPublicEndpoint")
+    print(" * UNICORE/X API endpoint: https://%s/rest/core" % (uxEndpoint))
+
+if config.get("parameters","workflow")=="true":
+    wfEndpoint = readParam(config, "wfPublicEndpoint")
+    print(" * Workflow API endpoint:  https://%s/rest/workflows" % (wfEndpoint))

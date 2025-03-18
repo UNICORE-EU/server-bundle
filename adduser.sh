@@ -24,7 +24,7 @@ done
 
 echo "Adding 'CN=Demo User' to XUUDB"
 bin/admin.sh adddn ${uxName} "CN=Demo User,O=UNICORE,C=EU" "${USER_NAME}" user
-bin/admin.sh adddn ${wfSitename} "CN=Demo User,O=UNICORE,C=EU" "nobody" user
+bin/admin.sh adddn ${wfName} "CN=Demo User,O=UNICORE,C=EU" "nobody" user
 
 
 echo "Adding CN=UNICOREX to XUUDB"
