@@ -64,4 +64,4 @@ $> export NEW=/tmp/unicore-servers
    The Python files in lib/ might need to be updated. Make a diff to check for changes
    and apply them.
 
-   The TSI REQUIRES PYTHON 3
+   The TSI REQUIRES PYTHON 3.9 or later

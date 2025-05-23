@@ -20,6 +20,24 @@ See README-UPDATE.txt for upgrade notes.
    For production deployments we strongly suggest to use 
    MySQL/MariaDB or PostgreSQL
 
+Core servers 10.2.0 (May 23, 2025)
+----------------------------------
+* General
+  - third-party library updates
+
+UNICORE/X
+  - re-introduce support for S3 object stores
+  - new feature: take login node request into account for data staging
+  - improvement: smarter application version matching
+
+TSI
+  - run all user scripts via login shell ("/bin/bash -l") if not
+    explicitely disabled
+  - IPv6 support (via dualstack IPv6/v4)
+  - new style of running login node jobs where the user script is written
+    to a file in the job directory (like in batch submission) and executed
+  - code cleanup
+
 Core servers 10.1.3 (Mar 18, 2025)
 ----------------------------------
 
