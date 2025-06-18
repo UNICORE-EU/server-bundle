@@ -1,6 +1,7 @@
 target/
 build/
-tools/maven-resolver-ant*
+tools/*.jar
+tools/fixes/
 update-tools/*.jar
 *.pyc
 .project

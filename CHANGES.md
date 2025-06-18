@@ -20,13 +20,24 @@ See README-UPDATE.txt for upgrade notes.
    For production deployments we strongly suggest to use 
    MySQL/MariaDB or PostgreSQL
 
+Core servers 10.2.1 (Jun 18, 2025)
+----------------------------------
+
+* UNICORE/X
+  - improvement: port forwarding: allow connecting to a Unix domain socket
+  - improvement: put batchSystemID into notification messages
+
+* TSI
+ - improvement: port forwarding: allow connecting to a Unix domain socket
+
 Core servers 10.2.0 (May 23, 2025)
 ----------------------------------
 * General
   - third-party library updates
 
 UNICORE/X
-  - re-introduce support for S3 object stores
+  - new feature: access S3 buckets via storage factory
+  - new feature: S3 data staging
   - new feature: take login node request into account for data staging
   - improvement: smarter application version matching
 
