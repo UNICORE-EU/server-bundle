@@ -20,6 +20,38 @@ See README-UPDATE.txt for upgrade notes.
    For production deployments we strongly suggest to use 
    MySQL/MariaDB or PostgreSQL
 
+Core servers 10.3.0 (Sep 3ß, 2025)
+----------------------------------
+ * General
+   - third-party library updates
+
+* Gateway
+  - code clean-up
+
+* UNICORE/X
+  - new feature: better REST API for storagefactory: every type now has its
+    own endpoint, e.g. ".../storagefactories/AWS"
+  - fix: use configured timeout on TSI connect
+  - fix: don't send multiple notification messages
+  - fix: potential concurrency problem that might cause jobs to stop processing
+  - fix: login node was not correctly remembered for ON_LOGIN_NODE jobs,
+    which was causing issues when using the port forwarding feature
+  - improvement: simplify plugging-in additional processing logic 
+  - remove Swift support
+  - code clean-up and internal optimizations
+
+* TSI
+  - new feature: allow to get user's ssh keys via preconfigured
+    command, in addition to or as alternative to reading files like
+    ".ssh/authorized_keys"
+  - fix: correctly parse empty config values
+  - fix: open PAM session for RUN_ON_LOGIN_NODE
+  - fix: fail processing if PAM is enabled and PAM open_session() fails
+  - fix: log errors on INFO level for PAM.open_session()
+  - improvement: Install.sh asks as which user the TSI should run and
+    sets file permissions accordingly
+
+
 Core servers 10.2.1 (Jun 18, 2025)
 ----------------------------------
 

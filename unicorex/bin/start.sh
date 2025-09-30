@@ -84,4 +84,4 @@ CLASSPATH=$CP; export CLASSPATH
 
 nohup $JAVA ${MEM} ${OPTS} ${DEFS} eu.unicore.uas.UAS ${MAIN_CONFIG} ${SERVERNAME} > ${STARTLOG} 2>&1  & echo $! > ${PID}
 
-echo "${SERVERNAME} starting"
+echo "${SERVERNAME} starting."
