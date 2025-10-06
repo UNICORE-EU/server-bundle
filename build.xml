@@ -108,7 +108,7 @@
 
     <mvn:resolve>
       <dependencies>
-        <dependency groupId="eu.unicore" artifactId="uas-core" version="${unicorex-version}-1" type="jar"/>
+        <dependency groupId="eu.unicore" artifactId="uas-core" version="${unicorex-version}-2" type="jar"/>
     	  <dependency groupId="eu.unicore" artifactId="unicorex-distribution" version="${unicorex-version}" type="pom"/>
 	      <dependency groupId="eu.unicore.workflow" artifactId="workflowservice" version="${workflow-version}" type="jar"/>
 	    </dependencies>
@@ -218,7 +218,7 @@
 
     <mvn:resolve>
       <dependencies>
-        <dependency groupId="eu.unicore" artifactId="uas-core" version="${unicorex-version}-1" type="jar"/>
+        <dependency groupId="eu.unicore" artifactId="uas-core" version="${unicorex-version}-2" type="jar"/>
         <dependency groupId="eu.unicore.workflow" artifactId="workflowservice" version="${workflow-version}"/>
 	    </dependencies>
       <files dir="workflow/lib" layout="{artifactId}-{version}.{extension}"/> 
@@ -261,7 +261,7 @@
     <echo>... Update tools</echo>
     <mvn:resolve>
       <dependencies>
-	<dependency groupId="com.h2database" artifactId="h2" version="2.3.232"/>
+	<dependency groupId="com.h2database" artifactId="h2" version="2.4.240"/>
       </dependencies>
       <files dir="update-tools" layout="{artifactId}-{version}.{extension}"/> 
     </mvn:resolve>
