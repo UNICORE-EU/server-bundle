@@ -109,6 +109,7 @@
     <mvn:resolve>
       <dependencies>
         <dependency groupId="eu.unicore" artifactId="uas-core" version="${unicorex-version}-2" type="jar"/>
+        <dependency groupId="eu.unicore" artifactId="xnjs" version="${unicorex-version}-1" type="jar"/>
     	  <dependency groupId="eu.unicore" artifactId="unicorex-distribution" version="${unicorex-version}" type="pom"/>
 	      <dependency groupId="eu.unicore.workflow" artifactId="workflowservice" version="${workflow-version}" type="jar"/>
 	    </dependencies>
@@ -117,6 +118,7 @@
 
     <delete>
       <fileset dir="unicorex/lib" includes="uas-core-2.9.2.jar"/>
+      <fileset dir="unicorex/lib" includes="xnjs-2.9.2.jar"/>
       <fileset dir="unicorex/lib" includes="*.pom"/>
       <fileset dir="unicorex/lib" includes="*.zip"/>
     </delete>
@@ -219,6 +221,7 @@
     <mvn:resolve>
       <dependencies>
         <dependency groupId="eu.unicore" artifactId="uas-core" version="${unicorex-version}-2" type="jar"/>
+        <dependency groupId="eu.unicore" artifactId="xnjs" version="${unicorex-version}-1" type="jar"/>
         <dependency groupId="eu.unicore.workflow" artifactId="workflowservice" version="${workflow-version}"/>
 	    </dependencies>
       <files dir="workflow/lib" layout="{artifactId}-{version}.{extension}"/> 
@@ -226,6 +229,7 @@
 
     <delete>
       <fileset dir="workflow/lib" includes="uas-core-2.9.2.jar"/>
+      <fileset dir="workflow/lib" includes="xnjs-2.9.2.jar"/>
       <fileset dir="workflow/lib" includes="*.pom"/>
       <fileset dir="workflow/lib" includes="*.zip"/>
     </delete>
