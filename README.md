@@ -1,5 +1,7 @@
 # UNICORE Server Bundle
 
+[![Build](https://github.com/UNICORE-EU/server-bundle/actions/workflows/build.yml/badge.svg)](https://github.com/UNICORE-EU/server-bundle/actions/workflows/build.yml)
+
 This repository contains the sources for the UNICORE Core Server
 Bundle, which provides an all-in-one package with installation helpers
 comprising Gateway, Registry, UNICORE/X, Workflow, XUUDB, TSI.
@@ -8,7 +10,6 @@ comprising Gateway, Registry, UNICORE/X, Workflow, XUUDB, TSI.
 
 You can download binaries from
  - [GitHub](https://github.com/UNICORE-EU/server-bundle/releases)
- - [SourceForge](https://sourceforge.net/projects/unicore/files/Servers/Core/)
 
 
 ## Building
@@ -16,6 +17,10 @@ You can download binaries from
 You'll need Java and Apache Ant.
 
 The `build.xml`file contains the version definitions.
+
+If running for the first time, first do
+
+  $> ant prepare
 
   $> ant clean update dist
 
