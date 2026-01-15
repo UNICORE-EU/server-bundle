@@ -74,8 +74,8 @@
           <ActionAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
         </Apply>
         <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-bag">
-	  <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">DELETE</AttributeValue>
-	  <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">PUT</AttributeValue>
+	        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">DELETE</AttributeValue>
+	        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">PUT</AttributeValue>
         </Apply>
       </Apply>
     </Condition>

@@ -1,6 +1,6 @@
 Changelog for the UNICORE core servers
 ======================================
-Issue tracker: https://sourceforge.net/p/unicore/issues
+Issue tracker: https://github.com/UNICORE-EU/server-bundle/issues
 
 See README-UPDATE.txt for upgrade notes.
 
@@ -20,7 +20,27 @@ See README-UPDATE.txt for upgrade notes.
    For production deployments we strongly suggest to use 
    MySQL/MariaDB or PostgreSQL
 
-Core servers 10.3.0 (Sep 3ß, 2025)
+Core servers 10.4.0 (Jan DD, 2026)
+----------------------------------
+ * General
+   - add IPAddress to the client properties on the /rest/core and similar endpoints
+   - third-party library updates
+   - code cleanup
+
+ * Registry
+   - show client and server properties on the /rest/registries endpoint
+   - modify access control policy to allow read access to the /rest/registries endpoint
+
+ * UNICORE/X
+   - more powerful SSHKey authentication that can assign user identity more flexibly based
+     on attributes retrieved from TSI (or other sources of public ssh keys)
+   - fix: registry status check/update was not working correctly
+   - fix: handle url-encoded query parameters
+   - fix: make sure external connectors get refreshed on config change
+   - fix: registry connector status check bug (only in v10.3.0)
+   - fix: check that issued API token lifetime does not exceed credential lifetime
+
+Core servers 10.3.0 (Sep 30, 2025)
 ----------------------------------
  * General
    - third-party library updates

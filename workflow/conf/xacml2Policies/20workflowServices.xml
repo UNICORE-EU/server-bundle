@@ -19,7 +19,7 @@
             <ResourceAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#anyURI" MustBePresent="true"/>
           </ResourceMatch>
         </Resource>
-	<Resource>
+	      <Resource>
           <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
             <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">workflows</AttributeValue>
             <ResourceAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#anyURI" MustBePresent="true"/>
@@ -38,13 +38,25 @@
   </Rule>
   
   <Rule RuleId="Permit:WFServices_read_access" Effect="Permit">
-    <Description> READ access to the /workflows endpoint is granted. 
+    <Description> READ access to the /workflows and /registries endpoints is granted. 
     </Description>
     <Target>
       <Resources>
-	<Resource>
+	      <Resource>
           <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
             <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">workflows</AttributeValue>
+            <ResourceAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#anyURI" MustBePresent="true"/>
+          </ResourceMatch>
+        </Resource>
+        <Resource>
+          <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">registries</AttributeValue>
+            <ResourceAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#anyURI" MustBePresent="true"/>
+          </ResourceMatch>
+        </Resource>
+        <Resource>
+          <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">Registry</AttributeValue>
             <ResourceAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#anyURI" MustBePresent="true"/>
           </ResourceMatch>
         </Resource>
@@ -58,7 +70,6 @@
         <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-bag">
           <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">GET</AttributeValue>
           <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">HEAD</AttributeValue>
-          <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">OPTIONS</AttributeValue>
         </Apply>
       </Apply>
     </Condition>

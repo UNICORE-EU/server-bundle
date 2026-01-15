@@ -8,7 +8,7 @@
   <Description>
     Default policy for the UNICORE shared Registry.
      - Everyone can read the registry content.
-     - Only clients with role "server") may get write access.
+     - Only clients with role "server" may get write access.
     Intended as part of a full set that includes the basic rules and a final DENY.
   </Description>
 
@@ -24,6 +24,12 @@
             <ResourceAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#anyURI" MustBePresent="true"/>
           </ResourceMatch>
         </Resource>
+        <Resource>
+          <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">registries</AttributeValue>
+            <ResourceAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#anyURI" MustBePresent="true"/>
+          </ResourceMatch>
+        </Resource>
       </Resources>
     </Target>
     <Condition>
@@ -33,7 +39,8 @@
                           DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
         </Apply>
         <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-bag">
-	  <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">GET</AttributeValue>
+	        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">GET</AttributeValue>
+          <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">HEAD</AttributeValue>
         </Apply>
       </Apply>
     </Condition>

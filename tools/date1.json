@@ -5,10 +5,10 @@
    "id": "date1",
    "type": "JOB",
    "job": {
-     "ApplicationName": "Date",
-    },
- },
+     "ApplicationName": "Date"
+    }
+ }
 
-],
+]
 
 }
