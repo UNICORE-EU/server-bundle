@@ -20,7 +20,7 @@ See README-UPDATE.txt for upgrade notes.
    For production deployments we strongly suggest to use 
    MySQL/MariaDB or PostgreSQL
 
-Core servers 10.4.0 (Jan DD, 2026)
+Core servers 10.4.0 (Jan 15, 2026)
 ----------------------------------
  * General
    - add IPAddress to the client properties on the /rest/core and similar endpoints
@@ -37,10 +37,9 @@ Core servers 10.4.0 (Jan DD, 2026)
    - fix: registry status check/update was not working correctly
    - fix: handle url-encoded query parameters
    - fix: make sure external connectors get refreshed on config change
-   - fix: registry connector status check bug (only in v10.3.0)
    - fix: check that issued API token lifetime does not exceed credential lifetime
 
-Core servers 10.3.0 (Sep 30, 2025)
+Core servers 10.3.0 (Oct 6, 2025)
 ----------------------------------
  * General
    - third-party library updates

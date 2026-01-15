@@ -39,9 +39,15 @@
     </exec>
   </target>
 
+  <target name="assert-tools"
+	  depends="_check-maven-tools-present" unless="mvntools.exists"
+          description="Fails if required tools if not present">
+    <fail message="Ant tools not present - please run 'ant prepare' first!"/>
+    </target>
+
   <target name="update" 
           description="Updates libraries, documentation and other files"
-          depends="prepare,update-libs,update-tsi,fix-permissions,update-changelog,prepare-update-tools,deploy-fixes">
+          depends="assert-tools,update-libs,update-tsi,fix-permissions,update-changelog,prepare-update-tools,deploy-fixes">
   </target>
  
   <target name="deploy-fixes"
