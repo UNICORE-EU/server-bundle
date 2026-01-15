@@ -8,19 +8,18 @@ comprising Gateway, Registry, UNICORE/X, Workflow, XUUDB, TSI.
 
 ## Download
 
-You can download binaries from
- - [GitHub](https://github.com/UNICORE-EU/server-bundle/releases)
+You can download binaries from [here](https://github.com/UNICORE-EU/server-bundle/releases)
 
 
 ## Building
 
 You'll need Java and Apache Ant.
 
-The `build.xml`file contains the version definitions.
-
-If running for the first time, first do
+If running for the first time, do
 
   $> ant prepare
+
+The `build.xml`file contains the version definitions. To build the server bundle, run
 
   $> ant clean update dist
 
