@@ -6,7 +6,23 @@
   </Description>
 
   <Target/>
-  
+
+  <Rule RuleId="Workflow:Deny:ModifyNotOwned" Effect="Deny">
+    <Description> Deny DELETE/PUT on all services. </Description>
+    <Target/>
+    <Condition>
+      <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-is-in">
+        <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+          <ActionAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+        </Apply>
+        <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-bag">
+	        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">DELETE</AttributeValue>
+	        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">PUT</AttributeValue>
+        </Apply>
+      </Apply>
+    </Condition>
+  </Rule>
+
   <Rule RuleId="Permit:WFServices_for_user" Effect="Permit">
     <Description> Full access to the WorkflowFactory service
                   is granted for users with the "user" role. 

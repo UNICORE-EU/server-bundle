@@ -11,9 +11,9 @@
   <Target/>
 
   <Rule RuleId="Core:Permit:Service_read-access" Effect="Permit">
-    <Description> Read Access to the following services:
+    <Description> Allow read access to the following services:
                     REST core, registries, Registry, StorageFactory, TargetSystemFactory
-                  is granted for everyone.
+                  for everyone.
    </Description>
     <Target>
       <Resources>
@@ -61,9 +61,51 @@
       </Apply>
     </Condition>
   </Rule>
+  
+  <Rule RuleId="Files:Permit" Effect="Permit">
+    <Description> Allow GET/PUT access to the BFT file transfer for everyone.
+   </Description>
+    <Target>
+      <Resources>
+	      <Resource>
+          <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">files</AttributeValue>
+            <ResourceAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#anyURI" MustBePresent="true"/>
+          </ResourceMatch>
+        </Resource>
+      </Resources>
+    </Target>
+    <Condition>
+      <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-is-in">
+        <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+          <ActionAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+        </Apply>
+        <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-bag">
+	        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">GET</AttributeValue>
+          <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">PUT</AttributeValue>
+        </Apply>
+      </Apply>
+    </Condition>
+  </Rule>
+
+  <Rule RuleId="Core:Deny:ModifyNotOwned" Effect="Deny">
+    <Description> Deny DELETE/PUT on all services. </Description>
+    <Target/>
+    <Condition>
+      <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-is-in">
+        <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+          <ActionAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+        </Apply>
+        <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-bag">
+	        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">DELETE</AttributeValue>
+	        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">PUT</AttributeValue>
+        </Apply>
+      </Apply>
+    </Condition>
+  </Rule>
 
   <Rule RuleId="Core:Permit:StandardServices_for_user" Effect="Permit">
-    <Description> Full access to the REST core, TSF and StorageFactory services is granted to clients with role="user". </Description>
+    <Description> Allow full access to the REST core, TSF and StorageFactory services for clients with role="user". </Description>
     <Target>
       <Resources>
         <Resource>
@@ -95,5 +137,5 @@
       </Apply>
     </Condition>
   </Rule>
-  
+
 </Policy>

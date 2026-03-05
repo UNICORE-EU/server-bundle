@@ -6,19 +6,43 @@ See README-UPDATE.txt for upgrade notes.
 
 ** JAVA VERSION NOTE **
 
-   This release requires Java 11 or later!
+   This release requires Java 17 or later!
 
-** H2 DATABASE NOTE **
-
-   If you are upgrading from an older release which still uses the H2 
-   database v2.1.x, you might want to convert the databases.
-
-   We provide an update script for migrating your data.
-
-   SEE README-UPGRADE.txt for details.
+** DATABASE NOTE **
 
    For production deployments we strongly suggest to use 
    MySQL/MariaDB or PostgreSQL
+
+Core servers 11.0.0 (Mar 05, 2026)
+----------------------------------
+ * General
+  - UNICORE 11 requires at least Java 17
+  - major version updates: Jetty 12, Apache CXF 4.1
+  - new implementation of the UNICORE authorisation system (policy
+    decision point) that uses hard-coded rules instead of XACML policy files
+    (NOTE the XACML system is still available, and is still used in the default
+    config)
+  - code cleanup
+
+ * Gateway
+  - allow to configure separate credentials for the web server (front-end)
+    and calls to the back-end services. This allows to use internal PKI for
+    the intra-services communication, and simplifies using a proper web
+    server certificate for the web server (e.g. from Let's Encrypt)
+  - don't show real network addresses of sites (backend services) on the
+    front page
+
+ * UNICORE/X
+  - add new single-user style of using the TSI that does not require a
+    running TSI server
+  - remove "homegrown" style of ssh key based authentication
+  - re-designed default HTTPS file transfer, add support for ranges and
+    Content-Disposition header
+
+ * TSI
+  - add new one-shot, single-user style of using the TSI (launched via bin/process.sh)
+    that reads from stdin and writes to stdout
+  - more consistent API
 
 Core servers 10.4.0 (Jan 15, 2026)
 ----------------------------------
