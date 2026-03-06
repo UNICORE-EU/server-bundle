@@ -1,11 +1,6 @@
 #!/bin/bash
 
-#
-# Check status of UNICORE/X
-
-#
-# Installation Directory
-#
+# Find installation directory
 dir=`dirname $0`
 if [ "$dir" != "." ]
 then
@@ -21,33 +16,23 @@ else
 fi
 
 INST=${INST:-.}
-
-#
-# Alternatively specify the installation dir here
-#
-#INST=
-
 cd $INST
 
-#
 # Read basic settings
-#
 . conf/startup.properties
 
 if [ ! -e $PID ]
 then
- echo "Gateway not running (no PID file)"
+ echo "UNICORE service ${SERVERNAME} not running (no PID file)"
  exit 7
 fi
 
 PIDV=$(cat $PID)
 
-SERVICE=Gateway
-
-if ps axww | grep -v grep | grep $PIDV | grep "${SERVICE}" > /dev/null 2>&1 ; then
- echo "UNICORE service ${SERVICE} running with PID ${PIDV}"
+if ps axww | grep -v grep | grep $PIDV | grep "${SERVERNAME}" > /dev/null 2>&1 ; then
+ echo "UNICORE service ${SERVERNAME} running with PID ${PIDV}"
  exit 0
 fi
 
-echo "warn: UNICORE service ${SERVICE} not running, but PID file $PID found"
+echo "warn: UNICORE service ${SERVERNAME} not running, but PID file $PID found"
 exit 3

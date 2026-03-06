@@ -1,12 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-#
-# Check status of UNICORE/X
-#
-
-#
-# Installation Directory
-#
+# Find installation directory
 dir=`dirname $0`
 if [ "$dir" != "." ]
 then
@@ -24,16 +18,12 @@ fi
 INST=${INST:-.}
 cd $INST
 
-#
 # Read basic settings
-#
 . conf/startup.properties
-
-SERVERNAME=${SERVERNAME:-"UNICOREX"}
 
 if [ ! -e $PID ]
 then
- echo "${SERVERNAME} not running (no PID file)"
+ echo "UNICORE service ${SERVERNAME} not running (no PID file)"
  exit 7
 fi
 

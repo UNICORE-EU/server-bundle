@@ -1,12 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-#
-# Check status of UNICORE/X
-#
-
-#
-# Installation Directory
-#
+# Find installation directory
 dir=`dirname $0`
 if [ "$dir" != "." ]
 then
@@ -24,12 +18,8 @@ fi
 INST=${INST:-.}
 cd $INST
 
-#
 # Read basic settings
-#
 . conf/startup.properties
-
-SERVERNAME=${SERVERNAME:-"REGISTRY"}
 
 if [ ! -e $PID ]
 then

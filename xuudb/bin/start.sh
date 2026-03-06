@@ -11,9 +11,7 @@ then
     exit 1
 fi
 
-#
-# Installation Directory
-#
+# Find installation directory
 dir=`dirname $0`
 if [ "$dir" != "." ]
 then
@@ -22,10 +20,8 @@ else
   pwd | grep -e 'bin$' > /dev/null
   if [ $? = 0 ]
   then
-    # we are in the bin directory
     INST=".."
   else
-    # we are NOT in the bin directory
     INST=`dirname $dir`
   fi
 fi
@@ -34,27 +30,21 @@ INST=${INST:-.}
 
 cd $INST
 
-#
 # Read basic settings
-#
 . conf/startup.properties
 
-#
-# check whether the server might be already running
-#
+# Check whether the server might be already running
 if [ -e $PID ] 
  then 
   if [ -d /proc/$(cat $PID) ]
    then
-     echo "A XUUDB instance may be already running with process id "$(cat $PID)
+     echo "A ${SERVERNAME} instance may be already running with process id "$(cat $PID)
      echo "If this is not the case, delete the file $INST/$PID and re-run this script"
      exit 1
    fi
 fi
 
-#
-# setup classpath
-#
+# Setup classpath
 CP=.$(find "${LIB}" -name "*.jar" -exec printf ":{}" \;)
 
 echo $CP | grep jar > /dev/null
@@ -72,14 +62,9 @@ fi
 
 CLASSPATH="$CP"; export CLASSPATH
 
-SERVERNAME=${SERVERNAME:-"XUUDB"}
-
 #
-# go
+# Go
 #
 nohup $JAVA ${MEM} ${OPTS} ${DEFS} eu.unicore.xuudb.server.XUUDBServer ${PARAM} ${SERVERNAME} > $STARTLOG 2>&1  & echo $! > $PID
 
-echo "XUUDB server starting."
-
-
-
+echo "${SERVERNAME} starting."

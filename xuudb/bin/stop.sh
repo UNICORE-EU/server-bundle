@@ -1,8 +1,6 @@
 #!/bin/bash
 
-#
-#Installation Directory
-#
+# Find installation directory
 dir=`dirname $0`
 if [ "$dir" != "." ]
 then
@@ -11,10 +9,8 @@ else
   pwd | grep -e 'bin$' > /dev/null
   if [ $? = 0 ]
   then
-    # we are in the bin directory
     INST=".."
   else
-    # we are NOT in the bin directory
     INST=`dirname $dir`
   fi
 fi
@@ -23,9 +19,7 @@ INST=${INST:-.}
 
 cd $INST
 
-#
 # Read basic settings
-#
 . conf/startup.properties
 
 if [ ! -e $PID ]
@@ -34,15 +28,10 @@ then
  exit 0
 fi
 
-echo "Stopping XUUDB..."
-
 cat $PID | xargs kill -SIGTERM
 
-#
-# wait for shutdown
-# 
-P=$(cat $PID)
 echo "Waiting for server to stop..."
+P=$(cat $PID)
 stopped="no"
 until [ "$stopped" = "" ]; do
   stopped=$(ps -p $P | grep $P)

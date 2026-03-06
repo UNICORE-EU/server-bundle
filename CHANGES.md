@@ -13,7 +13,7 @@ See README-UPDATE.txt for upgrade notes.
    For production deployments we strongly suggest to use 
    MySQL/MariaDB or PostgreSQL
 
-Core servers 11.0.0 (Mar 05, 2026)
+Core servers 11.0.0 (Mar 06, 2026)
 ----------------------------------
  * General
   - UNICORE 11 requires at least Java 17
@@ -36,8 +36,8 @@ Core servers 11.0.0 (Mar 05, 2026)
   - add new single-user style of using the TSI that does not require a
     running TSI server
   - remove "homegrown" style of ssh key based authentication
-  - re-designed default HTTPS file transfer, add support for ranges and
-    Content-Disposition header
+  - improved base file transfer (via HTTPS stack), add support for Range and
+    Content-Disposition headers
 
  * TSI
   - add new one-shot, single-user style of using the TSI (launched via bin/process.sh)

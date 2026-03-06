@@ -1,7 +1,6 @@
 #!/bin/bash
 
-#Installation Directory
-#
+# Find installation directory
 dir=`dirname $0`
 if [ "$dir" != "." ]
 then
@@ -20,9 +19,7 @@ INST=${INST:-.}
 
 cd $INST
 
-#
 # Read basic settings
-#
 . conf/startup.properties
 
 if [ ! -e $PID ]
@@ -33,11 +30,8 @@ fi
 
 cat $PID | xargs kill -SIGTERM
 
-#
-# wait for shutdown
-# 
-P=$(cat $PID)
 echo "Waiting for server to stop..."
+P=$(cat $PID)
 stopped="no"
 until [ "$stopped" = "" ]; do
   stopped=$(ps -p $P | grep $P)

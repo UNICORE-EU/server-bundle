@@ -11,9 +11,7 @@ then
     exit 1
 fi
 
-#
-# Installation Directory
-#
+# Find installation directory
 dir=`dirname $0`
 if [ "$dir" != "." ]
 then
@@ -32,29 +30,22 @@ INST=${INST:-.}
 
 cd $INST
 
-#
 # Read basic settings
-#
 . conf/startup.properties
 
-#
 # Check whether the server might be already running
-#
 if [ -e $PID ] 
  then 
   if [ -d /proc/$(cat $PID) ]
    then
-     echo "A Registry instance may be already running with process id "$(cat $PID)
+     echo "A ${SERVERNAME} instance may be already running with process id "$(cat $PID)
      echo "If this is not the case, delete the file $INST/$PID and re-run this script"
      exit 1
    fi
 fi
 
-#
-# setup classpath
-#
+# Setup classpath
 CP=.$(find "${LIB}" -name "*.jar" -exec printf ":{}" \;)
-
 echo $CP | grep jar > /dev/null
 if [ $? != 0 ] 
 then
@@ -75,11 +66,11 @@ if [ ! -e ${MAIN_CONFIG} ]; then
 fi
 
 #
-# go
+# Go
 #
 
 CLASSPATH=$CP; export CLASSPATH
 
 nohup ${JAVA} ${MEM} ${OPTS} ${DEFS} eu.unicore.services.USEContainer ${MAIN_CONFIG} ${SERVERNAME} > ${STARTLOG} 2>&1  & echo $! > ${PID}
 
-echo "${SERVERNAME} starting"
+echo "UNICORE ${SERVERNAME} starting"

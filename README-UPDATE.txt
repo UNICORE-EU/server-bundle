@@ -8,12 +8,8 @@ To update, the main step is to update the jar files.
 
 If you use the H2 database (i.e. data is stored in files in
 the "unicorex/data" directory) in version 2.1.x, you'll need to
-update the DB contents.
-We provide a helper script for that, details are given below.
-
-***
-***  Detailed update procedure from version 9.x
-***
+update the DB contents. We provide a helper script for that,
+details are given below.
 
 As a first step and precaution, you should make backups of your 
 existing config files and put them in a safe place.

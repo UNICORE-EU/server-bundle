@@ -11,9 +11,7 @@ then
     exit 1
 fi
 
-#
-# Installation directory
-#
+# Find installation directory
 dir=`dirname $0`
 if [ "$dir" != "." ]
 then
@@ -32,27 +30,21 @@ INST=${INST:-.}
 
 cd $INST
 
-#
 # Read basic settings
-#
 . conf/startup.properties
 
-#
-# check whether the server might be already running
-#
+# Check whether the server might be already running
 if [ -e $PID ] 
  then
   if [ -d /proc/$(cat $PID) ]
   then
-   echo "A Workflow server instance may be already running with process id "$(cat $PID)
+   echo "A ${SERVERNAME} instance may be already running with process id "$(cat $PID)
    echo "If this is not the case, delete the file $INST/$PID and re-run this script"
    exit 1
   fi
 fi
 
-#
-# setup classpath
-#
+# Setup classpath
 CP=.$(find "${LIB}" -name "*.jar" -exec printf ":{}" \;)
 
 echo $CP | grep jar > /dev/null
@@ -61,8 +53,6 @@ then
   echo "ERROR: empty classpath, please check that the LIB variable is properly defined."
   exit 1
 fi
-
-SERVERNAME=${SERVERNAME:-"WORKFLOW"}
 
 if [ "$MAIN_CONFIG" = "" ]
 then
@@ -77,11 +67,11 @@ if [ ! -e ${MAIN_CONFIG} ]; then
 fi
 
 #
-# go
+# Go
 #
 
 CLASSPATH=$CP; export CLASSPATH
 
 nohup $JAVA ${MEM} ${OPTS} ${DEFS} eu.unicore.uas.UAS ${MAIN_CONFIG} ${SERVERNAME} > $STARTLOG 2>&1  & echo $! > $PID
 
-echo "$SERVERNAME starting."
+echo "UNICORE $SERVERNAME starting."

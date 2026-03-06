@@ -53,6 +53,39 @@
   <target name="deploy-fixes"
           description="Replaces some libraries by updated versions">
     <!--echo>... Deploying security fixes</echo-->
+    <mkdir dir="tools/fixes"/>
+    <delete>
+      <fileset dir="tools/fixes">
+       <include name="*.jar"/>
+      </fileset>
+    </delete>
+    <mvn:resolve>
+      <dependencies>
+    	  <dependency groupId="eu.unicore" artifactId="uas-core" version="3.0.0-1"/>
+      </dependencies>
+      <files dir="tools/fixes" layout="{artifactId}-{version}.{extension}"/> 
+    </mvn:resolve>
+    <patternset id="updates">
+      <include name="uas-core-*.jar"/>
+    </patternset>
+    <delete>
+      <fileset dir="unicorex/lib">
+       <patternset refid="updates"/>
+      </fileset>
+      <fileset dir="workflow/lib">
+       <patternset refid="updates"/>
+      </fileset>
+    </delete>
+    <copy todir="unicorex/lib">
+      <fileset dir="tools/fixes">
+        <patternset refid="updates"/>
+      </fileset>
+    </copy>
+    <copy todir="workflow/lib">
+      <fileset dir="tools/fixes">
+        <patternset refid="updates"/>
+      </fileset>
+    </copy>
   </target>
 
   <target name="update-libs" 

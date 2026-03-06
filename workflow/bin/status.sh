@@ -1,12 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-#
-# Check status of UNICORE/X
-#
-
-#
-# Installation Directory
-#
+# Find installation directory
 dir=`dirname $0`
 if [ "$dir" != "." ]
 then
@@ -24,12 +18,8 @@ fi
 INST=${INST:-.}
 cd $INST
 
-#
 # Read basic settings
-#
 . conf/startup.properties
-
-SERVERNAME=${SERVERNAME:-"WORKFLOW"}
 
 if [ ! -e $PID ]
 then
@@ -46,4 +36,3 @@ fi
 
 echo "warn: UNICORE service ${SERVERNAME} not running, but PID file $PID found"
 exit 3
-
