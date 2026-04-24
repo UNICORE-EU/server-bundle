@@ -5,25 +5,25 @@
   <description>Build the UNICORE Server bundle</description>
 
   <property name="dist-name" value="unicore-servers"/>
-  <property name="version" value="11.0.0"/>
+  <property name="version" value="11.0.1"/>
   <property name="patch" value=""/>
 
   <!-- Component versions -->
-  <property name="xuudb-version" value="2.13.3"/>
-  <property name="gateway-version" value="2.4.0"/>
-  <property name="registry-version" value="3.0.0"/>
-  <property name="unicorex-version" value="3.0.0"/>
-  <property name="workflow-version" value="3.10.0"/>
-  <property name="tsi-version" value="11.0.0"/>
+  <property name="xuudb-version" value="2.13.4"/>
+  <property name="gateway-version" value="2.4.1"/>
+  <property name="registry-version" value="3.0.1"/>
+  <property name="unicorex-version" value="3.0.1"/>
+  <property name="workflow-version" value="3.10.2"/>
+  <property name="tsi-version" value="11.0.1"/>
 
   <taskdef uri="antlib:org.apache.maven.resolver.ant" resource="org/apache/maven/resolver/ant/antlib.xml">
     <classpath>
-      <fileset dir="tools" includes="maven-resolver-ant-tasks-*.jar"/>
+      <fileset dir="tools" includes="maven-resolver-ant-tasks-1.6.0-uber.jar"/>
     </classpath>
   </taskdef>
 
   <target name="_check-maven-tools-present">
-    <available property="mvntools.exists" file="tools/maven-resolver-ant-tasks-1.2.1-uber.jar"/>
+    <available property="mvntools.exists" file="tools/maven-resolver-ant-tasks-1.6.0-uber.jar"/>
   </target>
 
   <target name="prepare"
@@ -32,7 +32,7 @@
     <echo>Downloading maven-resolver-ant-tasks library...</echo>
     <exec executable="wget">
       <arg value="--no-check-certificate"/>
-      <arg value="https://repo1.maven.org/maven2/org/apache/maven/resolver/maven-resolver-ant-tasks/1.2.1/maven-resolver-ant-tasks-1.2.1-uber.jar"/>
+      <arg value="https://repo1.maven.org/maven2/org/apache/maven/resolver/maven-resolver-ant-tasks/1.6.0/maven-resolver-ant-tasks-1.6.0-uber.jar"/>
       <arg value="-P"/>
       <arg value="tools"/>
       <arg value="-q"/>  
@@ -59,20 +59,17 @@
        <include name="*.jar"/>
       </fileset>
     </delete>
-    <mvn:resolve>
+    <!--mvn:resolve>
       <dependencies>
-    	  <dependency groupId="eu.unicore" artifactId="uas-core" version="3.0.0-1"/>
+    	  <dependency groupId="..." artifactId="..." version="..."/>
       </dependencies>
       <files dir="tools/fixes" layout="{artifactId}-{version}.{extension}"/> 
-    </mvn:resolve>
+    </mvn:resolve-->
     <patternset id="updates">
-      <include name="uas-core-*.jar"/>
+      <!--include name="..."/-->
     </patternset>
-    <delete>
+    <!--delete>
       <fileset dir="unicorex/lib">
-       <patternset refid="updates"/>
-      </fileset>
-      <fileset dir="workflow/lib">
        <patternset refid="updates"/>
       </fileset>
     </delete>
@@ -80,12 +77,7 @@
       <fileset dir="tools/fixes">
         <patternset refid="updates"/>
       </fileset>
-    </copy>
-    <copy todir="workflow/lib">
-      <fileset dir="tools/fixes">
-        <patternset refid="updates"/>
-      </fileset>
-    </copy>
+    </copy-->
   </target>
 
   <target name="update-libs" 
@@ -97,7 +89,9 @@
     <echo>... UNICORE/X version ${unicorex-version}</echo>
     <mkdir dir="unicorex/lib"/>
     <mkdir dir="unicorex/logs"/>
-
+    <delete quiet="true" includeemptydirs="true">
+      <fileset dir="unicorex/lib" includes="**/*"/>
+    </delete>
     <mvn:resolve>
       <dependencies>
         <dependency groupId="eu.unicore" artifactId="unicorex-distribution" version="${unicorex-version}" type="pom"/>
@@ -105,19 +99,19 @@
 	    </dependencies>
       <files dir="unicorex/lib" layout="{artifactId}-{version}.{extension}"/> 
     </mvn:resolve>
-
     <delete>
       <fileset dir="unicorex/lib" includes="*.pom"/>
       <fileset dir="unicorex/lib" includes="*.zip"/>
     </delete>
-
   </target>
 
   <target name="update-registry"
           description="Updates the Registry libraries">
     <mkdir dir="registry/lib"/>
     <mkdir dir="registry/logs"/>
-
+    <delete quiet="true" includeemptydirs="true">
+      <fileset dir="registry/lib" includes="**/*"/>
+    </delete>
     <echo>... Registry version ${registry-version}</echo>
     <mvn:resolve>
       <dependencies>
@@ -125,12 +119,10 @@
 	    </dependencies>
       <files dir="registry/lib" layout="{artifactId}-{version}.{extension}"/> 
     </mvn:resolve>
-
     <delete>
       <fileset dir="registry/lib" includes="*.pom"/>
       <fileset dir="registry/lib" includes="*.zip"/>
     </delete>
-
   </target>
 
   <target name="update-gateway"
@@ -138,10 +130,12 @@
     <echo>... Gateway version ${gateway-version}</echo>
     <mkdir dir="gateway/lib"/>
     <mkdir dir="gateway/logs"/>
-
+    <delete quiet="true" includeemptydirs="true">
+      <fileset dir="gateway/lib" includes="**/*"/>
+    </delete>
     <mvn:resolve>
       <dependencies>
-	<dependency coords="eu.unicore:gateway:${gateway-version}"/>
+	      <dependency coords="eu.unicore:gateway:${gateway-version}"/>
       </dependencies>
       <files dir="gateway/lib" layout="{artifactId}-{version}.{extension}"/> 
     </mvn:resolve>
@@ -156,14 +150,15 @@
     <echo>... XUUDB version ${xuudb-version}</echo>
     <mkdir dir="xuudb/lib"/>
     <mkdir dir="xuudb/logs"/>
-
+    <delete quiet="true" includeemptydirs="true">
+      <fileset dir="xuudb/lib" includes="**/*"/>
+    </delete>
     <mvn:resolve>
       <dependencies>
 	      <dependency groupId="eu.unicore.xuudb" artifactId="xuudb-all" version="${xuudb-version}" type="pom"/>
       </dependencies>
       <files dir="xuudb/lib" layout="{artifactId}-{version}.{extension}"/> 
     </mvn:resolve>
-
     <delete>
       <fileset dir="xuudb/lib" includes="*.pom"/>
       <fileset dir="xuudb/lib" includes="*.zip"/>
@@ -193,7 +188,6 @@
     <delete includeemptydirs="true" dir="tsi/.github"/>
     <delete includeemptydirs="true" dir="tsi/.gitignore"/>
   </target>
-
   <target name="update-changelog">
    <copy file="CHANGES.md" todir="build"/>
    <copy file="README.txt" todir="build"/>
@@ -205,19 +199,19 @@
     <echo>... Workflow version ${workflow-version}</echo>
     <mkdir dir="workflow/lib"/>
     <mkdir dir="workflow/logs"/>
-
+    <delete quiet="true" includeemptydirs="true">
+      <fileset dir="workflow/lib" includes="**/*"/>
+    </delete>
     <mvn:resolve>
       <dependencies>
         <dependency groupId="eu.unicore.workflow" artifactId="workflowservice" version="${workflow-version}"/>
 	    </dependencies>
       <files dir="workflow/lib" layout="{artifactId}-{version}.{extension}"/> 
     </mvn:resolve>
-
     <delete>
       <fileset dir="workflow/lib" includes="*.pom"/>
       <fileset dir="workflow/lib" includes="*.zip"/>
     </delete>
-
   </target>
 
   <target name="update-file-timestamps">

@@ -13,6 +13,23 @@ See README-UPDATE.txt for upgrade notes.
    For production deployments we strongly suggest to use 
    MySQL/MariaDB or PostgreSQL
 
+Core servers 11.0.1 (Apr 27, 2026)
+----------------------------------
+ * General
+  - fix HTTPClient behaviour where it could cause high CPU load
+  - improved internal server status checks, properly applying timeouts
+
+* Gateway
+  - fix: don't show internal addresses as HTML links on front page
+  - improvement: add site name to the log message in case of error
+
+* UNICORE/X
+ - fix: Range header behaviour for HTTP file transfer
+
+* TSI
+ - fix: don't use "bash -l" for Slurm submit
+ - remove Loadleveler variant
+
 Core servers 11.0.0 (Mar 06, 2026)
 ----------------------------------
  * General

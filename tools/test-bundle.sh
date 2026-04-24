@@ -32,7 +32,7 @@ password=test123
 truststore.type=directory
 truststore.directoryLocations.1=${INST}/certs/trusted/*.pem
 client.serverHostnameChecking=NONE
-registry=https://localhost:8080/REGISTRY/rest/registries/default_registry
+registry=https://localhost:18080/REGISTRY/rest/registries/default_registry
 output=/tmp
 EOF
 
