@@ -10,10 +10,10 @@ This includes the following UNICORE server components:
 - Workflow
 - XUUDB
 
-Java 11 or later is required. We recommend using OpenJDK.
+Java 17 or later is required. We recommend using OpenJDK.
 
-Python 3.x is required for the TSI and for using the installation
-helper scripts.
+Python 3.9 or later is required for the TSI and for using
+the installation helper scripts.
 
 
 SEE the 'INSTALL.md' file for installation instructions.
@@ -41,8 +41,3 @@ CONTACT US
 Web site:    https://www.unicore.eu
 Twitter:     https://twitter.com/UNICORE_EU
 GitHub:      https://github.com/UNICORE-EU
-Sourceforge: https://sourceforge.net/projects/unicore
-
-Questions, suggestions, problems: unicore-support@lists.sf.net
-
-Developers chat: unicore-devel@lists.sf.net (subscription required)

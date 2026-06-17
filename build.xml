@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
-<project name="core-server-bundle" default="full-build"
-   xmlns:mvn="antlib:org.apache.maven.resolver.ant">
+<project name="core-server-bundle" default="full-build">
 
   <description>Build the UNICORE Server bundle</description>
 
@@ -187,7 +186,6 @@
   <chmod dir="." perm="600" 
        includes="**/conf/**"/>
   </target>
-
 
   <target name="prepare-update-tools"
           description="Prepare the update-tools">

@@ -26,15 +26,15 @@ decide later if you want to install it.
 PREREQUISITES
 -------------
 
- - Java 11 or later, We recommend using OpenJDK or Oracle Java.
+ - Java 17 or later, We recommend using OpenJDK or Oracle Java.
 
- - Python 3.x for the TSI, and for the installation helper scripts
+ - Python 3.9 or later for the TSI, and for the installation helper scripts
 
 
 SECURITY NOTES
 --------------
 
-The servers (except TSI where this is optional) use X.509 certificates
+The servers (except TSI where it is optional) use X.509 certificates
 and client-authenticated SSL for communication.
 
 The installation package comes with the option of using "demo" certificates,

@@ -13,6 +13,24 @@ See README-UPDATE.txt for upgrade notes.
    For production deployments we strongly suggest to use 
    MySQL/MariaDB or PostgreSQL
 
+Core servers 11.1.0 (Jun dd, 2026)
+----------------------------------
+ * General
+  - dependency updates
+  - better resource management for HTTPClient instances,
+    preventing "leaking" resources such as unused sockets
+  - code cleanup
+
+* Gateway
+  - new feature: add web UI for easily generating UNICORE API tokens,
+    for installations based on an OAuth IdP server
+  - improved error handling when accessing sites that are offline
+
+ * UNICORE/X
+  - fix: issued API token contains user preferences (if any) and
+    will be scoped to those preferences when used
+  - add admin action to issue API token
+
 Core servers 11.0.1 (Apr 27, 2026)
 ----------------------------------
  * General
