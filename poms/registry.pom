@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>eu.unicore.server-bundle</groupId>
+  <artifactId>registry</artifactId>
+  <packaging>pom</packaging>
+  <description>Server-bundle component UNICORE/X</description>
+  <inceptionYear>2026</inceptionYear>
+  <url>https://www.unicore.eu</url>
+  <name>Server bundle: Registry</name>
+  <version>0.1</version>
+
+  <dependencies>
+    <dependency>
+      <groupId>eu.unicore</groupId>
+      <artifactId>registry-distribution</artifactId>
+      <type>pom</type>
+      <version>${registry-version}</version>
+    </dependency>
+  </dependencies>
+
+</project>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>eu.unicore.server-bundle</groupId>
+  <artifactId>gateway</artifactId>
+  <packaging>pom</packaging>
+  <name>gateway</name>
+  <version>0.1</version>
+  <inceptionYear>2026</inceptionYear>
+  <url>https://www.unicore.eu</url>
+  
+  <dependencies>
+    <dependency>
+      <groupId>eu.unicore</groupId>
+      <artifactId>gateway</artifactId>
+      <version>${gateway-version}</version>
+    </dependency>
+  </dependencies>
+
+</project>
