@@ -13,7 +13,7 @@ See README-UPDATE.txt for upgrade notes.
    For production deployments we strongly suggest to use 
    MySQL/MariaDB or PostgreSQL
 
-Core servers 11.1.0 (Jun dd, 2026)
+Core servers 11.1.0 (Jun 18, 2026)
 ----------------------------------
  * General
   - dependency updates

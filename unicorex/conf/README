@@ -8,10 +8,6 @@ startup.properties:
   It contains basic settings such as Java command, 
   lib, conf and log directories, location of PID file.
 
-logging.properties
-
-  Configures the logging subsystem (Log4j/2)
-
 main.config
 
   This is the main UNICORE/X configuration file. It contains
@@ -44,15 +40,15 @@ workflow.properties
   workflow processing feature
   (referenced from main.config)
 
-simpleuudb (optional)
+user-mapfile.json (optional)
 
   Map file for mapping distinguished names to role, xlogin and other 
   attributes. May be used as alternative or in addition to an XUUDB.
   (referenced from main.config)
 
-rest-users.txt (optional)
+user-authfile.txt (optional)
 
-  Usernames/passwords for authenticating users
+  Usernames/passwords for authenticating users.
   (referenced from main.config)
 
 saml.config (optional)
@@ -63,10 +59,14 @@ saml.config (optional)
 
 xacml2.config
 
-  Configures the XACML2.0 subsystem.
+  Configures the XACML2.0 subsystem
   (referenced from main.config)
 
-xacml2Policies
+xacml2Policies/*.xml
 
-  Directory containing XACML2.0 access control policy files.
+  Files containing XACML2.0 access control policies.
   Rarely modified. (referenced from xacml2.config)
+
+logging.properties
+
+  Configures the logging subsystem (Log4j/2)

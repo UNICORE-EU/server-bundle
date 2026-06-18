@@ -26,7 +26,8 @@ decide later if you want to install it.
 PREREQUISITES
 -------------
 
- - Java 17 or later, We recommend using OpenJDK or Oracle Java.
+ - Java 17 or later is required for running the servers (except TSI).
+   We recommend using OpenJDK.
 
  - Python 3.9 or later for the TSI, and for the installation helper scripts
 
@@ -45,12 +46,12 @@ accessible from the internet!  Please refer to the documentation in
 the "docs/Security.txt" file and to the online UNICORE documentation
 for more information on the UNICORE server security setup.
 
-The second optionm self-signed certificates, are secure but may be inconvenient
+The second option, self-signed certificates, is secure but may be inconvenient
 for integrating your UNICORE installation with other applications.
 
-For a secure production deployment, we recommend getting SSL server certificates
-for your machines (as you would for a web server), and use those for the UNICORE
-servers.
+For a secure production deployment, we recommend getting an SSL server certificate 
+(as you would for a web server), and use it for the Gateway, and use self signed
+certificate(s) for the other components.
 
 INSTALLATION & CONFIGURATION
 ----------------------------

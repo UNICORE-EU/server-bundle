@@ -10,7 +10,8 @@ This includes the following UNICORE server components:
 - Workflow
 - XUUDB
 
-Java 17 or later is required. We recommend using OpenJDK.
+Java 17 or later is required for running the servers (except TSI).
+We recommend using OpenJDK.
 
 Python 3.9 or later is required for the TSI and for using
 the installation helper scripts.

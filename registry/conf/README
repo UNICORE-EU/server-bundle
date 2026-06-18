@@ -8,7 +8,7 @@ startup.properties:
   It contains basic settings such as Java command, 
   lib, conf and log directories, location of PID file.
 
-uas.config
+main.config
 
   This is the main configuration file. It contains host/port
   and security settings.
@@ -17,7 +17,7 @@ logging.properties
 
   Configures the logging subsystem (Log4/2j)
 
-simpleuudb (optional)
+user-mapfile.json (optional)
 
   Map file for mapping distinguished names to role, xlogin and other 
   attributes. May be used as alternative or in addition to an XUUDB.

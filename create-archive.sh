@@ -13,6 +13,8 @@ for f in $files ; do
 	ln unicorex/lib/$(basename $f) $f
 	let linked_jars=linked_jars+1
 	let size=size+$(stat -c "%s" $f)
+    else
+    echo "Unique: $f"
     fi
 done
 let unique_jars=total_jars-linked_jars

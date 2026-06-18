@@ -12,6 +12,11 @@
 
   <dependencies>
     <dependency>
+      <groupId>eu.unicore.security</groupId>
+      <artifactId>securityLibrary</artifactId>
+      <version>8.2.0</version>
+    </dependency>
+    <dependency>
       <groupId>eu.unicore.xuudb</groupId>
       <artifactId>xuudb-all</artifactId>
       <type>pom</type>

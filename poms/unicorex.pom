@@ -12,6 +12,16 @@
 
   <dependencies>
     <dependency>
+      <groupId>org.bouncycastle</groupId>
+      <artifactId>bcprov-jdk18on</artifactId>
+      <version>1.84</version>
+    </dependency>
+    <dependency>
+      <groupId>org.bouncycastle</groupId>
+      <artifactId>bcpkix-jdk18on</artifactId>
+      <version>1.84</version>
+    </dependency>
+    <dependency>
       <groupId>eu.unicore</groupId>
       <artifactId>uas-client</artifactId>
       <version>${unicorex-version}-1</version>
