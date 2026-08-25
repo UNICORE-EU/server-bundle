@@ -13,6 +13,26 @@ See README-UPDATE.txt for upgrade notes.
    For production deployments we strongly suggest to use 
    MySQL/MariaDB or PostgreSQL
 
+Core servers 11.2.0 (Aug 26, 2026)
+----------------------------------
+ * General
+  - dependency updates, code cleanup
+
+* Gateway
+  - API token generator: try to resolve missing endpoints on startup
+  - reduce site status checking interval
+
+ * UNICORE/X
+  - new feature: when using username/password authentication,
+    users can set a new password via a REST API endpoint
+  - improve SAML authenticators: user identity can now be assigned
+    via a custom expression and using the received attributes 
+  - improve the per-user ssh-based TSI connector:
+    better error handling, add setup script
+
+ * TSI
+  - minor fixes in the Torque/OpenPBS variant
+ 
 Core servers 11.1.0 (Jun 18, 2026)
 ----------------------------------
  * General

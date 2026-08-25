@@ -12,6 +12,11 @@
 
   <dependencies>
     <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20260814</version>
+    </dependency>
+    <dependency>
       <groupId>eu.unicore</groupId>
       <artifactId>registry-distribution</artifactId>
       <type>pom</type>
