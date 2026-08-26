@@ -27,7 +27,7 @@ jobs:
     - name: Run integration test
       run: |
         python -m pip install --upgrade pyunicore
-        ant launch-dist
+        ant dist-launch
         unicore info -v -c /tmp/ucc.config
         unicore rest -v -c /tmp/ucc.config get https://localhost:18080/DEMO-SITE/rest/core
         unicore rest -v -c /tmp/ucc.config get https://localhost:18080/WORKFLOW/rest/workflows
