@@ -6,13 +6,22 @@
 # requires the version of the tgz as parameter
 #
 
+cleanup() {
+    trap - ERR
+    echo "Exiting (line: $1)"
+    cd $INST
+    ./stop.sh
+    ./tsi_selected/bin/stop.sh
+}
+
 base=$(pwd)
-export INST=/tmp/unicore-servers-$1
+INST=/tmp/unicore-servers-test
 rm -rf $INST
 
 # install the bundle
 cd /tmp
 tar xzf ${base}/../build/unicore-servers-$1.tgz
+mv unicore-servers-$1 unicore-servers-test
 cd $INST
 
 echo "Configuring servers ..."
@@ -28,6 +37,20 @@ sed -i s/uxTSIStatusUpdateInterval=60000/uxTSIStatusUpdateInterval=31000/ config
 echo "tsi.switch_uid=0" >> ./tsi_selected/conf/tsi.properties
 ./tsi_selected/bin/start.sh
 ./start.sh
+
+echo "Generating client config ..."
+
+cat > /tmp/ucc.config <<EOF
+# ucc testing preferences
+authentication-method=USERNAME
+username=demouser
+password=test123
+truststore.type=directory
+truststore.directoryLocations.1=${INST}/certs/trusted/*.pem
+client.serverHostnameChecking=NONE
+registry=https://localhost:18080/REGISTRY/rest/registries/default_registry
+output=/tmp
+EOF
 
 echo "Waiting for server startup ..."
 

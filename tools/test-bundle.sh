@@ -10,21 +10,19 @@
 #
 
 cleanup() {
+    rm -f /tmp/ucc.config
     trap - ERR
     echo "Exiting (line: $1)"
     cd $INST
     ./stop.sh
     ./tsi_selected/bin/stop.sh
-    #rm -rf $INST
 }
 
 base=$(pwd)
+INST=/tmp/unicore-servers-test
+echo "Generating client config ..."
 
-. ${base}/launch-bundle.sh
-
-echo "Generating UCC test config ..."
-
-cat > /tmp/ucc.test.config <<EOF
+cat > /tmp/ucc.config <<EOF
 # ucc testing preferences
 authentication-method=USERNAME
 username=demouser
@@ -36,16 +34,11 @@ registry=https://localhost:18080/REGISTRY/rest/registries/default_registry
 output=/tmp
 EOF
 
-cp ${base}/date1.json /tmp/
+cp ${base}/date-workflow.json /tmp/
 
 echo "Launching UCC test suite ..."
 
 cd ${base}/testsuite
-bash -c "ucc shell -v -c /tmp/ucc.test.config -f suite.test"
-
-# clean up again
-rm -f /tmp/ucc.test.config
+bash -c "ucc shell -v -c /tmp/ucc.config -f suite.test"
 
 cleanup
-
-cd ..

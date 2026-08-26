@@ -1,6 +1,4 @@
-#!/bin/sh
-
-echo "Stopping servers..."
+#!/bin/bash
 
 INST=`dirname $0`
 cd $INST

@@ -28,7 +28,7 @@ Core servers 11.2.0 (Aug 26, 2026)
   - improve SAML authenticators: user identity can now be assigned
     via a custom expression and using the received attributes 
   - improve the per-user ssh-based TSI connector:
-    better error handling, add setup script
+    better error handling, add setup script option
 
  * TSI
   - minor fixes in the Torque/OpenPBS variant

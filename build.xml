@@ -240,9 +240,18 @@
 
   </target>
 
-  <target name="dist-test"
+<target name="dist-launch"
+          description="Installs and starts the bundle">
+    <echo>Launching server bundle ${version}${patch}</echo>
+    <exec executable="/bin/bash" dir="tools" failonerror="true">
+      <arg value="-c"/>
+      <arg value="./launch-bundle.sh ${version}${patch}"/>
+    </exec>
+  </target>
+
+  <target name="dist-test" depends="dist-launch"
           description="Installs the bundle and runs some UCC-based tests">
-    <echo>Running tests on .tgz version ${version}${patch}</echo>
+    <echo>Running tests on server bundle ${version}${patch}</echo>
     <exec executable="/bin/bash" dir="tools" failonerror="true">
       <arg value="-c"/>
       <arg value="./test-bundle.sh ${version}${patch}"/>

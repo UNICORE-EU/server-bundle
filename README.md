@@ -19,7 +19,8 @@ If running for the first time, do
 
   $> ant prepare
 
-The `build.xml`file contains the version definitions. To build the server bundle, run
+The `build.xml`file and the poms/*.xml files contain the versions of the components
+that will be packaged. To build the server bundle, run
 
   $> ant clean update dist
 
