@@ -130,7 +130,7 @@ if(config.get("parameters","workflow")=="true"):
 
 
 if config.get("parameters","installcerts")=="SELFSIGNED":
-    filename = "newcerts/server-credential.pem"
+    filename = "newcerts/trusted/server-certificate.pem"
     subject = "/C=EU/O=UNICORE/CN=UNICORE"
     print("Creating self-signed certificate %s ... \n" % filename)
     os.makedirs("newcerts/trusted", exist_ok=True)
@@ -142,6 +142,11 @@ if config.get("parameters","installcerts")=="SELFSIGNED":
     -out {filename} \
     -subj {subject}
     """
+    exitcode = os.system(cmd)
+    if exitcode!=0:
+        sys.exit(exitcode)
+    # create single file credential
+    cmd = f"""cat {keyfile} {filename} > newcerts/server-credential.pem"""
     exitcode = os.system(cmd)
     if exitcode!=0:
         sys.exit(exitcode)

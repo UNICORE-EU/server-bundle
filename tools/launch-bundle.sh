@@ -32,6 +32,7 @@ sed -i s/registry=false/registry=true/ configure.properties
 sed -i s/workflow=false/workflow=true/ configure.properties
 sed -i s/uxEnableStorageFactory=false/uxEnableStorageFactory=true/ configure.properties
 sed -i s/uxTSIStatusUpdateInterval=60000/uxTSIStatusUpdateInterval=31000/ configure.properties
+sed -i s/installcerts=DEMO/installcerts=SELFSIGNED/ configure.properties
 ./configure.py $USER localhost
 ./install.py
 echo "tsi.switch_uid=0" >> ./tsi_selected/conf/tsi.properties
