@@ -11,16 +11,11 @@
   <version>0.1</version>
 
   <dependencies>
-    <!--dependency>
-      <groupId>org.bouncycastle</groupId>
-      <artifactId>bcprov-jdk18on</artifactId>
-      <version>1.85</version>
-    </dependency>
     <dependency>
-      <groupId>org.bouncycastle</groupId>
-      <artifactId>bcpkix-jdk18on</artifactId>
-      <version>1.85</version>
-    </dependency-->
+      <groupId>eu.unicore</groupId>
+      <artifactId>xnjs</artifactId>
+      <version>${unicorex-version}-1</version>
+    </dependency>
     <dependency>
       <groupId>eu.unicore</groupId>
       <artifactId>unicorex-distribution</artifactId>

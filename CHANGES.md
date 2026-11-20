@@ -13,6 +13,28 @@ See README-UPDATE.txt for upgrade notes.
    For production deployments we strongly suggest to use 
    MySQL/MariaDB or PostgreSQL
 
+Core servers 11.3.0 (Nov 23, 2026)
+----------------------------------
+ * General
+  - dependency updates, code cleanup
+
+ * UNICORE/X
+  - rewritten API token generation and API token validation:
+    API tokens are only valid for issuing site, and now have a token
+    ID ('jti' claim) to identify them, allowing to revoke tokens
+    if necessary.
+  - cleanup batch system status query (interval and error handling)
+  - fix parsing of stage-in / out
+  - improve multi-node TSI handling and error behaviour
+
+ * TSI
+  - generate shorter process list by filtering for UNICORE-related processes
+  - send variant (Slurm, nobatch, ...) as part of version info
+  - set "tsi.use_login_shell" setting default (back) to False, since it can
+    lead to hard-to-debug errors
+  - add requested user name to error message
+
+
 Core servers 11.2.0 (Aug 26, 2026)
 ----------------------------------
  * General
